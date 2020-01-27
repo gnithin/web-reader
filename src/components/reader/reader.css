@@ -1,0 +1,23 @@
+.reader-container {
+    padding: 0px !important;
+}
+
+.breadcrumbs-container {
+    height: 40px;
+}
+
+.main-content-container {
+    height: calc(100vh - 40px);
+}
+
+.sidebar-container {
+    border: 1px solid #000;
+    height: 100%;
+    overflow: auto;
+}
+
+.article-container {
+    border: 1px solid #000;
+    height: 100%;
+    overflow: auto;
+}
