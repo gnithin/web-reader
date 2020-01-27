@@ -21,12 +21,12 @@ class ArticleView extends Component {
                 <div className="section-container">
                     {article.sections.map((section) => {
                         return (
-                            <div key={section.number} className="section">
+                            <div key={section.number} className="section" id={`${section.number}`}>
                                 <h2>{section.number} {section.title}</h2>
                                 <div className="sub-section-container">
                                     {section.subSections.map((ss) => {
                                         return (
-                                            <div key={ss.number} className="sub-section">
+                                            <div key={ss.number} className="sub-section" id={`${section.number}-${ss.number}`}>
                                                 <h3> {ss.number} {ss.title} </h3>
                                                 <div className="sub-section-content">
                                                     {ss.content}
