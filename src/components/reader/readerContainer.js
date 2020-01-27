@@ -6,17 +6,31 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import './reader.css'
+import ArticleDataSource from 'dataSource/articleDataSource'
 
 class ReaderContainer extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
-
+            isLoading: true,
         }
     }
 
+    componentDidMount() {
+        ArticleDataSource.fetchDataSource().then((data) => {
+            this.setState({ isLoading: false })
+            console.log("Got data")
+            console.log(data)
+        })
+
+    }
+
     render() {
+        if (this.state.isLoading) {
+            return (<div>Loading...</div>)
+        }
+
         return (
             <Container fluid={true} className="reader-container">
                 <Row noGutters={true}>
