@@ -8,15 +8,54 @@ class ArticleView extends Component {
         super(props)
 
         this.state = {
-            article: props.data
+            article: props.data,
         }
-        this.idList = new Set();
+        this.visibleSections = new Set();
+        this.visibleSectionNumber = 1;
     }
 
     componentDidMount() {
-        console.log("All ids - ")
-        for (let id of this.idList) {
-            console.log(id)
+        let options = {
+            root: document.querySelector('.article-container'),
+            rootMargin: '0px',
+            threshold: 1.0
+        }
+
+        let observer = new IntersectionObserver(this.intersectionHandler.bind(this), options);
+        let subSectionsList = document.getElementsByClassName(`sub-section`)
+        for (let target of subSectionsList) {
+            observer.observe(target);
+        }
+    }
+
+    intersectionHandler(entries, observer) {
+        for (let entry of entries) {
+            let ssVal = parseFloat(entry.target.getAttribute('data-ss'))
+            if (entry.isIntersecting) {
+                this.visibleSections.add(ssVal)
+            } else {
+                if (this.visibleSections.has(ssVal)) {
+                    this.visibleSections.delete(ssVal)
+                }
+            }
+        }
+
+        // Recalculate the top entry. Ideally would use a min-heap
+        let minVal = Infinity;
+        for (let ss of this.visibleSections) {
+            if (ss < minVal) {
+                minVal = ss
+            }
+        }
+
+        if (minVal !== Infinity) {
+            if (this.visibleSectionNumber !== minVal) {
+                this.visibleSectionNumber = minVal;
+
+                // TODO: Perform callbacks here.
+                console.log("Section number - ")
+                console.log(this.visibleSectionNumber)
+            }
         }
     }
 
@@ -39,8 +78,7 @@ class ArticleView extends Component {
     }
 
     SectionComponent = ({ section }) => {
-        let id = `${section.number}`
-        this.idList.add(id)
+        let id = `s-${section.number}`
         return (
             <div className="section" id={id}>
                 <h2>{section.number} {section.title}</h2>
@@ -54,10 +92,9 @@ class ArticleView extends Component {
     }
 
     SubSectionComponent = ({ ss, sectionNumber }) => {
-        let id = `${sectionNumber}-${ss.number}`
-        this.idList.add(id)
+        let id = `s-${sectionNumber}-${ss.number}`
         return (
-            <div className="sub-section" id={id}>
+            <div className="sub-section" id={id} data-ss={ss.number}>
                 <h3> {ss.number} {ss.title} </h3>
                 <div className="sub-section-content">
                     {ss.content}
