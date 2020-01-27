@@ -8,7 +8,51 @@ class ArticleView extends Component {
         super(props)
 
         this.state = {
-            article: props.data
+            article: props.data,
+        }
+        this.visibleSections = new Set();
+        this.visibleSectionNumber = 1;
+    }
+
+    componentDidMount() {
+        let options = {
+            root: document.querySelector('.article-container'),
+            rootMargin: '0px',
+            threshold: 1.0
+        }
+
+        let observer = new IntersectionObserver(this.intersectionHandler.bind(this), options);
+        let subSectionsList = document.getElementsByClassName(`sub-section`)
+        for (let target of subSectionsList) {
+            observer.observe(target);
+        }
+    }
+
+    intersectionHandler(entries, observer) {
+        for (let entry of entries) {
+            let ssVal = parseFloat(entry.target.getAttribute('data-ss'))
+            if (entry.isIntersecting) {
+                this.visibleSections.add(ssVal)
+            } else {
+                if (this.visibleSections.has(ssVal)) {
+                    this.visibleSections.delete(ssVal)
+                }
+            }
+        }
+
+        // Recalculate the top entry. Ideally would use a min-heap
+        let minVal = Infinity;
+        for (let ss of this.visibleSections) {
+            if (ss < minVal) {
+                minVal = ss
+            }
+        }
+
+        if (minVal !== Infinity) {
+            if (this.visibleSectionNumber !== minVal) {
+                this.visibleSectionNumber = minVal;
+                this.props.sectionVisibilityCb(this.visibleSectionNumber);
+            }
         }
     }
 
@@ -21,31 +65,45 @@ class ArticleView extends Component {
                 <div className="section-container">
                     {article.sections.map((section) => {
                         return (
-                            <div key={section.number} className="section" id={`${section.number}`}>
-                                <h2>{section.number} {section.title}</h2>
-                                <div className="sub-section-container">
-                                    {section.subSections.map((ss) => {
-                                        return (
-                                            <div key={ss.number} className="sub-section" id={`${section.number}-${ss.number}`}>
-                                                <h3> {ss.number} {ss.title} </h3>
-                                                <div className="sub-section-content">
-                                                    {ss.content}
-                                                </div>
-                                            </div>
-                                        );
-                                    })}
-                                </div>
-                            </div>
+                            <this.SectionComponent key={section.number} section={section} />
                         );
-                    })}
+                    }
+                    )}
                 </div>
             </React.Fragment>
         )
     }
+
+    SectionComponent = ({ section }) => {
+        let id = `s-${section.number}`
+        return (
+            <div className="section" id={id}>
+                <h2>{section.number} {section.title}</h2>
+                <div className="sub-section-container">
+                    {section.subSections.map((ss) => (
+                        <this.SubSectionComponent key={ss.number} ss={ss} sectionNumber={section.number} />
+                    ))}
+                </div>
+            </div>
+        );
+    }
+
+    SubSectionComponent = ({ ss, sectionNumber }) => {
+        let id = `s-${sectionNumber}-${ss.number}`
+        return (
+            <div className="sub-section" id={id} data-ss={ss.number}>
+                <h3> {ss.number} {ss.title} </h3>
+                <div className="sub-section-content">
+                    {ss.content}
+                </div>
+            </div>
+        );
+    }
 }
 
 ArticleView.propTypes = {
-    data: PropTypes.instanceOf(Article)
+    data: PropTypes.instanceOf(Article),
+    sectionVisibilityCb: PropTypes.func
 }
 
 export default ArticleView

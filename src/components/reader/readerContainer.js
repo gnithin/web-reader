@@ -15,6 +15,7 @@ class ReaderContainer extends Component {
         this.state = {
             isLoading: true,
             article: null,
+            visibleSection: 1,
         }
     }
 
@@ -54,11 +55,18 @@ class ReaderContainer extends Component {
                     <Col xs={12} md={10} className="article-container">
                         <Article
                             data={this.state.article}
+                            sectionVisibilityCb={this.sectionVisibilityHandler.bind(this)}
                         />
                     </Col>
                 </Row>
             </Container>
         );
+    }
+
+    sectionVisibilityHandler(sectionNumber) {
+        this.setState({ visibleSection: sectionNumber });
+        console.log("Visibility Changed - ")
+        console.log(sectionNumber)
     }
 }
 export default ReaderContainer;
