@@ -10,6 +10,14 @@ class ArticleView extends Component {
         this.state = {
             article: props.data
         }
+        this.idList = new Set();
+    }
+
+    componentDidMount() {
+        console.log("All ids - ")
+        for (let id of this.idList) {
+            console.log(id)
+        }
     }
 
     render() {
@@ -19,38 +27,44 @@ class ArticleView extends Component {
                 <h1 className="article-title">{article.title}</h1>
                 <hr />
                 <div className="section-container">
-                    {article.sections.map((section) => (
-                        <SectionComponent key={section.number} section={section} />
-                    ))}
+                    {article.sections.map((section) => {
+                        return (
+                            <this.SectionComponent key={section.number} section={section} />
+                        );
+                    }
+                    )}
                 </div>
             </React.Fragment>
         )
     }
-}
 
-const SectionComponent = ({ section }) => {
-    console.log(section)
-    return (
-        <div className="section" id={`${section.number}`}>
-            <h2>{section.number} {section.title}</h2>
-            <div className="sub-section-container">
-                {section.subSections.map((ss) => (
-                    <SubSectionComponent key={ss.number} ss={ss} sectionNumber={section.number} />
-                ))}
+    SectionComponent = ({ section }) => {
+        let id = `${section.number}`
+        this.idList.add(id)
+        return (
+            <div className="section" id={id}>
+                <h2>{section.number} {section.title}</h2>
+                <div className="sub-section-container">
+                    {section.subSections.map((ss) => (
+                        <this.SubSectionComponent key={ss.number} ss={ss} sectionNumber={section.number} />
+                    ))}
+                </div>
             </div>
-        </div>
-    );
-}
+        );
+    }
 
-const SubSectionComponent = ({ ss, sectionNumber }) => {
-    return (
-        <div className="sub-section" id={`${sectionNumber}-${ss.number}`}>
-            <h3> {ss.number} {ss.title} </h3>
-            <div className="sub-section-content">
-                {ss.content}
+    SubSectionComponent = ({ ss, sectionNumber }) => {
+        let id = `${sectionNumber}-${ss.number}`
+        this.idList.add(id)
+        return (
+            <div className="sub-section" id={id}>
+                <h3> {ss.number} {ss.title} </h3>
+                <div className="sub-section-content">
+                    {ss.content}
+                </div>
             </div>
-        </div>
-    );
+        );
+    }
 }
 
 ArticleView.propTypes = {
