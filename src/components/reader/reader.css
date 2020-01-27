@@ -13,9 +13,11 @@
 .sidebar-container {
     border: 1px solid #000;
     height: 100%;
+    overflow: auto;
 }
 
 .article-container {
     border: 1px solid #000;
     height: 100%;
+    overflow: auto;
 }
