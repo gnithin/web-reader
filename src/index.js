@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 import Reader from 'components/reader'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 ReactDOM.render(<Reader />, document.getElementById('root'));
 
