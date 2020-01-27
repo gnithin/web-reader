@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class ReaderView extends Component {
+class ArticleView extends Component {
     constructor(props) {
         super(props)
 
@@ -11,9 +11,9 @@ class ReaderView extends Component {
 
     render() {
         return (
-            <div>Readerview</div>
-        );
+            <div>Main Content</div>
+        )
     }
 }
 
-export default ReaderView
+export default ArticleView

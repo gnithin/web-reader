@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import ReaderView from './readerView'
+import Article from 'components/article'
 import Sidebar from 'components/sidebar'
 import Breadcrumbs from 'components/breadcrumbs'
 
@@ -17,7 +17,7 @@ class ReaderContainer extends Component {
             <React.Fragment>
                 <Breadcrumbs />
                 <Sidebar />
-                <ReaderView />
+                <Article />
             </React.Fragment>
         );
     }
