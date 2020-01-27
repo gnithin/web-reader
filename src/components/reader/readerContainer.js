@@ -14,12 +14,17 @@ class ReaderContainer extends Component {
 
         this.state = {
             isLoading: true,
+            article: null,
         }
     }
 
     componentDidMount() {
         ArticleDataSource.fetchDataSource().then((data) => {
-            this.setState({ isLoading: false })
+            this.setState({
+                isLoading: false,
+                article: data,
+            })
+
             console.log("Got data")
             console.log(data)
         })
