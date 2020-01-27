@@ -23,12 +23,12 @@ class SidebarView extends Component {
                     {article.sections.map((section) => {
                         return (
                             <li key={section.number} className="section-list">
-                                <div className="section-title">{section.number}. {section.title}</div>
+                                <a href={`/#${section.number}`} className="section-title">{section.number}. {section.title}</a>
                                 <ul className="list-group">
                                     {section.subSections.map((ss) => {
                                         return (
                                             <li key={ss.number}>
-                                                <span className="sub-section-title">{ss.number}. {ss.title}</span>
+                                                <a href={`/#${section.number}-${ss.number}`} className="sub-section-title">{ss.number}. {ss.title}</a>
                                             </li>
                                         );
                                     })}
