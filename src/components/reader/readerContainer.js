@@ -20,13 +20,13 @@ class ReaderContainer extends Component {
 
     componentDidMount() {
         ArticleDataSource.fetchDataSource().then((data) => {
+            console.log("Got data")
+            console.log(data)
+
             this.setState({
                 isLoading: false,
                 article: data,
             })
-
-            console.log("Got data")
-            console.log(data)
         })
 
     }
@@ -40,15 +40,21 @@ class ReaderContainer extends Component {
             <Container fluid={true} className="reader-container">
                 <Row noGutters={true}>
                     <Col className="breadcrumbs-container">
-                        <Breadcrumbs />
+                        <Breadcrumbs
+                            data={this.state.article}
+                        />
                     </Col>
                 </Row>
                 <Row noGutters={true} className="main-content-container">
                     <Col md={2} className="sidebar-container d-none d-md-block">
-                        <Sidebar />
+                        <Sidebar
+                            data={this.state.article}
+                        />
                     </Col>
                     <Col xs={12} md={10} className="article-container">
-                        <Article />
+                        <Article
+                            data={this.state.article}
+                        />
                     </Col>
                 </Row>
             </Container>
