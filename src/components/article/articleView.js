@@ -51,10 +51,7 @@ class ArticleView extends Component {
         if (minVal !== Infinity) {
             if (this.visibleSectionNumber !== minVal) {
                 this.visibleSectionNumber = minVal;
-
-                // TODO: Perform callbacks here.
-                console.log("Section number - ")
-                console.log(this.visibleSectionNumber)
+                this.props.sectionVisibilityCb(this.visibleSectionNumber);
             }
         }
     }
@@ -105,7 +102,8 @@ class ArticleView extends Component {
 }
 
 ArticleView.propTypes = {
-    data: PropTypes.instanceOf(Article)
+    data: PropTypes.instanceOf(Article),
+    sectionVisibilityCb: PropTypes.func
 }
 
 export default ArticleView
