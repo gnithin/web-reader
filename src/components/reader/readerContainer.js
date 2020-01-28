@@ -7,6 +7,8 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 import ArticleDataSource from 'dataSource/articleDataSource'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBars } from '@fortawesome/free-solid-svg-icons'
 import './reader.css'
 
 class ReaderContainer extends Component {
@@ -48,7 +50,9 @@ class ReaderContainer extends Component {
             <Container fluid={true} className="reader-container">
                 <Row noGutters={true}>
                     <Col xs={{ span: 'auto' }} className="d-none d-md-block">
-                        <Button variant="light" onClick={this.toggleSidebar.bind(this)}>>></Button>
+                        <Button variant="light" onClick={this.toggleSidebar.bind(this)}>
+                            <FontAwesomeIcon icon={faBars} />
+                        </Button>
                     </Col>
                     <Col className="breadcrumbs-container">
                         <Breadcrumbs
