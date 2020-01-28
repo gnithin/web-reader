@@ -1,0 +1,21 @@
+.section-list {
+    padding: 5px;
+}
+
+.section-list a, .section-list a:hover {
+    color: inherit;
+}
+
+.is-selected {
+    color: orange!important;
+    text-decoration: underline;
+}
+
+.sidebar-title {
+    font-weight: bold;
+    font-size: 105%;
+}
+
+.section-title-label {
+    font-weight: bold;
+}
