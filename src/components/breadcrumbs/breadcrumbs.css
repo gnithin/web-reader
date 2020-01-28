@@ -27,3 +27,8 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+.crumb-value>a, .crumb-value a:hover {
+    color: inherit;
+    text-decoration: underline;
+}

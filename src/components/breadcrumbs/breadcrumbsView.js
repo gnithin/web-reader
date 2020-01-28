@@ -29,9 +29,16 @@ class BreadcrumbsView extends Component {
 
         let title = data.title;
         for (let section of data.sections) {
-            cMap[section.number] = [title, `${section.number}. ${section.title}`]
+            cMap[section.number] = [
+                [title],
+                [`${section.number}. ${section.title}`, `#${section.number}`]
+            ]
             for (let ss of section.subSections) {
-                cMap[ss.number] = [title, `${section.number}. ${section.title}`, `${ss.number}. ${ss.title}`]
+                cMap[ss.number] = [
+                    [title],
+                    [`${section.number}. ${section.title}`, `#${section.number}`],
+                    [`${ss.number}. ${ss.title}`, `#${ss.number}`]
+                ]
             }
         }
         return cMap;
@@ -52,7 +59,16 @@ class BreadcrumbsView extends Component {
         return (
             <div className="crumb-container">
                 {crumb.map((c) => {
-                    return (<div className="crumb-value" key={c}>{c}</div>);
+                    console.log(c)
+                    let hrefVal = "";
+                    if (c.length !== 1) {
+                        hrefVal = c[1]
+                    }
+                    return (
+                        <div className="crumb-value" key={c[0]}>
+                            <a href={hrefVal}>{c[0]}</a>
+                        </div>
+                    );
                 })}
             </div>
         )
