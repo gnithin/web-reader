@@ -115,9 +115,7 @@ class ArticleView extends Component {
         return (
             <div className="sub-section" id={id} data-ss={ss.number}>
                 <h3> {ss.number} {ss.title} </h3>
-                <div className="sub-section-content">
-                    {ss.content}
-                </div>
+                <div className="sub-section-content" dangerouslySetInnerHTML={{ __html: ss.content }} />
             </div>
         );
     }
