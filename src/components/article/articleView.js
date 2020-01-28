@@ -27,6 +27,11 @@ class ArticleView extends Component {
         for (let target of subSectionsList) {
             observer.observe(target);
         }
+
+        let sectionsList = document.getElementsByClassName(`section-header`)
+        for (let target of sectionsList) {
+            observer.observe(target);
+        }
     }
 
     intersectionHandler(entries, observer) {
@@ -79,7 +84,7 @@ class ArticleView extends Component {
         let id = ReaderUtils.createNavigableId(section.number)
         return (
             <div className="section" id={id}>
-                <h2>{section.number} {section.title}</h2>
+                <h2 class="section-header" data-ss={section.number}>{section.number} {section.title}</h2>
                 <div className="sub-section-container">
                     {section.subSections.map((ss) => (
                         <this.SubSectionComponent key={ss.number} ss={ss} sectionNumber={section.number} />
