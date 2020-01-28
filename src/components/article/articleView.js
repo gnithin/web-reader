@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import Article from 'models/article'
 import ReaderUtils from 'common/readerUtils'
 import './article.css'
+import Utils from 'common/utils'
 
 class ArticleView extends Component {
     constructor(props) {
@@ -13,13 +14,28 @@ class ArticleView extends Component {
         }
         this.visibleSections = new Set();
         this.visibleSectionNumber = 1;
+
+        window.onhashchange = this.hashHandler.bind(this)
+    }
+
+    hashHandler() {
+        let currHash = window.location.hash;
+        if (Utils.isEmptyStr(currHash)) {
+            return
+        }
+
+        let hashVal = parseFloat(ReaderUtils.getNumberFromId(currHash));
+        if (isNaN(hashVal)) {
+            return
+        }
+        this.props.sectionVisibilityCb(hashVal);
     }
 
     componentDidMount() {
         let options = {
             root: document.querySelector('.article-container'),
             rootMargin: '0px',
-            threshold: 1.0
+            threshold: 0.3
         }
 
         let observer = new IntersectionObserver(this.intersectionHandler.bind(this), options);
@@ -84,7 +100,7 @@ class ArticleView extends Component {
         let id = ReaderUtils.createNavigableId(section.number)
         return (
             <div className="section" id={id}>
-                <h2 class="section-header" data-ss={section.number}>{section.number} {section.title}</h2>
+                <h2 className="section-header" data-ss={section.number}>{section.number} {section.title}</h2>
                 <div className="sub-section-container">
                     {section.subSections.map((ss) => (
                         <this.SubSectionComponent key={ss.number} ss={ss} sectionNumber={section.number} />
