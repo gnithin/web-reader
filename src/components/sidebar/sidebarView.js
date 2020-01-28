@@ -28,7 +28,7 @@ class SidebarView extends Component {
                 <div className="sidebar-title">
                     {article.title}
                 </div>
-                <ul>
+                <ul className="list-unstyled">
                     {article.sections.map((section) => {
                         let sectionClass = `section-title`
                         if (section.number === this.state.visibleSection) {
@@ -37,7 +37,7 @@ class SidebarView extends Component {
                         return (
                             <li key={section.number} className="section-list">
                                 <a href={`/#${ReaderUtils.createNavigableId(section.number)}`} className={sectionClass}>{section.number}. {section.title}</a>
-                                <ul className="list-group">
+                                <ul className="list-unstyled">
                                     {section.subSections.map((ss) => {
                                         let classList = "sub-section-title"
                                         console.log(`${ss.number} === ${this.state.visibleSection} => ${ss.number === this.state.visibleSection}`);
