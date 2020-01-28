@@ -35,7 +35,7 @@ class ArticleView extends Component {
         let options = {
             root: document.querySelector('.article-container'),
             rootMargin: '0px',
-            threshold: 1.0
+            threshold: 0.3
         }
 
         let observer = new IntersectionObserver(this.intersectionHandler.bind(this), options);
