@@ -7,6 +7,6 @@
 }
 
 .is-selected {
-    color: blue !important;
+    color: orange!important;
     text-decoration: underline;
 }
