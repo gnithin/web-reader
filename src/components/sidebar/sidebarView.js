@@ -36,7 +36,9 @@ class SidebarView extends Component {
                         }
                         return (
                             <li key={section.number} className="section-list">
-                                <a href={`/#${ReaderUtils.createNavigableId(section.number)}`} className={sectionClass}>{section.number}. {section.title}</a>
+                                <a href={`#${ReaderUtils.createNavigableId(section.number)}`} className={sectionClass}>
+                                    <span className="section-title-label">{section.number}. {section.title}</span>
+                                </a>
                                 <ul className="list-unstyled">
                                     {section.subSections.map((ss) => {
                                         let classList = "sub-section-title"
@@ -46,7 +48,7 @@ class SidebarView extends Component {
                                         }
                                         return (
                                             <li key={ss.number}>
-                                                <a href={`/#${ReaderUtils.createNavigableId(ss.number)}`} className={classList}>{ss.number}. {ss.title}</a>
+                                                <a href={`#${ReaderUtils.createNavigableId(ss.number)}`} className={classList}>{ss.number}. {ss.title}</a>
                                             </li>
                                         );
                                     })}

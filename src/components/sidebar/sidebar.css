@@ -10,3 +10,12 @@
     color: orange!important;
     text-decoration: underline;
 }
+
+.sidebar-title {
+    font-weight: bold;
+    font-size: 105%;
+}
+
+.section-title-label {
+    font-weight: bold;
+}
