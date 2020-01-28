@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Article from 'models/article'
+import ReaderUtils from 'common/readerUtils'
 import './article.css'
 
 class ArticleView extends Component {
@@ -75,7 +76,7 @@ class ArticleView extends Component {
     }
 
     SectionComponent = ({ section }) => {
-        let id = `s-${section.number}`
+        let id = ReaderUtils.createNavigableId(section.number)
         return (
             <div className="section" id={id}>
                 <h2>{section.number} {section.title}</h2>
@@ -89,7 +90,7 @@ class ArticleView extends Component {
     }
 
     SubSectionComponent = ({ ss, sectionNumber }) => {
-        let id = `s-${sectionNumber}-${ss.number}`
+        let id = ReaderUtils.createNavigableId(ss.number)
         return (
             <div className="sub-section" id={id} data-ss={ss.number}>
                 <h3> {ss.number} {ss.title} </h3>

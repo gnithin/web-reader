@@ -43,6 +43,7 @@ class ReaderContainer extends Component {
                     <Col className="breadcrumbs-container">
                         <Breadcrumbs
                             data={this.state.article}
+                            visibleSection={this.state.visibleSection}
                         />
                     </Col>
                 </Row>
@@ -50,6 +51,7 @@ class ReaderContainer extends Component {
                     <Col md={2} className="sidebar-container d-none d-md-block">
                         <Sidebar
                             data={this.state.article}
+                            visibleSection={this.state.visibleSection}
                         />
                     </Col>
                     <Col xs={12} md={10} className="article-container">
