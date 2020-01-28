@@ -8,11 +8,19 @@ class SidebarView extends Component {
         super(props)
 
         this.state = {
-            article: props.data
+            article: props.data,
+            visibleSection: props.visibleSection,
+        }
+    }
+
+    componentWillReceiveProps(newProps) {
+        if (this.props.visibleSection !== newProps.visibleSection) {
+            this.setState({ visibleSection: newProps.visibleSection });
         }
     }
 
     render() {
+        let highlightedClass = "is-selected";
         let article = this.state.article;
         return (
             <React.Fragment>
@@ -26,9 +34,14 @@ class SidebarView extends Component {
                                 <a href={`/#${section.number}`} className="section-title">{section.number}. {section.title}</a>
                                 <ul className="list-group">
                                     {section.subSections.map((ss) => {
+                                        let classList = "sub-section-title"
+                                        console.log(`${ss.number} === ${this.state.visibleSection} => ${ss.number === this.state.visibleSection}`);
+                                        if (ss.number === this.state.visibleSection) {
+                                            classList = `${classList} ${highlightedClass}`
+                                        }
                                         return (
                                             <li key={ss.number}>
-                                                <a href={`/#${section.number}-${ss.number}`} className="sub-section-title">{ss.number}. {ss.title}</a>
+                                                <a href={`/#${section.number}-${ss.number}`} className={classList}>{ss.number}. {ss.title}</a>
                                             </li>
                                         );
                                     })}
@@ -43,7 +56,8 @@ class SidebarView extends Component {
 }
 
 SidebarView.propTypes = {
-    data: PropTypes.instanceOf(Article)
+    data: PropTypes.instanceOf(Article).isRequired,
+    visibleSection: PropTypes.number.isRequired,
 }
 
 export default SidebarView
