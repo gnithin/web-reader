@@ -21,3 +21,9 @@
     background-color: orange;
     color: #FFF;
 }
+
+.crumb-value {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

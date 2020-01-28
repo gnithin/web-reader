@@ -52,7 +52,7 @@ class BreadcrumbsView extends Component {
         return (
             <div className="crumb-container">
                 {crumb.map((c) => {
-                    return (<div key={c}>{c}</div>);
+                    return (<div className="crumb-value" key={c}>{c}</div>);
                 })}
             </div>
         )
