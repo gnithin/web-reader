@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Article from 'models/article'
+import ReaderUtils from 'common/readerUtils'
 import './sidebar.css'
 
 class SidebarView extends Component {
@@ -31,7 +32,7 @@ class SidebarView extends Component {
                     {article.sections.map((section) => {
                         return (
                             <li key={section.number} className="section-list">
-                                <a href={`/#${section.number}`} className="section-title">{section.number}. {section.title}</a>
+                                <a href={`/#${ReaderUtils.createNavigableId(section.number)}`} className="section-title">{section.number}. {section.title}</a>
                                 <ul className="list-group">
                                     {section.subSections.map((ss) => {
                                         let classList = "sub-section-title"
@@ -41,7 +42,7 @@ class SidebarView extends Component {
                                         }
                                         return (
                                             <li key={ss.number}>
-                                                <a href={`/#${section.number}-${ss.number}`} className={classList}>{ss.number}. {ss.title}</a>
+                                                <a href={`/#${ReaderUtils.createNavigableId(ss.number)}`} className={classList}>{ss.number}. {ss.title}</a>
                                             </li>
                                         );
                                     })}

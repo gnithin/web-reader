@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Article from 'models/article'
 import Utils from 'common/utils'
+import ReaderUtils from 'common/readerUtils'
 import './breadcrumbs.css'
 
 class BreadcrumbsView extends Component {
@@ -31,13 +32,13 @@ class BreadcrumbsView extends Component {
         for (let section of data.sections) {
             cMap[section.number] = [
                 [title],
-                [`${section.number}. ${section.title}`, `#${section.number}`]
+                [`${section.number}. ${section.title}`, `#${ReaderUtils.createNavigableId(section.number)}`]
             ]
             for (let ss of section.subSections) {
                 cMap[ss.number] = [
                     [title],
-                    [`${section.number}. ${section.title}`, `#${section.number}`],
-                    [`${ss.number}. ${ss.title}`, `#${ss.number}`]
+                    [`${section.number}. ${section.title}`, `#${ReaderUtils.createNavigableId(section.number)}`],
+                    [`${ss.number}. ${ss.title}`, `#${ReaderUtils.createNavigableId(ss.number)}`]
                 ]
             }
         }
