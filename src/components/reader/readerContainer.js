@@ -35,12 +35,6 @@ class ReaderContainer extends Component {
         })
     }
 
-    toggleSidebar() {
-        this.setState({
-            isSidebarVisible: !this.state.isSidebarVisible
-        })
-    }
-
     render() {
         if (this.state.isLoading) {
             return (<div>Loading...</div>)
@@ -92,6 +86,12 @@ class ReaderContainer extends Component {
         this.setState({ visibleSection: sectionNumber });
         console.log("Visibility Changed - ")
         console.log(sectionNumber)
+    }
+
+    toggleSidebar() {
+        this.setState({
+            isSidebarVisible: !this.state.isSidebarVisible
+        })
     }
 }
 export default ReaderContainer;
