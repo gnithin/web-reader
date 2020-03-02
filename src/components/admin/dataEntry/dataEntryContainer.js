@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
+import DataEntryView from "./dataEntryView";
 
 class DataEntryContainer extends Component {
     render() {
         return (
-            <div>
-                Data entry component
-            </div>
+            <DataEntryView/>
         );
     }
 }
