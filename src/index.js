@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import AppRouter from "./AppRouter";
+import AppRouter from "./routers/appRouter";
 
 // Disable console logs in prod 
 if (process.env.NODE_ENV !== 'development') {

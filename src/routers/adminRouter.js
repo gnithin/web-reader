@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Route, Switch} from "react-router-dom";
-import DataEntry from "./dataEntry";
-import InvalidPage from "../invalidPage/InvalidPage";
+import DataEntry from "../components/admin/dataEntry";
+import InvalidPage from "../components/invalidPage/InvalidPage";
 
 class AdminRouter extends Component {
     render() {
