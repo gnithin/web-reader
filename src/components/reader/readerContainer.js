@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import Article from 'components/article'
 import Sidebar from 'components/sidebar'
 import Breadcrumbs from 'components/breadcrumbs'
@@ -6,9 +6,9 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
-import ArticleDataSource from 'dataSource/articleDataSource'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars } from '@fortawesome/free-solid-svg-icons'
+import ArticleDataSource from 'services/articleService'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faBars} from '@fortawesome/free-solid-svg-icons'
 import './reader.css'
 
 class ReaderContainer extends Component {
@@ -29,9 +29,9 @@ class ReaderContainer extends Component {
             console.log(data)
 
             this.setState({
-                isLoading: false,
-                article: data,
-            })
+                              isLoading: false,
+                              article: data,
+                          })
         })
     }
 
@@ -43,9 +43,9 @@ class ReaderContainer extends Component {
         return (
             <Container fluid={true} className="reader-container">
                 <Row noGutters={true}>
-                    <Col xs={{ span: 'auto' }} className="d-none d-md-block">
+                    <Col xs={{span: 'auto'}} className="d-none d-md-block">
                         <Button variant="light" onClick={this.toggleSidebar.bind(this)}>
-                            <FontAwesomeIcon icon={faBars} />
+                            <FontAwesomeIcon icon={faBars}/>
                         </Button>
                     </Col>
                     <Col className="breadcrumbs-container">
@@ -83,15 +83,16 @@ class ReaderContainer extends Component {
     }
 
     sectionVisibilityHandler(sectionNumber) {
-        this.setState({ visibleSection: sectionNumber });
+        this.setState({visibleSection: sectionNumber});
         console.log("Visibility Changed - ")
         console.log(sectionNumber)
     }
 
     toggleSidebar() {
         this.setState({
-            isSidebarVisible: !this.state.isSidebarVisible
-        })
+                          isSidebarVisible: !this.state.isSidebarVisible
+                      })
     }
 }
+
 export default ReaderContainer;
