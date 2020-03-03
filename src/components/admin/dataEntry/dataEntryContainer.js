@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import DataEntry from "./dataEntryView";
 import DataEntryService from "../../../services/dataEntryService";
+import DataEntry from "./dataEntryView";
+import DataEntryModel from "../../../models/dataEntry";
 
 class DataEntryContainer extends Component {
     constructor(props) {
@@ -21,7 +22,8 @@ class DataEntryContainer extends Component {
         );
     }
 
-    addEntryCb(entry) {
+    addEntryCb(rawEntry) {
+        let entry = new DataEntryModel(rawEntry);
         console.log("Entry being added!");
         console.log(entry);
 
