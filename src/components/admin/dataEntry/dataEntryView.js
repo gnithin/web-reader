@@ -51,13 +51,7 @@ class DataEntryView extends Component {
                         />
                     </div>
                 </div>
-
-                <div className="row da-input-entry no-gutters">
-                    <div className="col-12">
-                        <ContentCreator/>
-                    </div>
-                </div>
-
+               
                 <div className="row da-input-entry">
                     <div className="col-12">
                         <ChooseParent
@@ -71,6 +65,12 @@ class DataEntryView extends Component {
                                 }
                             }}
                         />
+                    </div>
+                </div>
+
+                <div className="row da-input-entry no-gutters">
+                    <div className="col-12">
+                        <ContentCreator/>
                     </div>
                 </div>
 
