@@ -101,7 +101,7 @@ class DataEntryView extends Component {
 
     createDataEntry() {
         let entries = {...this.state};
-        entries.content = this.props.content;
+        entries.contents = this.props.contents;
         this.props.addEntryCb(entries);
     }
 }
@@ -112,7 +112,7 @@ DataEntryView.propType = {
 
 const reduxToStateMapper = (state) => {
     return {
-        content: state.dataEntry.content,
+        contents: state.dataEntry.contents,
     }
 };
 
