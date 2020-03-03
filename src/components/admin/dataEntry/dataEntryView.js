@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types'
 import './dataEntry.css'
+import Utils from "../../../common/utils";
 
 class DataEntryView extends Component {
     constructor(props) {
@@ -34,6 +35,8 @@ class DataEntryView extends Component {
                 <div className="row da-input-entry da-heading">
                     <h3>Data Entry</h3>
                 </div>
+
+                {this.getInfo()}
 
                 <div className="row da-input-entry">
                     <div className="col-12">
@@ -94,7 +97,17 @@ class DataEntryView extends Component {
 
             </div>
         );
+    }
 
+    getInfo() {
+        if (Utils.isNull(this.props.info)) {
+            return (<React.Fragment/>)
+        }
+        return (<div className="row da-input-entry da-input-info">
+            <div>
+                {this.props.info}
+            </div>
+        </div>);
     }
 }
 
