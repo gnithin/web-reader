@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './contentCreator.css'
+import Utils from "../../../../common/utils";
 
 class ContentCreatorView extends Component {
     constructor(props) {
@@ -65,15 +66,48 @@ class ContentCreatorView extends Component {
                     />
                 </div>
 
+                {this.displayAlignment()}
+
             </div>
         );
     }
 
     updateContainer() {
-        let newData = {
-            ...this.state,
-        };
-        this.props.getUpdateCb(newData);
+        this.updateAlignment();
+        this.props.getUpdateCb({...this.state});
+    }
+
+    updateAlignment() {
+        if ((Utils.isEmptyStr(this.state.description) || Utils.isEmptyStr(this.state.imgLink))) {
+            if (false === Utils.isEmptyStr(this.state.alignment)) {
+                this.setState({alignment: ""});
+            }
+        }
+    }
+
+    displayAlignment() {
+        if (Utils.isEmptyStr(this.state.description) || Utils.isEmptyStr(this.state.imgLink)) {
+            return (<React.Fragment/>);
+        }
+
+        return (
+            <div className="col-12">
+                <select
+                    value={this.state.alignment}
+                    onChange={(e) => {
+                        this.setState({alignment: e.target.value})
+                    }}
+                    onBlur={(e) => {
+                        this.updateContainer();
+                    }}
+                >
+                    <option disabled value=""> Select Alignment</option>
+                    <option value="right">Right Align</option>
+                    <option value="left">Left Align</option>
+                </select>
+            </div>
+        );
+
     }
 }
 
