@@ -6,6 +6,7 @@ import ChooseParent from "./chooseParent/chooseParentContainer";
 import ContentCreator from "./contentCreator/contentCreatorContainer";
 import {connect} from "react-redux";
 import TagCreatorView from "./tagCreator/tagCreatorView";
+import CONSTANTS from "../../../common/constants";
 
 class DataEntryView extends Component {
     constructor(props) {
@@ -110,7 +111,26 @@ class DataEntryView extends Component {
             contents: this.props.contents,
             tags: this.processTags(this.state.tags),
         };
+        entries.type = this.getTypeFromContents(entries.contents);
         this.props.addEntryCb(entries);
+    }
+
+    getTypeFromContents(contents) {
+        let isImg = false;
+        if (false === Utils.isNull(contents)) {
+            for (let c of contents) {
+                if (false === Utils.isEmptyStr(c.imgLink)) {
+                    isImg = true;
+                    break;
+                }
+            }
+        }
+
+        if (isImg) {
+            return CONSTANTS.TYPES.PARA_AND_IMG;
+        } else {
+            return CONSTANTS.TYPES.PARA;
+        }
     }
 
     parentSelectedHandler(parentData) {
