@@ -5,6 +5,7 @@ import Utils from "../../../common/utils";
 import ChooseParent from "./chooseParent/chooseParentContainer";
 import ContentCreator from "./contentCreator/contentCreatorContainer";
 import {connect} from "react-redux";
+import TagCreatorView from "./tagCreator/tagCreatorView";
 
 class DataEntryView extends Component {
     constructor(props) {
@@ -12,6 +13,7 @@ class DataEntryView extends Component {
 
         this.state = {
             ...this.getStateFromProps(props),
+            tags: null,
         }
     }
 
@@ -62,6 +64,16 @@ class DataEntryView extends Component {
 
                 <div className="row da-input-entry no-gutters">
                     <div className="col-12">
+                        <TagCreatorView
+                            updateTagsCb={(tags) => {
+                                this.setState({tags: tags})
+                            }}
+                        />
+                    </div>
+                </div>
+
+                <div className="row da-input-entry no-gutters">
+                    <div className="col-12">
                         <ContentCreator/>
                     </div>
                 </div>
@@ -96,6 +108,7 @@ class DataEntryView extends Component {
             parentId: this.state.parentId,
             title: this.state.title,
             contents: this.props.contents,
+            tags: this.processTags(this.state.tags),
         };
         this.props.addEntryCb(entries);
     }
@@ -113,6 +126,18 @@ class DataEntryView extends Component {
         } else {
             console.log("Choose-parent: Got empty parent-id")
         }
+    }
+
+    processTags() {
+        let resultTags = [];
+        if (Utils.isNull(this.state.tags)) {
+            return resultTags;
+        }
+        let components = this.state.tags.split(",");
+        for (let c of components) {
+            resultTags.push(c.trim());
+        }
+        return resultTags
     }
 }
 
