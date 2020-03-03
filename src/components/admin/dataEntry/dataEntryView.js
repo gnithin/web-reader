@@ -87,17 +87,6 @@ class DataEntryView extends Component {
 
                 <div className="row da-input-entry no-gutters">
                     <div className="col-12">
-                        <div className="custom-file">
-                            <input type="file" className="custom-file-input" id="customFile"/>
-                            <label className="custom-file-label" htmlFor="customFile">Choose
-                                file
-                            </label>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="row da-input-entry no-gutters">
-                    <div className="col-12">
                         <button className="btn btn-primary" onClick={(e) => {
                             this.props.addEntryCb({
                                                       ...this.state
