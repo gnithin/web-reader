@@ -1,23 +1,82 @@
 import React, {Component} from 'react';
 import ContentCreatorView from "./contentCreatorView";
 import {connect} from "react-redux";
+import './contentCreator.css'
+import Utils from "../../../../common/utils";
+import DataEntryActions from "../../../../redux/actions/dataEntryActions";
 
 class ContentCreatorContainer extends Component {
     render() {
         return (
-            <ContentCreatorView/>
+            <div className="content-creator-list-container">
+                {this.getContents()}
+
+                <div className="add-new-content-btn row no-gutters">
+                    <button className="btn btn-primary" onClick={(e) => {
+                        this.addNewContent()
+                    }}>+
+                    </button>
+                </div>
+            </div>
         );
+    }
+
+    getContents() {
+        if (Utils.isNull(this.props.contents)) {
+            return (
+                <React.Fragment/>
+            );
+        }
+
+        return (
+            this.props.contents.map((content, i) => {
+                return (
+                    <ContentCreatorView
+                        key={`content-creator-${i}`}
+                        getUpdateCb={(data) => {
+                            this.updateData(data, i)
+                        }}
+                        description={content.description}
+                        imgLink={content.imgLink}
+                        alignment={content.alignment}
+                    />
+                );
+            })
+        );
+    }
+
+    addNewContent() {
+        this.props.addContent({
+                                  description: "",
+                                  imgLink: "",
+                                  alignment: "",
+                              });
+    }
+
+    updateData(newData, index) {
+        // Update the data at the location
+        let newContents = [...this.props.contents];
+        newContents[index] = newData;
+        this.props.updateContents(newContents);
     }
 }
 
 const reduxToPropsMapper = (state) => {
-    // TODO:
-    return {}
+    return {
+        contents: state.dataEntry.contents
+    }
 };
 
 const componentToReduxMapper = (dispatcher) => {
-    // TODO:
-    return {}
+    return {
+        addContent: (content) => {
+            dispatcher(DataEntryActions.addContent(content));
+        },
+
+        updateContents: (contents) => {
+            dispatcher(DataEntryActions.updateContents(contents));
+        }
+    };
 };
 
 export default connect(reduxToPropsMapper, componentToReduxMapper)(ContentCreatorContainer);
