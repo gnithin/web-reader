@@ -12,6 +12,10 @@ class ContentCreatorContainer extends Component {
                 {this.getContents()}
 
                 <div className="add-new-content-btn row no-gutters">
+                    {
+                        (Utils.isNull(this.props.contents) || this.props.contents.length === 0) &&
+                        <span className="add-new-content-message">Click here to add contents </span>
+                    }
                     <button className="btn btn-primary" onClick={(e) => {
                         this.addNewContent()
                     }}>+

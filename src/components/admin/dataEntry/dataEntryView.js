@@ -51,7 +51,7 @@ class DataEntryView extends Component {
                         />
                     </div>
                 </div>
-               
+
                 <div className="row da-input-entry">
                     <div className="col-12">
                         <ChooseParent
