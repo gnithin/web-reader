@@ -157,7 +157,9 @@ class DataEntryView extends Component {
         for (let c of components) {
             resultTags.push(c.trim());
         }
-        return resultTags
+        return resultTags.filter((e) => {
+            return e !== ""
+        });
     }
 }
 
