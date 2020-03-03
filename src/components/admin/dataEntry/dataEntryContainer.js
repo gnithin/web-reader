@@ -4,8 +4,18 @@ import DataEntry from "./dataEntryView";
 class DataEntryContainer extends Component {
     render() {
         return (
-            <DataEntry/>
+            <DataEntry
+                addEntryCb={this.addEntryCb.bind(this)}
+                title=""
+                content=""
+            />
         );
+    }
+
+    addEntryCb(entry) {
+        console.log("Entry being added!");
+        console.log(entry);
+        // TODO: Perform the call to remote
     }
 }
 

@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types'
 import './dataEntry.css'
 
 class DataEntryView extends Component {
@@ -82,7 +83,12 @@ class DataEntryView extends Component {
 
                 <div className="row da-input-entry">
                     <div className="col-12">
-                        <button className="btn btn-primary">Add Entry</button>
+                        <button className="btn btn-primary" onClick={(e) => {
+                            this.props.addEntryCb({
+                                                      ...this.state
+                                                  });
+                        }}>Add Entry
+                        </button>
                     </div>
                 </div>
 
@@ -91,5 +97,9 @@ class DataEntryView extends Component {
 
     }
 }
+
+DataEntryView.propType = {
+    addEntryCb: PropTypes.func.isRequired,
+};
 
 export default DataEntryView;
