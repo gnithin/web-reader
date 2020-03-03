@@ -8,6 +8,7 @@ class ChooseParentView extends Component {
         super(props);
         this.state = {
             title: "",
+            selectedIndex: -1,
         }
     }
 
@@ -46,6 +47,8 @@ class ChooseParentView extends Component {
     }
 
     performSearch() {
+        this.setState({selectedIndex: -1});
+        this.props.parentSelectedCb(null);
         this.props.searchTitleCb(this.state.title);
     }
 
@@ -60,11 +63,16 @@ class ChooseParentView extends Component {
                     Results -
                 </div>
                 {this.props.results.map((result, i) => {
+                    let divClassName = "choose-parent-result";
+                    if (i === this.state.selectedIndex) {
+                        divClassName = `${divClassName} choose-parent-result-selected`
+                    }
                     return (
                         <div
                             key={`choose-parent-entry-${i}`}
-                            className="choose-parent-result"
+                            className={divClassName}
                             onClick={(e) => {
+                                this.setState({selectedIndex: i});
                                 this.props.parentSelectedCb(result);
                             }}
                         >
