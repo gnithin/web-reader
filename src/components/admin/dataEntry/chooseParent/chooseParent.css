@@ -20,3 +20,8 @@
     background-color: deepskyblue;
     color: white;
 }
+
+.choose-parent-result-selected {
+    background-color: dodgerblue;
+    color: white;
+}

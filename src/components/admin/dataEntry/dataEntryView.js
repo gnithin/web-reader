@@ -55,15 +55,7 @@ class DataEntryView extends Component {
                 <div className="row da-input-entry">
                     <div className="col-12">
                         <ChooseParent
-                            parentSelectedCb={(parentData) => {
-                                let id = parentData._id;
-                                console.log("Selected! - ", parentData);
-                                if (false === Utils.isNull(id)) {
-                                    this.setState({parentId: id});
-                                } else {
-                                    console.log("Choose-parent: Got empty parent-id")
-                                }
-                            }}
+                            parentSelectedCb={this.parentSelectedHandler.bind(this)}
                         />
                     </div>
                 </div>
@@ -100,9 +92,27 @@ class DataEntryView extends Component {
     }
 
     createDataEntry() {
-        let entries = {...this.state};
-        entries.contents = this.props.contents;
+        let entries = {
+            parentId: this.state.parentId,
+            title: this.state.title,
+            contents: this.props.contents,
+        };
         this.props.addEntryCb(entries);
+    }
+
+    parentSelectedHandler(parentData) {
+        if (Utils.isNull(parentData)) {
+            this.setState({parentId: null});
+            return;
+        }
+
+        let id = parentData._id;
+        console.log("Selected! - ", parentData);
+        if (false === Utils.isNull(id)) {
+            this.setState({parentId: id});
+        } else {
+            console.log("Choose-parent: Got empty parent-id")
+        }
     }
 }
 
