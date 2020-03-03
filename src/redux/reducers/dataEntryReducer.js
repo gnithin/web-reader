@@ -6,8 +6,6 @@ let initialState = {
 };
 
 const dataEntryReducer = (state = initialState, action) => {
-    console.log("DEBUG: DE Reducer called!")
-
     switch (action.type) {
         case ACTION_ADD_CONTENT:
             state.contents = [...state.contents, action.data];
