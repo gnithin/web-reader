@@ -34,7 +34,7 @@ class DataEntryView extends Component {
         return (
             <div className="container-fluid data-entry-container">
                 <div className="row da-input-entry da-heading">
-                    <h3>Data Entry</h3>
+                    <h2>Data Entry Dashboard</h2>
                 </div>
 
                 {this.getInfo()}
