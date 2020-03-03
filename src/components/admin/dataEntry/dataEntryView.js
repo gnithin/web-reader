@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import './dataEntry.css'
 import Utils from "../../../common/utils";
 import ChooseParent from "./chooseParent/chooseParentContainer";
+import ContentCreator from "./contentCreator/contentCreatorContainer";
+import {connect} from "react-redux";
 
 class DataEntryView extends Component {
     constructor(props) {
@@ -16,17 +18,12 @@ class DataEntryView extends Component {
     getStateFromProps(props) {
         return {
             title: props.title,
-            content: props.content,
             parentId: null,
         };
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps.title !== this.props.title) {
-            this.setState(this.getStateFromProps(prevProps));
-        }
-
-        if (prevProps.content !== this.props.content) {
             this.setState(this.getStateFromProps(prevProps));
         }
     }
@@ -57,15 +54,7 @@ class DataEntryView extends Component {
 
                 <div className="row da-input-entry no-gutters">
                     <div className="col-12">
-                    <textarea
-                        id="content"
-                        placeholder="Content"
-                        className="form-control"
-                        value={this.state.content}
-                        onChange={(e) => {
-                            this.setState({content: e.target.value})
-                        }}
-                    />
+                        <ContentCreator/>
                     </div>
                 </div>
 
@@ -88,10 +77,9 @@ class DataEntryView extends Component {
                 <div className="row da-input-entry no-gutters">
                     <div className="col-12">
                         <button className="btn btn-primary" onClick={(e) => {
-                            this.props.addEntryCb({
-                                                      ...this.state
-                                                  });
-                        }}>Add Entry
+                            this.createDataEntry()
+                        }}>
+                            Add Entry
                         </button>
                     </div>
                 </div>
@@ -110,10 +98,22 @@ class DataEntryView extends Component {
             </div>
         </div>);
     }
+
+    createDataEntry() {
+        let entries = {...this.state};
+        entries.content = this.props.content;
+        this.props.addEntryCb(entries);
+    }
 }
 
 DataEntryView.propType = {
     addEntryCb: PropTypes.func.isRequired,
 };
 
-export default DataEntryView;
+const reduxToStateMapper = (state) => {
+    return {
+        content: state.dataEntry.content,
+    }
+};
+
+export default connect(reduxToStateMapper, null)(DataEntryView);
