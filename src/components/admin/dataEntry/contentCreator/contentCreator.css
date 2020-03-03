@@ -13,3 +13,12 @@
 .add-new-content-message {
     margin: 5px;
 }
+
+.content-input {
+    margin: 5px 0px;
+}
+
+.content-heading {
+    font-size: 120%;
+   
+}

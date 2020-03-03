@@ -30,10 +30,10 @@ class ContentCreatorView extends Component {
     render() {
         return (
             <div className="content-creator-container row">
-                <div className="col-12">
+                <div className="col-12 content-input content-heading">
                     Create content
                 </div>
-                <div className="col-12">
+                <div className="col-12 content-input">
                     <input
                         type="string"
                         value={this.state.imgLink}
@@ -50,11 +50,11 @@ class ContentCreatorView extends Component {
                     />
                 </div>
 
-                <div className="col-12">
+                <div className="col-12 content-input">
                     <textarea
                         value={this.state.description}
                         className="form-control"
-                        placeholder="Enter content here"
+                        placeholder="Enter content description here"
                         onChange={(e) => {
                             return this.setState({
                                                      description: e.target.value,
@@ -91,7 +91,7 @@ class ContentCreatorView extends Component {
         }
 
         return (
-            <div className="col-12">
+            <div className="col-12 content-input">
                 <select
                     value={this.state.alignment}
                     onChange={(e) => {
