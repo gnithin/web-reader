@@ -20,5 +20,14 @@
 
 .content-heading {
     font-size: 120%;
-
 }
+
+.content-input-top-bar {
+    display: flex;
+    justify-content: space-between;
+}
+
+.content-close {
+    cursor: pointer;
+}
+

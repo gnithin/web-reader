@@ -40,6 +40,9 @@ class ContentCreatorContainer extends Component {
                         getUpdateCb={(data) => {
                             this.updateData(data, i)
                         }}
+                        deleteCb={() => {
+                            this.props.deleteContents(i)
+                        }}
                         description={content.description}
                         imgLink={content.imgLink}
                         alignment={content.alignment}
@@ -79,6 +82,10 @@ const componentToReduxMapper = (dispatcher) => {
 
         updateContents: (contents) => {
             dispatcher(DataEntryActions.updateContents(contents));
+        },
+
+        deleteContents: (index) => {
+            dispatcher(DataEntryActions.deleteContentIndex(index));
         }
     };
 };

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './contentCreator.css'
 import Utils from "../../../../common/utils";
 
+// TODO: Prop types
 class ContentCreatorView extends Component {
     constructor(props) {
         super(props);
@@ -30,8 +31,19 @@ class ContentCreatorView extends Component {
     render() {
         return (
             <div className="content-creator-container row">
-                <div className="col-12 content-input content-heading">
-                    Create content
+                <div className="col-12 content-input content-input-top-bar">
+                    <span className="content-heading">
+                        Create content
+                    </span>
+                    <span className="content-close">
+                        <i
+                            className="fa fa-times"
+                            aria-hidden="true"
+                            onClick={(e) => {
+                                this.props.deleteCb();
+                            }}
+                        />
+                    </span>
                 </div>
                 <div className="col-12 content-input">
                     <input
