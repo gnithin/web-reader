@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types'
 import './dataEntry.css'
 import Utils from "../../../common/utils";
+import ChooseParent from "./chooseParent/chooseParentContainer";
 
 class DataEntryView extends Component {
     constructor(props) {
@@ -16,6 +17,7 @@ class DataEntryView extends Component {
         return {
             title: props.title,
             content: props.content,
+            parentId: null,
         };
     }
 
@@ -38,7 +40,7 @@ class DataEntryView extends Component {
 
                 {this.getInfo()}
 
-                <div className="row da-input-entry">
+                <div className="row da-input-entry no-gutters">
                     <div className="col-12">
                         <input
                             type="string"
@@ -53,7 +55,7 @@ class DataEntryView extends Component {
                     </div>
                 </div>
 
-                <div className="row da-input-entry">
+                <div className="row da-input-entry no-gutters">
                     <div className="col-12">
                     <textarea
                         id="content"
@@ -69,11 +71,21 @@ class DataEntryView extends Component {
 
                 <div className="row da-input-entry">
                     <div className="col-12">
-                        TODO: Choose parent
+                        <ChooseParent
+                            parentSelectedCb={(parentData) => {
+                                let id = parentData._id;
+                                console.log("Selected! - ", parentData);
+                                if (false === Utils.isNull(id)) {
+                                    this.setState({parentId: id});
+                                } else {
+                                    console.log("Choose-parent: Got empty parent-id")
+                                }
+                            }}
+                        />
                     </div>
                 </div>
 
-                <div className="row da-input-entry">
+                <div className="row da-input-entry no-gutters">
                     <div className="col-12">
                         <div className="custom-file">
                             <input type="file" className="custom-file-input" id="customFile"/>
@@ -84,7 +96,7 @@ class DataEntryView extends Component {
                     </div>
                 </div>
 
-                <div className="row da-input-entry">
+                <div className="row da-input-entry no-gutters">
                     <div className="col-12">
                         <button className="btn btn-primary" onClick={(e) => {
                             this.props.addEntryCb({
