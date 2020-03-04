@@ -10,28 +10,31 @@ import ArticleDataSource from 'services/articleService'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faBars} from '@fortawesome/free-solid-svg-icons'
 import './reader.css'
+import {connect} from "react-redux";
+import ArticleActions from "../../redux/actions/articleActions";
 
 class ReaderContainer extends Component {
     constructor(props) {
-        super(props)
+        super(props);
 
         this.state = {
             isLoading: true,
-            article: null,
-            visibleSection: 1,
             isSidebarVisible: true,
         }
     }
 
     componentDidMount() {
-        ArticleDataSource.fetchDataSource().then((data) => {
-            console.log("Got data")
-            console.log(data)
+        ArticleDataSource.fetchDataSource(this.props.id).then((data) => {
+            console.log("Got data");
+            console.log(data);
 
             this.setState({
                               isLoading: false,
-                              article: data,
-                          })
+                          });
+            this.props.addArticle(data);
+
+        }).catch(err => {
+            console.error("Error fetching data from server - ", err)
         })
     }
 
@@ -49,19 +52,14 @@ class ReaderContainer extends Component {
                         </Button>
                     </Col>
                     <Col className="breadcrumbs-container">
-                        <Breadcrumbs
-                            data={this.state.article}
-                            visibleSection={this.state.visibleSection}
-                        />
+                        <Breadcrumbs/>
                     </Col>
                 </Row>
                 <Row noGutters={true} className="main-content-container">
                     {this.getSidebar()}
+
                     <Col className="article-container">
-                        <Article
-                            data={this.state.article}
-                            sectionVisibilityCb={this.sectionVisibilityHandler.bind(this)}
-                        />
+                        <Article/>
                     </Col>
                 </Row>
             </Container>
@@ -70,22 +68,14 @@ class ReaderContainer extends Component {
 
     getSidebar() {
         if (!this.state.isSidebarVisible) {
-            return (<span></span>)
+            return (<span/>)
         }
+
         return (
             <Col md={2} className="sidebar-container d-none d-md-block">
-                <Sidebar
-                    data={this.state.article}
-                    visibleSection={this.state.visibleSection}
-                />
+                <Sidebar/>
             </Col>
         )
-    }
-
-    sectionVisibilityHandler(sectionNumber) {
-        this.setState({visibleSection: sectionNumber});
-        console.log("Visibility Changed - ")
-        console.log(sectionNumber)
     }
 
     toggleSidebar() {
@@ -95,4 +85,18 @@ class ReaderContainer extends Component {
     }
 }
 
-export default ReaderContainer;
+const reduxToComponentMapper = (state) => {
+    return {
+        article: state.article.data,
+    }
+};
+
+const componentToReduxMapper = (dispatcher) => {
+    return {
+        addArticle: (article) => {
+            dispatcher(ArticleActions.addArticleData(article));
+        }
+    }
+};
+
+export default connect(reduxToComponentMapper, componentToReduxMapper)(ReaderContainer);
