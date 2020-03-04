@@ -1,20 +1,25 @@
 import React, {Component} from 'react'
-import './sidebar.css'
+import './article.css'
+import Utils from 'common/utils'
 import {connect} from "react-redux";
-import Utils from "../../common/utils";
 
-class SidebarView extends Component {
+class ArticleContainer extends Component {
     render() {
         let article = this.props.article;
+
         if (Utils.isEmptyObject(article)) {
-            return (<span/>);
+            return (
+                <div>No data to be seen here</div>
+            );
         }
+
+        // TODO: Parse different kinds of components
 
         return (
             <React.Fragment>
-                <div className="sidebar-title">
+                <h1 className="article-title">
                     {article.title}
-                </div>
+                </h1>
             </React.Fragment>
         )
     }
@@ -26,4 +31,4 @@ const reduxToComponentMapper = (state) => {
     }
 };
 
-export default connect(reduxToComponentMapper, null)(SidebarView);
+export default connect(reduxToComponentMapper, null)(ArticleContainer)

@@ -1,6 +1,4 @@
 import React, {Component} from 'react'
-import PropTypes from 'prop-types'
-import Article from 'models/article'
 import Utils from 'common/utils'
 import ReaderUtils from 'common/readerUtils'
 import './breadcrumbs.css'
@@ -9,16 +7,6 @@ import {connect} from "react-redux";
 class BreadcrumbsView extends Component {
     constructor(props) {
         super(props)
-
-        let visibleSection = props.visibleSection;
-        if (Utils.isNull(visibleSection)) {
-            visibleSection = 1
-        }
-
-        this.state = {
-            visibleSection: visibleSection,
-        }
-
         this.crumbsMap = this.computeCrumbs(props.data);
     }
 
@@ -47,43 +35,32 @@ class BreadcrumbsView extends Component {
         return cMap;
     }
 
-    componentWillReceiveProps(newProps) {
-        if (newProps.visibleSection !== this.props.visibleSection) {
-            this.setState({visibleSection: newProps.visibleSection});
-        }
-    }
-
     render() {
         // TODO: Fix this
         return (<span/>);
 
-        let crumb = this.crumbsMap[this.state.visibleSection]
-        if (Utils.isNull(crumb)) {
-            crumb = [this.state.data.title]
-        }
-
-        return (
-            <div className="crumb-container">
-                {crumb.map((c) => {
-                    console.log(c)
-                    let hrefVal = "";
-                    if (c.length !== 1) {
-                        hrefVal = c[1]
-                    }
-                    return (
-                        <div className="crumb-value" key={c[0]}>
-                            <a href={hrefVal}>{c[0]}</a>
-                        </div>
-                    );
-                })}
-            </div>
-        )
+        // let crumb = this.crumbsMap[this.state.visibleSection]
+        // if (Utils.isNull(crumb)) {
+        //     crumb = [this.state.data.title]
+        // }
+        //
+        // return (
+        //     <div className="crumb-container">
+        //         {crumb.map((c) => {
+        //             console.log(c)
+        //             let hrefVal = "";
+        //             if (c.length !== 1) {
+        //                 hrefVal = c[1]
+        //             }
+        //             return (
+        //                 <div className="crumb-value" key={c[0]}>
+        //                     <a href={hrefVal}>{c[0]}</a>
+        //                 </div>
+        //             );
+        //         })}
+        //     </div>
+        // )
     }
-}
-
-BreadcrumbsView.propTypes = {
-    data: PropTypes.instanceOf(Article).isRequired,
-    visibleSection: PropTypes.number.isRequired,
 }
 
 const reduxToComponentMapper = (state) => {

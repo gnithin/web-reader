@@ -19,7 +19,6 @@ class ReaderContainer extends Component {
 
         this.state = {
             isLoading: true,
-            visibleSection: 1,
             isSidebarVisible: true,
         }
     }
@@ -53,18 +52,14 @@ class ReaderContainer extends Component {
                         </Button>
                     </Col>
                     <Col className="breadcrumbs-container">
-                        <Breadcrumbs
-                            data={this.props.article}
-                            visibleSection={this.state.visibleSection}
-                        />
+                        <Breadcrumbs/>
                     </Col>
                 </Row>
                 <Row noGutters={true} className="main-content-container">
                     {this.getSidebar()}
+
                     <Col className="article-container">
-                        <Article
-                            sectionVisibilityCb={this.sectionVisibilityHandler.bind(this)}
-                        />
+                        <Article/>
                     </Col>
                 </Row>
             </Container>
@@ -78,17 +73,9 @@ class ReaderContainer extends Component {
 
         return (
             <Col md={2} className="sidebar-container d-none d-md-block">
-                <Sidebar
-                    visibleSection={this.state.visibleSection}
-                />
+                <Sidebar/>
             </Col>
         )
-    }
-
-    sectionVisibilityHandler(sectionNumber) {
-        this.setState({visibleSection: sectionNumber});
-        console.log("Visibility Changed - ")
-        console.log(sectionNumber)
     }
 
     toggleSidebar() {
