@@ -1,0 +1,17 @@
+.data-entry-container {
+    margin-top: 20px;
+}
+
+.da-input-entry {
+    margin: 10px;
+}
+
+.da-heading {
+    display: flex;
+    justify-content: center;
+}
+
+.da-input-info {
+    display: flex;
+    justify-content: center;
+}

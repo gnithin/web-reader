@@ -1,0 +1,33 @@
+.content-creator-container {
+    margin: 10px 0px;
+    border: 1px solid lightgrey;
+    padding: 15px 5px;
+    border-radius: 5px;
+}
+
+.add-new-content-btn {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.add-new-content-message {
+    margin: 5px;
+}
+
+.content-input {
+    margin: 5px 0px;
+}
+
+.content-heading {
+    font-size: 120%;
+}
+
+.content-input-top-bar {
+    display: flex;
+    justify-content: space-between;
+}
+
+.content-close {
+    cursor: pointer;
+}
+
