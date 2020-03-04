@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Container from 'react-bootstrap/Container';
-import Image from 'react-image-resizer';
+import Utils from 'common/utils';
 
 class ParagraphWithImage extends Component {
     constructor(props) {
@@ -17,23 +17,33 @@ class ParagraphWithImage extends Component {
 
         this.imgStyle = {
             image: {
-                float: props.isImgLeft ? "left" : "right",
                 margin: "15px 15px 15px 15px"
             }
-          };
+        };
+    }
+
+    componentWillMount() {
+        if (!Utils.isNull(this.state.imgWidth) || !Utils.isNull(this.state.imgHeight))
+            return;
+
+        let img = new Image();
+        var self = this;
+        img.onload = function() {   
+            self.setState({imgWidth: this.width, imgHeight: this.height, imgLoaded: this.src});
+        }
+        img.src = this.state.imgSrc;
     }
 
     render() {
         return (
             <Container fluid={true} className="reader-container">
-                <Image 
-                    src = {this.state.imgSrc} 
+                <img
+                    src={this.state.imgSrc} 
+                    width = {this.state.imgWidth} 
+                    title = {this.state.imgTitle} 
                     className = {this.state.imageFloat} 
-                    width = {this.state.imgWidth}
-                    height = {this.state.imgHeight}
-                    alt = {this.state.imgTitle}
                     style = {this.imgStyle.image}
-                    />
+                />
                 <p>{this.state.description}</p>
             </Container>
         );
