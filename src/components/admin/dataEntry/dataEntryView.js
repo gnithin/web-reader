@@ -97,8 +97,23 @@ class DataEntryView extends Component {
         if (Utils.isNull(this.props.info)) {
             return (<React.Fragment/>)
         }
+
+        let status = "primary";
+        if (false === Utils.isNull(this.props.infoType)) {
+            switch (this.props.infoType) {
+                case CONSTANTS.DATA_INFO.SUCCESS:
+                    status = "success";
+                    break;
+                case CONSTANTS.DATA_INFO.ERROR:
+                    status = "danger";
+                    break;
+                default:
+                // pass
+            }
+        }
+
         return (<div className="row da-input-entry da-input-info">
-            <div>
+            <div className={`alert alert-${status}`}>
                 {this.props.info}
             </div>
         </div>);
