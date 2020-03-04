@@ -1,6 +1,8 @@
 import Utils from "../common/utils";
 
-const ENDPOINT = "/api/detail/"
+// const ENDPOINT = "/api/detail/"
+// TODO: This is for debugging only
+const ENDPOINT = "http://localhost:8081/article.json";
 
 export default class ArticleService {
     static fetchDataSource(id) {

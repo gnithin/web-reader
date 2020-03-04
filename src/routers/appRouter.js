@@ -13,14 +13,10 @@ class AppRouter extends Component {
                         path="/admin/*"
                         component={AdminRouter}
                     />
-                    {/* <Route
-                        path="*"
-                        component={Reader}
-                    /> */}
                     <Route
                         exact
-                        path="/"
-                        component={Reader}
+                        path="/componentTest"
+                        component={ReaderComponentTest}
                     />
                     <Route
                         exact
@@ -29,8 +25,8 @@ class AppRouter extends Component {
                     />
                     <Route
                         exact
-                        path="/componentTest"
-                        component={ReaderComponentTest}
+                        path="/"
+                        component={Reader}
                     />
                 </Switch>
             </BrowserRouter>
