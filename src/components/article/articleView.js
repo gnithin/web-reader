@@ -87,48 +87,12 @@ class ArticleView extends Component {
             <React.Fragment>
                 <h1 className="article-title">{article.title}</h1>
                 <hr/>
-                <div className="section-container">
-                    {article.sections.map((section) => {
-                                              return (
-                                                  <this.SectionComponent key={section.number} section={section}/>
-                                              );
-                                          }
-                    )}
-                </div>
             </React.Fragment>
         )
-    }
-
-    SectionComponent = ({section}) => {
-        let id = ReaderUtils.createNavigableId(section.number)
-        return (
-            <div className="section" id={id}>
-                <h2 className="section-header"
-                    data-ss={section.number}>{section.number} {section.title}</h2>
-                <div className="sub-section-container">
-                    {section.subSections.map((ss) => (
-                        <this.SubSectionComponent key={ss.number} ss={ss}
-                                                  sectionNumber={section.number}/>
-                    ))}
-                </div>
-            </div>
-        );
-    }
-
-    SubSectionComponent = ({ss, sectionNumber}) => {
-        let id = ReaderUtils.createNavigableId(ss.number)
-        return (
-            <div className="sub-section" id={id} data-ss={ss.number}>
-                <h3> {ss.number} {ss.title} </h3>
-                <div className="sub-section-content"
-                     dangerouslySetInnerHTML={{__html: ss.content}}/>
-            </div>
-        );
     }
 }
 
 ArticleView.propTypes = {
-    data: PropTypes.instanceOf(Article),
     sectionVisibilityCb: PropTypes.func
 };
 
