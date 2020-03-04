@@ -63,7 +63,6 @@ class ReaderContainer extends Component {
                     {this.getSidebar()}
                     <Col className="article-container">
                         <Article
-                            data={this.props.article}
                             sectionVisibilityCb={this.sectionVisibilityHandler.bind(this)}
                         />
                     </Col>
@@ -74,7 +73,7 @@ class ReaderContainer extends Component {
 
     getSidebar() {
         if (!this.state.isSidebarVisible) {
-            return (<span></span>)
+            return (<span/>)
         }
         return (
             <Col md={2} className="sidebar-container d-none d-md-block">
