@@ -3,7 +3,6 @@ export default class DataEntry {
         this.title = opts.title;
         this.contents = opts.contents;
         this.parent = opts.parentId;
-        this.type = opts.type;
         this.tags = opts.tags;
     }
 }
