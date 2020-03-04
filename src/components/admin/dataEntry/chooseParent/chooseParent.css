@@ -1,0 +1,27 @@
+.choose-parent-results {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+}
+
+.choose-parent-title {
+    font-size: 110%;
+}
+
+.choose-parent-result {
+    display: flex;
+    width: 100%;
+    cursor: pointer;
+}
+
+.choose-parent-result:hover {
+    background-color: deepskyblue;
+    color: white;
+}
+
+.choose-parent-result-selected {
+    background-color: dodgerblue;
+    color: white;
+}

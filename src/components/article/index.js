@@ -1,2 +1,2 @@
-import ArticleView from './articleView'
+import ArticleView from './articleContainer'
 export default ArticleView
