@@ -24,7 +24,8 @@ class ReaderContainer extends Component {
     }
 
     componentDidMount() {
-        ArticleDataSource.fetchDataSource(this.props.id).then((data) => {
+        let id = this.props.match.params["id"];
+        ArticleDataSource.fetchDataSource(id).then((data) => {
             console.log("Got data");
             console.log(data);
 
