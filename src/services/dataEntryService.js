@@ -1,7 +1,7 @@
 import Utils from "../common/utils";
 
 const DATA_ENDPOINT = "https://interactive-manual-server.herokuapp.com/im/v1/topic";
-const FIND_PARENT_ENDPOINT = "http://localhost:8081/ids.json";
+const FIND_PARENT_ENDPOINT = "https://interactive-manual-server.herokuapp.com/im/v1/topic";
 
 export default class DataEntryService {
     static insertDataEntry(entry) {
