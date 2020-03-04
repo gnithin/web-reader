@@ -1,10 +1,16 @@
-import Article from 'models/article'
-import articleData from 'constants/article'
+import Utils from "../common/utils";
+
+const ENDPOINT = "/api/detail/"
 
 export default class ArticleService {
-    static fetchDataSource() {
-        return new Promise((resolve, reject) => {
-            resolve(new Article(articleData));
-        })
+    static fetchDataSource(id) {
+        let endpoint = ENDPOINT;
+        if (false === Utils.isNull(id)) {
+            endpoint = `${endpoint}${id}`
+        }
+
+        return fetch(endpoint).then(resp => {
+            return resp.json()
+        });
     }
 }

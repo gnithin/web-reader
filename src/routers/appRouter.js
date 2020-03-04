@@ -24,6 +24,11 @@ class AppRouter extends Component {
                     />
                     <Route
                         exact
+                        path="/:id"
+                        component={Reader}
+                    />
+                    <Route
+                        exact
                         path="/componentTest"
                         component={ReaderComponentTest}
                     />
