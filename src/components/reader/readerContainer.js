@@ -75,10 +75,10 @@ class ReaderContainer extends Component {
         if (!this.state.isSidebarVisible) {
             return (<span/>)
         }
+
         return (
             <Col md={2} className="sidebar-container d-none d-md-block">
                 <Sidebar
-                    data={this.props.article}
                     visibleSection={this.state.visibleSection}
                 />
             </Col>
