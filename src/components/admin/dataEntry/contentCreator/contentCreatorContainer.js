@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import './contentCreator.css'
 import Utils from "../../../../common/utils";
 import DataEntryActions from "../../../../redux/actions/dataEntryActions";
+import Content from "../../../../models/content";
 
 class ContentCreatorContainer extends Component {
     render() {
@@ -53,17 +54,15 @@ class ContentCreatorContainer extends Component {
     }
 
     addNewContent() {
-        this.props.addContent({
-                                  description: "",
-                                  imgLink: "",
-                                  alignment: "",
-                              });
+        this.props.addContent(
+            new Content({})
+        );
     }
 
     updateData(newData, index) {
         // Update the data at the location
         let newContents = [...this.props.contents];
-        newContents[index] = newData;
+        newContents[index] = new Content(newData);
         this.props.updateContents(newContents);
     }
 }
