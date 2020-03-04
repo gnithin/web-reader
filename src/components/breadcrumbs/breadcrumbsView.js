@@ -1,9 +1,10 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import Article from 'models/article'
 import Utils from 'common/utils'
 import ReaderUtils from 'common/readerUtils'
 import './breadcrumbs.css'
+import {connect} from "react-redux";
 
 class BreadcrumbsView extends Component {
     constructor(props) {
@@ -16,7 +17,6 @@ class BreadcrumbsView extends Component {
 
         this.state = {
             visibleSection: visibleSection,
-            data: props.data,
         }
 
         this.crumbsMap = this.computeCrumbs(props.data);
@@ -24,7 +24,7 @@ class BreadcrumbsView extends Component {
 
     computeCrumbs(data) {
         let cMap = {}
-        if (Utils.isNull(data)) {
+        if (Utils.isEmptyObject(data)) {
             return cMap;
         }
 
@@ -32,12 +32,14 @@ class BreadcrumbsView extends Component {
         for (let section of data.sections) {
             cMap[section.number] = [
                 [title],
-                [`${section.number}. ${section.title}`, `#${ReaderUtils.createNavigableId(section.number)}`]
+                [`${section.number}. ${section.title}`,
+                 `#${ReaderUtils.createNavigableId(section.number)}`]
             ]
             for (let ss of section.subSections) {
                 cMap[ss.number] = [
                     [title],
-                    [`${section.number}. ${section.title}`, `#${ReaderUtils.createNavigableId(section.number)}`],
+                    [`${section.number}. ${section.title}`,
+                     `#${ReaderUtils.createNavigableId(section.number)}`],
                     [`${ss.number}. ${ss.title}`, `#${ReaderUtils.createNavigableId(ss.number)}`]
                 ]
             }
@@ -47,11 +49,14 @@ class BreadcrumbsView extends Component {
 
     componentWillReceiveProps(newProps) {
         if (newProps.visibleSection !== this.props.visibleSection) {
-            this.setState({ visibleSection: newProps.visibleSection });
+            this.setState({visibleSection: newProps.visibleSection});
         }
     }
 
     render() {
+        // TODO: Fix this
+        return (<span/>);
+
         let crumb = this.crumbsMap[this.state.visibleSection]
         if (Utils.isNull(crumb)) {
             crumb = [this.state.data.title]
@@ -81,4 +86,10 @@ BreadcrumbsView.propTypes = {
     visibleSection: PropTypes.number.isRequired,
 }
 
-export default BreadcrumbsView
+const reduxToComponentMapper = (state) => {
+    return {
+        data: state.article.data,
+    };
+};
+
+export default connect(reduxToComponentMapper, null)(BreadcrumbsView)
