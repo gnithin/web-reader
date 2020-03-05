@@ -1,0 +1,23 @@
+.options-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.options-list {
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.options-list > .list-group-item:hover {
+    background-color: dodgerblue;
+    color: white;
+}
+
+.options-wrapper {
+    overflow: scroll;
+    margin: 40px 0px;
+    display: flex;
+    flex-direction: column;
+}
