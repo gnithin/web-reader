@@ -72,7 +72,7 @@ class DataEntryView extends Component {
                         <button className="btn btn-primary" onClick={(e) => {
                             this.createDataEntry()
                         }}>
-                            Add Entry
+                            Submit Entry
                         </button>
                     </div>
                 </div>

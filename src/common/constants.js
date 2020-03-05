@@ -6,6 +6,7 @@ const CONSTANTS = {
     DATA_INFO: {
         ERROR: "error",
         SUCCESS: "success",
+        SENDING: "sending",
     }
 };
 
