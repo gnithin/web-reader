@@ -15,7 +15,7 @@ class ArticleContainer extends Component {
                 <div>No data to be seen here</div>
             );
         }
-        console.log("DEBUG: Article - ", article)
+        console.log("Article - ", article)
 
         return (
             <React.Fragment>
