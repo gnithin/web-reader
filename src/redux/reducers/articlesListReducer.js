@@ -1,7 +1,11 @@
-import {ACTION_UPDATE_ARTICLES_LIST} from "../actions/articlesListActions";
+import {
+    ACTION_SELECT_ARTICLE_FROM_LIST,
+    ACTION_UPDATE_ARTICLES_LIST
+} from "../actions/articlesListActions";
 
 const initialState = {
     data: [],
+    selectedIndex: null,
 };
 
 const articlesListReducer = (state = initialState, action) => {
@@ -10,6 +14,12 @@ const articlesListReducer = (state = initialState, action) => {
             return {
                 ...state,
                 data: [...action.data],
+            };
+
+        case ACTION_SELECT_ARTICLE_FROM_LIST:
+            return {
+                ...state,
+                selectedIndex: action.data,
             };
 
         default:
