@@ -13,21 +13,9 @@ class DataEntryView extends Component {
         super(props);
 
         this.state = {
-            ...this.getStateFromProps(props),
+            title: "",
             tags: null,
-        }
-    }
-
-    getStateFromProps(props) {
-        return {
-            title: props.title,
             parentId: null,
-        };
-    }
-
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevProps.title !== this.props.title) {
-            this.setState(this.getStateFromProps(prevProps));
         }
     }
 

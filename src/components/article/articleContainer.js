@@ -17,8 +17,6 @@ class ArticleContainer extends Component {
         }
         console.log("DEBUG: Article - ", article)
 
-        // TODO: Parse different kinds of components
-
         return (
             <React.Fragment>
                 <h1 className="article-title">
