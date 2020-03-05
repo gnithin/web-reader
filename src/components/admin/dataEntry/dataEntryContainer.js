@@ -27,6 +27,15 @@ class DataEntryContainer extends Component {
         let entry = new DataEntryModel(rawEntry);
         console.log("Entry being added!");
         console.log(entry);
+        this.setState({
+                          info: "Sending...",
+                          infoType: CONSTANTS.DATA_INFO.SENDING,
+                      });
+        window.scrollTo({
+                            top: 0,
+                            left: 0,
+                            behavior: 'smooth'
+                        });
 
         // Perform the call to remote
         DataEntryService.insertDataEntry(entry).then(resp => {
