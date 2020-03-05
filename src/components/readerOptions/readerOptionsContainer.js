@@ -4,8 +4,16 @@ import ArticleService from "../../services/articleService";
 import {connect} from "react-redux";
 import ArticlesListActions from "../../redux/actions/articlesListActions";
 import Utils from "../../common/utils";
+import LoadingView from "../loading";
 
 class ReaderOptionsContainer extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            isLoading: true,
+        }
+    }
+
     componentDidMount() {
         ArticleService.fetchDataSource()
             .then(articlesList => {
@@ -16,12 +24,18 @@ class ReaderOptionsContainer extends Component {
                 }
 
                 this.props.updateArticlesList(articlesList);
+                this.setState({isLoading: false});
             }).catch(err => {
             console.log("Error Fetching the articles list - ", err)
         })
     }
 
     render() {
+        if (this.state.isLoading) {
+            return (
+                <LoadingView/>
+            );
+        }
         return (
             <ReaderOptionsView/>
         );
