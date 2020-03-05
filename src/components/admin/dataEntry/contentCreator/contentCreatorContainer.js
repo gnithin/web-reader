@@ -44,6 +44,7 @@ class ContentCreatorContainer extends Component {
                         deleteCb={() => {
                             this.props.deleteContents(i)
                         }}
+                        title={content.title}
                         description={content.description}
                         imgLink={content.imgLink}
                         alignment={content.alignment}
