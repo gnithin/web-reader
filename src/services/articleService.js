@@ -20,9 +20,7 @@ export default class ArticleService {
     }
 
     static fetchDataSource() {
-        // let endpoint = `${ENDPOINT}`;
-        // TODO: Remove this
-        let endpoint = `http://localhost:8081/articlesList.json`;
+        let endpoint = ENDPOINT;
         return fetch(endpoint).then(resp => {
             if (!resp.ok) {
                 throw Error(`Error when fetching ${endpoint}`)
