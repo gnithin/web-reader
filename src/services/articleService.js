@@ -1,6 +1,6 @@
 import Utils from "../common/utils";
 
-const ENDPOINT = "http://interactive-manual-server.herokuapp.com/im/v1/details";
+const ENDPOINT = "https://interactive-manual-server.herokuapp.com/im/v1/details";
 
 export default class ArticleService {
     static fetchDataSourceForId(id) {
