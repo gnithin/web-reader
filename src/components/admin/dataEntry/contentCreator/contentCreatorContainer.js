@@ -46,7 +46,7 @@ class ContentCreatorContainer extends Component {
                         }}
                         title={content.title}
                         description={content.description}
-                        imgLink={content.imgLink}
+                        imageURL={content.imageURL}
                         alignment={content.alignment}
                     />
                 );

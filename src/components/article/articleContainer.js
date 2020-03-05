@@ -38,7 +38,7 @@ class ArticleContainer extends Component {
                 return (
                     <ParagraphWithImage
                         key={key}
-                        imgSrc={content.imgLink}
+                        imgSrc={content.imageURL}
                         description={content.description}
                         isImgLeft={content.alignment === 'left'}
                         imgWidth={100}

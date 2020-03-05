@@ -9,7 +9,7 @@ class ContentCreatorView extends Component {
         this.state = {
             title: "",
             description: "",
-            imgLink: "",
+            imageURL: "",
             alignment: "",
         };
     }
@@ -17,7 +17,7 @@ class ContentCreatorView extends Component {
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (
             prevProps.description !== this.props.description ||
-            prevProps.imgLink !== this.props.imgLink ||
+            prevProps.imageURL !== this.props.imageURL ||
             prevProps.alignment !== this.props.alignment ||
             prevProps.title !== this.props.title
         ) {
@@ -25,7 +25,7 @@ class ContentCreatorView extends Component {
             this.setState({
                               title: this.props.title,
                               description: this.props.description,
-                              imgLink: this.props.imgLink,
+                              imageURL: this.props.imageURL,
                               alignment: this.props.alignment,
                           });
         }
@@ -86,12 +86,12 @@ class ContentCreatorView extends Component {
                 <div className="col-12 content-input">
                     <input
                         type="string"
-                        value={this.state.imgLink}
+                        value={this.state.imageURL}
                         className="form-control"
                         placeholder="Enter image link here"
                         onChange={(e) => {
                             return this.setState({
-                                                     imgLink: e.target.value,
+                                                     imageURL: e.target.value,
                                                  });
                         }}
                         onBlur={(_) => {
@@ -112,7 +112,7 @@ class ContentCreatorView extends Component {
     }
 
     updateAlignment() {
-        if ((Utils.isEmptyStr(this.state.description) || Utils.isEmptyStr(this.state.imgLink))) {
+        if ((Utils.isEmptyStr(this.state.description) || Utils.isEmptyStr(this.state.imageURL))) {
             if (false === Utils.isEmptyStr(this.state.alignment)) {
                 this.setState({alignment: ""});
             }
@@ -120,7 +120,7 @@ class ContentCreatorView extends Component {
     }
 
     displayAlignment() {
-        if (Utils.isEmptyStr(this.state.description) || Utils.isEmptyStr(this.state.imgLink)) {
+        if (Utils.isEmptyStr(this.state.description) || Utils.isEmptyStr(this.state.imageURL)) {
             return (<React.Fragment/>);
         }
 
@@ -150,7 +150,7 @@ ContentCreatorView.propType = {
     deleteContentCb: PropTypes.func.isRequired,
     title: PropTypes.string,
     description: PropTypes.string,
-    imgLink: PropTypes.string,
+    imageURL: PropTypes.string,
     alignment: PropTypes.string,
 };
 
