@@ -1,0 +1,71 @@
+[
+  {
+    "parent": {
+      "children": [
+        "5e613ddd4fb47900245d60ba"
+      ],
+      "tags": [],
+      "_id": "5e5fc820bbc9a300247ca77b",
+      "title": "F2",
+      "path": "F2",
+      "content": [],
+      "registeredAt": "2020-03-04T15:24:16.422Z",
+      "docUpdatedAt": "2020-03-05T17:58:53.422Z",
+      "__v": 0,
+      "contents": []
+    },
+    "children": [
+      {
+        "_id": "5e613ddd4fb47900245d60ba",
+        "title": "something-1"
+      }
+    ]
+  },
+  {
+    "parent": {
+      "children": [
+        "5e5edd4f80c79d002461aca5",
+        "5e5fd9a63a7c54002463e06e",
+        "5e5fd9e13a7c54002463e06f",
+        "5e61407d4fb47900245d60bc",
+        "5e6140b14fb47900245d60bd",
+        "5e6155ca4fb47900245d60be"
+      ],
+      "tags": [],
+      "_id": "5e5edd2a80c79d002461aca4",
+      "title": "F1",
+      "path": "F1",
+      "content": [],
+      "registeredAt": "2020-03-03T22:41:46.106Z",
+      "docUpdatedAt": "2020-03-05T19:40:58.213Z",
+      "__v": 0,
+      "contents": []
+    },
+    "children": [
+      {
+        "_id": "5e5edd4f80c79d002461aca5",
+        "title": "something-2"
+      },
+      {
+        "_id": "5e5fd9a63a7c54002463e06e",
+        "title": "something-3"
+      },
+      {
+        "_id": "5e5fd9e13a7c54002463e06f",
+        "title": "something-4"
+      },
+      {
+        "_id": "5e61407d4fb47900245d60bc",
+        "title": "something-5"
+      },
+      {
+        "_id": "5e6140b14fb47900245d60bd",
+        "title": "something-6"
+      },
+      {
+        "_id": "5e6155ca4fb47900245d60be",
+        "title": "something-7"
+      }
+    ]
+  }
+]

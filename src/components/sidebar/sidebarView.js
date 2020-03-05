@@ -16,15 +16,36 @@ class SidebarView extends Component {
                 <div className="sidebar-title">
                     {article.title}
                 </div>
-                <ChildrenBarView/>
+                {this.renderChildrenOfCurrentArticle()}
+                {this.renderChildrenOfTopLevelArticle()}
             </React.Fragment>
         )
     }
+
+    renderChildrenOfCurrentArticle() {
+        return (
+            <ChildrenBarView
+                article={this.props.article}
+                title="Children"
+            />
+        )
+    }
+
+    renderChildrenOfTopLevelArticle() {
+        return (
+            <ChildrenBarView
+                article={this.props.parentArticle}
+                title="Other links"
+            />
+        );
+    }
+
 }
 
 const reduxToComponentMapper = (state) => {
     return {
         article: state.article.data,
+        parentArticle: state.articlesList.selectedArticle,
     }
 };
 

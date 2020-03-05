@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import Utils from "../../common/utils";
 import './readerOptions.css'
+import ArticlesListActions from "../../redux/actions/articlesListActions";
 
 class ReaderOptionsView extends Component {
     render() {
@@ -31,6 +32,9 @@ class ReaderOptionsView extends Component {
                                             key={`article-list-item-${i}`}
                                             className="list-group-item"
                                             to={`/reader/${article._id}`}
+                                            onClick={() => {
+                                                this.props.selectFromArticlesList(i)
+                                            }}
                                         >
                                             {article.title}
                                         </Link>
@@ -51,4 +55,12 @@ const reduxToComponentMapper = (state) => {
     }
 };
 
-export default connect(reduxToComponentMapper, null)(ReaderOptionsView);
+const componentToReduxMapper = (dispatcher) => {
+    return {
+        selectFromArticlesList: (index) => {
+            dispatcher(ArticlesListActions.selectFromArticlesList(index));
+        }
+    }
+};
+
+export default connect(reduxToComponentMapper, componentToReduxMapper)(ReaderOptionsView);
