@@ -39,7 +39,7 @@ class ReaderContainer extends Component {
     }
 
     fetchDataForId(id) {
-        ArticleDataSource.fetchDataSource(id).then((data) => {
+        ArticleDataSource.fetchDataSourceForId(id).then((data) => {
             console.log("Got data");
             console.log(data);
 
