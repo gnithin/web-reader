@@ -8,10 +8,11 @@ import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 import ArticleDataSource from 'services/articleService'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faBars} from '@fortawesome/free-solid-svg-icons'
+import {faBars, faHome} from '@fortawesome/free-solid-svg-icons'
 import './reader.css'
 import {connect} from "react-redux";
 import ArticleActions from "../../redux/actions/articleActions";
+import {Link} from "react-router-dom";
 
 const READER_URL_KEY = "id";
 
@@ -65,6 +66,13 @@ class ReaderContainer extends Component {
                         <Button variant="light" onClick={this.toggleSidebar.bind(this)}>
                             <FontAwesomeIcon icon={faBars}/>
                         </Button>
+                    </Col>
+                    <Col xs={{span: 'auto'}} className="d-none d-md-block">
+                        <Link to="/reader">
+                            <Button variant="light">
+                                <FontAwesomeIcon icon={faHome}/>
+                            </Button>
+                        </Link>
                     </Col>
                     <Col className="breadcrumbs-container">
                         <Breadcrumbs/>
