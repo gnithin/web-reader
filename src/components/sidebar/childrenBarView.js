@@ -5,9 +5,14 @@ import {Link} from "react-router-dom";
 
 class ChildrenBarView extends Component {
     render() {
-        if (Utils.isEmptyObject(this.props.article)) {
+        if (
+            Utils.isEmptyObject(this.props.article) ||
+            // TODO: Remove this once the server-side code is fixed. This is needless.
+            Utils.isEmptyObject(this.props.article.children)
+        ) {
             return (<React.Fragment/>);
         }
+
         return (
             <ul>
                 {this.props.article.children.map((entry, i) => {
