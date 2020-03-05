@@ -7,6 +7,7 @@ class ContentCreatorView extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            title: "",
             description: "",
             imgLink: "",
             alignment: "",
@@ -17,10 +18,12 @@ class ContentCreatorView extends Component {
         if (
             prevProps.description !== this.props.description ||
             prevProps.imgLink !== this.props.imgLink ||
-            prevProps.alignment !== this.props.alignment
+            prevProps.alignment !== this.props.alignment ||
+            prevProps.title !== this.props.title
         ) {
 
             this.setState({
+                              title: this.props.title,
                               description: this.props.description,
                               imgLink: this.props.imgLink,
                               alignment: this.props.alignment,
@@ -45,15 +48,16 @@ class ContentCreatorView extends Component {
                         />
                     </span>
                 </div>
+
                 <div className="col-12 content-input">
                     <input
                         type="string"
-                        value={this.state.imgLink}
+                        value={this.state.title}
                         className="form-control"
-                        placeholder="Enter image link here"
+                        placeholder="Title"
                         onChange={(e) => {
                             return this.setState({
-                                                     imgLink: e.target.value,
+                                                     title: e.target.value,
                                                  });
                         }}
                         onBlur={(e) => {
@@ -70,6 +74,23 @@ class ContentCreatorView extends Component {
                         onChange={(e) => {
                             return this.setState({
                                                      description: e.target.value,
+                                                 });
+                        }}
+                        onBlur={(e) => {
+                            this.updateContainer();
+                        }}
+                    />
+                </div>
+
+                <div className="col-12 content-input">
+                    <input
+                        type="string"
+                        value={this.state.imgLink}
+                        className="form-control"
+                        placeholder="Enter image link here"
+                        onChange={(e) => {
+                            return this.setState({
+                                                     imgLink: e.target.value,
                                                  });
                         }}
                         onBlur={(e) => {
