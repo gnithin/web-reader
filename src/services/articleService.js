@@ -12,6 +12,9 @@ export default class ArticleService {
         }
 
         return fetch(endpoint).then(resp => {
+            if (!resp.ok) {
+                throw Error(`Error when fetching ${endpoint}`)
+            }
             return resp.json()
         });
     }
