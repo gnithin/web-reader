@@ -2,10 +2,10 @@ import Utils from "../common/utils";
 import CONSTANTS from "../common/constants";
 
 export default class Content {
-    constructor({title, description, imgLink, alignment, type}, setTypeAutomatically = true) {
+    constructor({title, description, imageURL, alignment, type}, setTypeAutomatically = true) {
         this.title = Utils.isNull(title) ? "" : title;
         this.description = Utils.isNull(description) ? "" : description;
-        this.imgLink = Utils.isNull(imgLink) ? "" : imgLink;
+        this.imageURL = Utils.isNull(imageURL) ? "" : imageURL;
         this.alignment = Utils.isNull(alignment) ? "" : alignment;
 
         if (false === setTypeAutomatically) {
@@ -18,7 +18,7 @@ export default class Content {
     findType() {
         // NOTE: This can get complicated in the future
         let type = CONSTANTS.TYPES.PARA;
-        if (false === Utils.isEmptyStr(this.imgLink)) {
+        if (false === Utils.isEmptyStr(this.imageURL)) {
             type = CONSTANTS.TYPES.PARA_AND_IMG;
         }
         return type;
