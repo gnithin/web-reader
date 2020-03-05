@@ -1,14 +1,15 @@
 import Utils from "../common/utils";
 
-// const ENDPOINT = "/api/detail/"
 // TODO: This is for debugging only
-const ENDPOINT = "http://localhost:8081/article.json?";
+// const ENDPOINT = "http://localhost:8081/article.json?";
+
+const ENDPOINT = "http://interactive-manual-server.herokuapp.com/im/v1/details";
 
 export default class ArticleService {
     static fetchDataSource(id) {
         let endpoint = ENDPOINT;
         if (false === Utils.isNull(id)) {
-            endpoint = `${endpoint}${id}`
+            endpoint = `${endpoint}/${id}`
         }
 
         return fetch(endpoint).then(resp => {
