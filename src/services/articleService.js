@@ -29,6 +29,6 @@ export default class ArticleService {
                 throw Error(`Error when fetching ${endpoint}`)
             }
             return resp.json()
-        });
+        })
     }
 }
