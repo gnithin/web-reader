@@ -12,17 +12,30 @@ class ReaderOptionsView extends Component {
         }
 
         return (
-            <ul>
-                {
-                    this.props.articlesList.map((article, i) => {
-                        return (<li key={`article-list-item-${i}`}>
-                            <Link to={`/reader/${article._id}`}>
-                                {article.title}
-                            </Link>
-                        </li>);
-                    })
-                }
-            </ul>
+            <div className="container-fluid">
+                <div className="row">
+                    <div className="col-12">
+                        <h2>Choose your title</h2>
+
+                    </div>
+                </div>
+
+                <div className="row">
+                    <div className="col-12">
+                        <ul>
+                            {
+                                this.props.articlesList.map((article, i) => {
+                                    return (<li key={`article-list-item-${i}`}>
+                                        <Link to={`/reader/${article._id}`}>
+                                            {article.title}
+                                        </Link>
+                                    </li>);
+                                })
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
         );
     }
 }
