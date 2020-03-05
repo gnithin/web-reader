@@ -38,10 +38,10 @@ class ContentCreatorContainer extends Component {
                 return (
                     <ContentCreatorView
                         key={`content-creator-${i}`}
-                        getUpdateCb={(data) => {
+                        updateContentCb={(data) => {
                             this.updateData(data, i)
                         }}
-                        deleteCb={() => {
+                        deleteContentCb={() => {
                             this.props.deleteContents(i)
                         }}
                         title={content.title}

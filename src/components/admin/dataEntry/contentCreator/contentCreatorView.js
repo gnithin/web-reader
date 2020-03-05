@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import './contentCreator.css'
 import Utils from "../../../../common/utils";
+import PropTypes from 'prop-types'
 
-// TODO: Prop types
 class ContentCreatorView extends Component {
     constructor(props) {
         super(props);
@@ -42,8 +42,8 @@ class ContentCreatorView extends Component {
                         <i
                             className="fa fa-times"
                             aria-hidden="true"
-                            onClick={(e) => {
-                                this.props.deleteCb();
+                            onClick={(_) => {
+                                this.props.deleteContentCb();
                             }}
                         />
                     </span>
@@ -60,7 +60,7 @@ class ContentCreatorView extends Component {
                                                      title: e.target.value,
                                                  });
                         }}
-                        onBlur={(e) => {
+                        onBlur={(_) => {
                             this.updateContainer();
                         }}
                     />
@@ -76,7 +76,7 @@ class ContentCreatorView extends Component {
                                                      description: e.target.value,
                                                  });
                         }}
-                        onBlur={(e) => {
+                        onBlur={(_) => {
                             this.updateContainer();
                         }}
                     />
@@ -93,7 +93,7 @@ class ContentCreatorView extends Component {
                                                      imgLink: e.target.value,
                                                  });
                         }}
-                        onBlur={(e) => {
+                        onBlur={(_) => {
                             this.updateContainer();
                         }}
                     />
@@ -107,7 +107,7 @@ class ContentCreatorView extends Component {
 
     updateContainer() {
         this.updateAlignment();
-        this.props.getUpdateCb({...this.state});
+        this.props.updateContentCb({...this.state});
     }
 
     updateAlignment() {
@@ -130,7 +130,7 @@ class ContentCreatorView extends Component {
                     onChange={(e) => {
                         this.setState({alignment: e.target.value})
                     }}
-                    onBlur={(e) => {
+                    onBlur={(_) => {
                         this.updateContainer();
                     }}
                 >
@@ -143,5 +143,14 @@ class ContentCreatorView extends Component {
 
     }
 }
+
+ContentCreatorView.propType = {
+    updateContentCb: PropTypes.func.isRequired,
+    deleteContentCb: PropTypes.func.isRequired,
+    title: PropTypes.string,
+    description: PropTypes.string,
+    imgLink: PropTypes.string,
+    alignment: PropTypes.string,
+};
 
 export default ContentCreatorView;
