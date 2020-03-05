@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import './sidebar.css'
 import {connect} from "react-redux";
 import Utils from "../../common/utils";
+import ChildrenBarView from "./childrenBarView";
 
 class SidebarView extends Component {
     render() {
@@ -15,6 +16,7 @@ class SidebarView extends Component {
                 <div className="sidebar-title">
                     {article.title}
                 </div>
+                <ChildrenBarView/>
             </React.Fragment>
         )
     }

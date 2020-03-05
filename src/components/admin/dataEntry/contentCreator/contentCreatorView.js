@@ -1,14 +1,15 @@
 import React, {Component} from 'react';
 import './contentCreator.css'
 import Utils from "../../../../common/utils";
+import PropTypes from 'prop-types'
 
-// TODO: Prop types
 class ContentCreatorView extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            title: "",
             description: "",
-            imgLink: "",
+            imageURL: "",
             alignment: "",
         };
     }
@@ -16,13 +17,15 @@ class ContentCreatorView extends Component {
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (
             prevProps.description !== this.props.description ||
-            prevProps.imgLink !== this.props.imgLink ||
-            prevProps.alignment !== this.props.alignment
+            prevProps.imageURL !== this.props.imageURL ||
+            prevProps.alignment !== this.props.alignment ||
+            prevProps.title !== this.props.title
         ) {
 
             this.setState({
+                              title: this.props.title,
                               description: this.props.description,
-                              imgLink: this.props.imgLink,
+                              imageURL: this.props.imageURL,
                               alignment: this.props.alignment,
                           });
         }
@@ -39,26 +42,28 @@ class ContentCreatorView extends Component {
                         <i
                             className="fa fa-times"
                             aria-hidden="true"
-                            onClick={(e) => {
-                                this.props.deleteCb();
+                            onClick={(_) => {
+                                this.props.deleteContentCb();
                             }}
                         />
                     </span>
                 </div>
+
                 <div className="col-12 content-input">
                     <input
                         type="string"
-                        value={this.state.imgLink}
+                        value={this.state.title}
                         className="form-control"
-                        placeholder="Enter image link here"
+                        placeholder="Title"
                         onChange={(e) => {
                             return this.setState({
-                                                     imgLink: e.target.value,
+                                                     title: e.target.value,
                                                  });
                         }}
-                        onBlur={(e) => {
+                        onBlur={(_) => {
                             this.updateContainer();
                         }}
+                        autoFocus={true}
                     />
                 </div>
 
@@ -72,7 +77,24 @@ class ContentCreatorView extends Component {
                                                      description: e.target.value,
                                                  });
                         }}
-                        onBlur={(e) => {
+                        onBlur={(_) => {
+                            this.updateContainer();
+                        }}
+                    />
+                </div>
+
+                <div className="col-12 content-input">
+                    <input
+                        type="string"
+                        value={this.state.imageURL}
+                        className="form-control"
+                        placeholder="Enter image link here"
+                        onChange={(e) => {
+                            return this.setState({
+                                                     imageURL: e.target.value,
+                                                 });
+                        }}
+                        onBlur={(_) => {
                             this.updateContainer();
                         }}
                     />
@@ -86,11 +108,11 @@ class ContentCreatorView extends Component {
 
     updateContainer() {
         this.updateAlignment();
-        this.props.getUpdateCb({...this.state});
+        this.props.updateContentCb({...this.state});
     }
 
     updateAlignment() {
-        if ((Utils.isEmptyStr(this.state.description) || Utils.isEmptyStr(this.state.imgLink))) {
+        if ((Utils.isEmptyStr(this.state.description) || Utils.isEmptyStr(this.state.imageURL))) {
             if (false === Utils.isEmptyStr(this.state.alignment)) {
                 this.setState({alignment: ""});
             }
@@ -98,7 +120,7 @@ class ContentCreatorView extends Component {
     }
 
     displayAlignment() {
-        if (Utils.isEmptyStr(this.state.description) || Utils.isEmptyStr(this.state.imgLink)) {
+        if (Utils.isEmptyStr(this.state.description) || Utils.isEmptyStr(this.state.imageURL)) {
             return (<React.Fragment/>);
         }
 
@@ -109,7 +131,7 @@ class ContentCreatorView extends Component {
                     onChange={(e) => {
                         this.setState({alignment: e.target.value})
                     }}
-                    onBlur={(e) => {
+                    onBlur={(_) => {
                         this.updateContainer();
                     }}
                 >
@@ -122,5 +144,14 @@ class ContentCreatorView extends Component {
 
     }
 }
+
+ContentCreatorView.propType = {
+    updateContentCb: PropTypes.func.isRequired,
+    deleteContentCb: PropTypes.func.isRequired,
+    title: PropTypes.string,
+    description: PropTypes.string,
+    imageURL: PropTypes.string,
+    alignment: PropTypes.string,
+};
 
 export default ContentCreatorView;

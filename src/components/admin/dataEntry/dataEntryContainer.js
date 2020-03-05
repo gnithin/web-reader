@@ -17,8 +17,6 @@ class DataEntryContainer extends Component {
         return (
             <DataEntry
                 addEntryCb={this.addEntryCb.bind(this)}
-                title=""
-                content=""
                 info={this.state.info}
                 infoType={this.state.infoType}
             />

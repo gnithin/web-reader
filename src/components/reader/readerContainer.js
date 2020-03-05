@@ -13,6 +13,8 @@ import './reader.css'
 import {connect} from "react-redux";
 import ArticleActions from "../../redux/actions/articleActions";
 
+const READER_URL_KEY = "id";
+
 class ReaderContainer extends Component {
     constructor(props) {
         super(props);
@@ -24,8 +26,20 @@ class ReaderContainer extends Component {
     }
 
     componentDidMount() {
-        let id = this.props.match.params["id"];
-        ArticleDataSource.fetchDataSource(id).then((data) => {
+        this.fetchDataForId(this.props.match.params[READER_URL_KEY]);
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (
+            prevProps.match.params !== this.props.match.params &&
+            prevProps.match.params.id !== this.props.match.params.id
+        ) {
+            this.fetchDataForId(this.props.match.params[READER_URL_KEY]);
+        }
+    }
+
+    fetchDataForId(id) {
+        ArticleDataSource.fetchDataSourceForId(id).then((data) => {
             console.log("Got data");
             console.log(data);
 

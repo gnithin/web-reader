@@ -1,18 +1,34 @@
 import Utils from "../common/utils";
 
-// const ENDPOINT = "/api/detail/"
-// TODO: This is for debugging only
-const ENDPOINT = "http://localhost:8081/article.json?";
+const ENDPOINT = "http://interactive-manual-server.herokuapp.com/im/v1/details";
 
 export default class ArticleService {
-    static fetchDataSource(id) {
-        let endpoint = ENDPOINT;
-        if (false === Utils.isNull(id)) {
-            endpoint = `${endpoint}${id}`
+    static fetchDataSourceForId(id) {
+        if (Utils.isNull(id)) {
+            throw Error("ID cannot be empty!");
         }
 
+        let endpoint = `${ENDPOINT}/${id}`;
         return fetch(endpoint).then(resp => {
+            if (!resp.ok) {
+                throw Error(`Error when fetching ${endpoint}`)
+            }
             return resp.json()
+        }).then(rawData => {
+            // A little data re-organizing
+            let data = rawData.parent;
+            data.children = rawData.children;
+            return data;
         });
+    }
+
+    static fetchDataSource() {
+        let endpoint = `${ENDPOINT}`;
+        return fetch(endpoint).then(resp => {
+            if (!resp.ok) {
+                throw Error(`Error when fetching ${endpoint}`)
+            }
+            return resp.json()
+        })
     }
 }
