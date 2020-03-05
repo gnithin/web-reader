@@ -6,6 +6,7 @@ import {
 const initialState = {
     data: [],
     selectedIndex: null,
+    selectedArticle: null,
 };
 
 const articlesListReducer = (state = initialState, action) => {
@@ -13,13 +14,20 @@ const articlesListReducer = (state = initialState, action) => {
         case ACTION_UPDATE_ARTICLES_LIST:
             return {
                 ...state,
+                selectedIndex: null,
+                selectedArticle: null,
                 data: [...action.data],
             };
 
         case ACTION_SELECT_ARTICLE_FROM_LIST:
+            let index = action.data;
+            if (index < 0 || index >= state.data.length) {
+                return state;
+            }
             return {
                 ...state,
-                selectedIndex: action.data,
+                selectedIndex: index,
+                selectedArticle: state.data[index],
             };
 
         default:
