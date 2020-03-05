@@ -1,4 +1,3 @@
-// NOTE: This does not do anything for now.
 import {ACTION_ADD_ARTICLE} from "../actions/articleActions";
 
 const initialState = {
