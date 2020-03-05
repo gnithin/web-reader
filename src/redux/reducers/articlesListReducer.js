@@ -1,7 +1,7 @@
 import {ACTION_UPDATE_ARTICLES_LIST} from "../actions/articlesListActions";
 
 const initialState = {
-    data: {},
+    data: [],
 };
 
 const articlesListReducer = (state = initialState, action) => {
