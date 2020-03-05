@@ -63,6 +63,7 @@ class ContentCreatorView extends Component {
                         onBlur={(_) => {
                             this.updateContainer();
                         }}
+                        autoFocus={true}
                     />
                 </div>
 
