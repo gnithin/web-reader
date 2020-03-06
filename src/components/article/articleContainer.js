@@ -3,7 +3,7 @@ import './article.css'
 import Utils from 'common/utils'
 import {connect} from "react-redux";
 import CONSTANTS from "../../common/constants";
-import ParagraphWithImage from "../readerComponents/imageParagraph";
+import ParagraphWithImage from "../readerComponents/paragraphWithImage";
 import OnlyParagraph from "../readerComponents/onlyParagraph";
 
 class ArticleContainer extends Component {
@@ -40,8 +40,6 @@ class ArticleContainer extends Component {
                         imgSrc={content.imageURL}
                         description={content.description}
                         isImgLeft={content.alignment === 'left'}
-                        imgWidth={100}
-                        imgHeight={100}
                         title={content.title}
                     />
                 );

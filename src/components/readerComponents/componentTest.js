@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ParagraphWithText from './imageParagraph.js';
+import ParagraphWithText from './paragraphWithImage.js';
 import OnlyParagraph from './onlyParagraph.js';
 
 class ReaderComponentTest extends Component {
