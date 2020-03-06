@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types'
+import Utils from "../../common/utils";
 
 class ParagraphWithImage extends Component {
     render() {
@@ -10,16 +11,18 @@ class ParagraphWithImage extends Component {
 
         return (
             <div>
+                {false === Utils.isNull(this.props.title) && <h2>{this.props.title}</h2>}
                 <img
                     src={this.props.imgSrc}
                     width={this.props.imgWidth}
                     height={this.props.imgHeight}
                     alt={this.props.imgTitle}
-                    title={this.props.imgTitle}
                     className={imageFloat}
                     style={imgStyle}
                 />
-                <p>{this.props.description}</p>
+                <p>
+                    {this.props.description}
+                </p>
             </div>
         );
     }
@@ -27,10 +30,11 @@ class ParagraphWithImage extends Component {
 
 ParagraphWithImage.propTypes = {
     imgSrc: PropTypes.string.isRequired,
-    imgTitle: PropTypes.string.isRequired,
+    imgTitle: PropTypes.string,
     imgWidth: PropTypes.number,
     imgHeight: PropTypes.number,
     description: PropTypes.string,
+    title: PropTypes.string,
     isImgLeft: PropTypes.bool,
 };
 

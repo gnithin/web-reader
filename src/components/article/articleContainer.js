@@ -33,14 +33,14 @@ class ArticleContainer extends Component {
     getComponentForContent(content, key) {
         switch (content.type) {
             case CONSTANTS.TYPES.PARA_AND_IMG:
-                // TODO: Remove the hard-coded width and height
                 return (
                     <ParagraphWithImage
                         key={key}
                         imgSrc={content.imageURL}
+                        title={content.title}
+                        imgTitle={content.title}
                         description={content.description}
                         isImgLeft={content.alignment === 'left'}
-                        title={content.title}
                     />
                 );
             case CONSTANTS.TYPES.PARA:
@@ -48,6 +48,7 @@ class ArticleContainer extends Component {
                     <OnlyParagraph
                         key={key}
                         description={content.description}
+                        title={content.title}
                     />
                 );
             default:
