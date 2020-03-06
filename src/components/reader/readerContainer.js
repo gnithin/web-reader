@@ -13,6 +13,7 @@ import './reader.css'
 import {connect} from "react-redux";
 import ArticleActions from "../../redux/actions/articleActions";
 import {Link} from "react-router-dom";
+import SearchComponent from 'components/searchbox/searchComponent'
 
 const READER_URL_KEY = "id";
 
@@ -81,8 +82,11 @@ class ReaderContainer extends Component {
                 <Row noGutters={true} className="main-content-container">
                     {this.getSidebar()}
 
-                    <Col className="article-container">
+                    <Col md={8} className="article-container">
                         <Article/>
+                    </Col>
+                    <Col md={1} className="mt-5 tags-container">
+                        <SearchComponent />
                     </Col>
                 </Row>
             </Container>
