@@ -33,7 +33,6 @@ class ArticleContainer extends Component {
     getComponentForContent(content, key) {
         switch (content.type) {
             case CONSTANTS.TYPES.PARA_AND_IMG:
-                // TODO: Remove the hard-coded width and height
                 return (
                     <ParagraphWithImage
                         key={key}
