@@ -37,6 +37,7 @@ class ArticleContainer extends Component {
                     <ParagraphWithImage
                         key={key}
                         imgSrc={content.imageURL}
+                        title={content.title}
                         imgTitle={content.title}
                         description={content.description}
                         isImgLeft={content.alignment === 'left'}
@@ -47,6 +48,7 @@ class ArticleContainer extends Component {
                     <OnlyParagraph
                         key={key}
                         description={content.description}
+                        title={content.title}
                     />
                 );
             default:
