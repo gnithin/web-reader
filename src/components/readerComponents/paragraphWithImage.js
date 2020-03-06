@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import Container from 'react-bootstrap/Container';
 import Utils from 'common/utils';
 
@@ -13,7 +13,7 @@ class ParagraphWithImage extends Component {
             imgWidth: props.imgWidth,
             imgHeight: props.imgHeight,
             imgTitle: props.imgTitle
-        }
+        };
 
         this.imgStyle = {
             image: {
@@ -23,14 +23,15 @@ class ParagraphWithImage extends Component {
     }
 
     componentWillMount() {
-        if (!Utils.isNull(this.state.imgWidth) || !Utils.isNull(this.state.imgHeight))
+        if (!Utils.isNull(this.state.imgWidth) || !Utils.isNull(this.state.imgHeight)) {
             return;
+        }
 
         let img = new Image();
         var self = this;
-        img.onload = function() {   
+        img.onload = function () {
             self.setState({imgWidth: this.width, imgHeight: this.height, imgLoaded: this.src});
-        }
+        };
         img.src = this.state.imgSrc;
     }
 
@@ -38,11 +39,12 @@ class ParagraphWithImage extends Component {
         return (
             <Container fluid={true} className="reader-container">
                 <img
-                    src={this.state.imgSrc} 
-                    width = {this.state.imgWidth} 
-                    title = {this.state.imgTitle} 
-                    className = {this.state.imageFloat} 
-                    style = {this.imgStyle.image}
+                    src={this.state.imgSrc}
+                    width={this.state.imgWidth}
+                    title={this.state.imgTitle}
+                    className={this.state.imageFloat}
+                    style={this.imgStyle.image}
+                    alt={this.state.imgTitle}
                 />
                 <p>{this.state.description}</p>
             </Container>
