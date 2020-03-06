@@ -1,22 +1,18 @@
-import React, { Component } from 'react';
-import Container from 'react-bootstrap/Container';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types'
 
 class OnlyParagraph extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            description: props.description
-        }
-    }
-
     render() {
         return (
-            <Container fluid={true} className="reader-container">
-                {this.state.description}
-            </Container>
-        );
+            <p>
+                {this.props.description}
+            </p>
+        )
     }
 }
+
+OnlyParagraph.propTypes = {
+    description: PropTypes.string.isRequired,
+};
 
 export default OnlyParagraph;

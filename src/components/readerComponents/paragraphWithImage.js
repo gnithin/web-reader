@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import Container from 'react-bootstrap/Container';
 import PropTypes from 'prop-types'
 
 class ParagraphWithImage extends Component {
@@ -10,7 +9,7 @@ class ParagraphWithImage extends Component {
         let imageFloat = this.props.isImgLeft ? "float-left" : "float-right";
 
         return (
-            <Container fluid={true} className="reader-container">
+            <div>
                 <img
                     src={this.props.imgSrc}
                     width={this.props.imgWidth}
@@ -20,8 +19,8 @@ class ParagraphWithImage extends Component {
                     className={imageFloat}
                     style={imgStyle}
                 />
-                <p>{tis.props.description}</p>
-            </Container>
+                <p>{this.props.description}</p>
+            </div>
         );
     }
 }
