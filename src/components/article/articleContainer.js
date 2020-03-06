@@ -40,8 +40,6 @@ class ArticleContainer extends Component {
                         imgSrc={content.imageURL}
                         description={content.description}
                         isImgLeft={content.alignment === 'left'}
-                        imgWidth={100}
-                        imgHeight={100}
                         title={content.title}
                     />
                 );
