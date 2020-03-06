@@ -37,9 +37,9 @@ class ArticleContainer extends Component {
                     <ParagraphWithImage
                         key={key}
                         imgSrc={content.imageURL}
+                        imgTitle={content.title}
                         description={content.description}
                         isImgLeft={content.alignment === 'left'}
-                        title={content.title}
                     />
                 );
             case CONSTANTS.TYPES.PARA:

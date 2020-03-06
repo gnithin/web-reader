@@ -27,7 +27,7 @@ class ParagraphWithImage extends Component {
 
 ParagraphWithImage.propTypes = {
     imgSrc: PropTypes.string.isRequired,
-    imgTitle: PropTypes.string.isRequired,
+    imgTitle: PropTypes.string,
     imgWidth: PropTypes.number,
     imgHeight: PropTypes.number,
     description: PropTypes.string,
