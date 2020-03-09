@@ -6,6 +6,13 @@ import './readerOptions.css'
 import ArticlesListActions from "../../redux/actions/articlesListActions";
 
 class ReaderOptionsView extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            searchText: ""
+        }
+    }
+
     render() {
         if (Utils.isNull(this.props.articlesList)) {
             return (
@@ -15,6 +22,21 @@ class ReaderOptionsView extends Component {
 
         return (
             <div className="container-fluid options-wrapper">
+
+                <div className="row search-box-wrapper">
+                    <div className="offset-3 col-6">
+                        <input
+                            className="form-control"
+                            value={this.state.searchText}
+                            onChange={(e) => {
+                                this.setState({searchText: e.target.value});
+                            }}
+                            placeholder="Search tags here..."
+                        />
+
+                    </div>
+                </div>
+
                 <div className="row">
                     <div className="col-12 options-content">
                         <h2>Choose your title</h2>
