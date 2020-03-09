@@ -85,8 +85,9 @@ class ReaderContainer extends Component {
                     <Col md={8} className="article-container">
                         <Article/>
                     </Col>
-                    <Col md={1} className="mt-5 tags-container">
-                        <SearchComponent />
+
+                    <Col md={2} className="tags-container d-none d-md-block">
+                        <SearchComponent/>
                     </Col>
                 </Row>
             </Container>
