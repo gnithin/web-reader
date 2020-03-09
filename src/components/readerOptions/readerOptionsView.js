@@ -50,13 +50,13 @@ class ReaderOptionsView extends Component {
                     </div>
                 </div>
 
-                <div className="row">
+                <div className="row options-title-wrapper">
                     <div className="col-12 options-content">
                         <h2>Choose your title</h2>
                     </div>
                 </div>
 
-                <div className="row">
+                <div className="row options-content-wrapper">
                     <div className="offset-3 col-6 options-content">
                         <div className="list-group options-list">
                             {
