@@ -57,7 +57,7 @@ class ReaderOptionsView extends Component {
                 </div>
 
                 <div className="row options-content-wrapper">
-                    <div className="offset-3 col-6 options-content">
+                    <div className="col-12 options-content">
                         <div className="list-group options-list">
                             {
                                 this.props.articlesList.map((article, i) => {
