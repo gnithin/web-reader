@@ -4,6 +4,7 @@ import Reader from 'components/reader'
 import AdminRouter from "./adminRouter";
 import ReaderComponentTest from "../components/readerComponents/componentTest.js";
 import ReaderOptions from "../components/readerOptions";
+import TagSearchBox from "../components/tagSearchBox";
 
 class AppRouter extends Component {
     render() {
@@ -25,6 +26,12 @@ class AppRouter extends Component {
                         exact
                         path="/reader/:id"
                         component={Reader}
+                    />
+
+                    <Route
+                        exact
+                        path="/search"
+                        component={TagSearchBox}
                     />
 
                     <Route
