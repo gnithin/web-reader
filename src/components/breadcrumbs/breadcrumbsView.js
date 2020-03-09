@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 
 class BreadcrumbsView extends Component {
     render() {
-        let path = this.getBreadCrumbPath()
+        let path = this.getBreadCrumbPath();
         return (
             <div className="crumb-container">
                 {this.renderCrumbs(path)}
@@ -14,9 +14,9 @@ class BreadcrumbsView extends Component {
 
     renderCrumbs(path) {
         if (path.length < 3) {
-            return (path.map(crumb => {
+            return (path.map((crumb, i) => {
                 return (
-                    <div className="crumb-value">
+                    <div className="crumb-value" key={`crumb-val-${i}`}>
                         {crumb.title}
                     </div>
                 );
@@ -36,9 +36,9 @@ class BreadcrumbsView extends Component {
                 </div>
 
                 <div className="crumbs-middle">
-                    {middlePaths.map(crumb => {
+                    {middlePaths.map((crumb, i) => {
                         return (
-                            <div className="crumb-value">
+                            <div className="crumb-value" key={`crumb-val-${i}`}>
                                 {crumb.title}
                             </div>
                         )
