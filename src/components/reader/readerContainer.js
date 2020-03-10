@@ -14,6 +14,8 @@ import {connect} from "react-redux";
 import ArticleActions from "../../redux/actions/articleActions";
 import {Link} from "react-router-dom";
 import RightBarView from "./rightBarView";
+import PathActions from "../../redux/actions/pathActions";
+import Utils from "../../common/utils";
 
 const READER_URL_KEY = "id";
 
@@ -49,10 +51,19 @@ class ReaderContainer extends Component {
                               isLoading: false,
                           });
             this.props.addArticle(data);
+            this.updatePathFromData(data);
 
         }).catch(err => {
             console.error("Error fetching data from server - ", err)
         })
+    }
+
+    updatePathFromData(data) {
+        if (Utils.isNull(data.paths) || data.paths.length === 0) {
+            console.log("Not adding paths, since the list is empty");
+            return;
+        }
+        this.props.addPath(data.paths);
     }
 
     render() {
@@ -123,6 +134,10 @@ const componentToReduxMapper = (dispatcher) => {
     return {
         addArticle: (article) => {
             dispatcher(ArticleActions.addArticleData(article));
+        },
+
+        addPath: (path) => {
+            dispatcher(PathActions.addPath(path))
         }
     }
 };
