@@ -19,7 +19,8 @@ class ContentCreatorContainer extends Component {
                     }
                     <button className="btn btn-primary" onClick={(e) => {
                         this.addNewContent()
-                    }}>+
+                    }}>
+                        <i className="fa fa-plus" aria-hidden="true"></i>
                     </button>
                 </div>
             </div>
