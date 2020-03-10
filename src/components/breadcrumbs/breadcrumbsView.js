@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import './breadcrumbs.css'
 import {connect} from "react-redux";
 import Utils from "../../common/utils";
+import {Link} from "react-router-dom";
 
 class BreadcrumbsView extends Component {
     render() {
@@ -27,9 +28,7 @@ class BreadcrumbsView extends Component {
 
                 return (
                     <div className={parentClass} key={`crumb-val-${i}`}>
-                        <div className="crumb-value">
-                            {crumb.title}
-                        </div>
+                        {this.renderCrumbValue(crumb)}
                     </div>
                 );
             }))
@@ -42,27 +41,33 @@ class BreadcrumbsView extends Component {
         return (
             <React.Fragment>
                 <div className="crumb-first">
-                    <div className="crumb-value">
-                        {firstPath.title}
-                    </div>
+                    {this.renderCrumbValue(firstPath)}
                 </div>
 
                 <div className="crumbs-middle">
-                    {middlePaths.map((crumb, i) => {
-                        return (
-                            <div className="crumb-value" key={`crumb-val-${i}`}>
-                                {crumb.title}
-                            </div>
-                        )
-                    })}
+                    {middlePaths.map(
+                        (crumb, i) => {
+                            return (
+                                this.renderCrumbValue(crumb, `crumb-val-${i}`)
+                            )
+                        }
+                    )}
                 </div>
 
                 <div className="crumb-last">
-                    <div className="crumb-value">
-                        {lastPath.title}
-                    </div>
+                    {this.renderCrumbValue(lastPath)}
                 </div>
             </React.Fragment>
+        );
+    }
+
+    renderCrumbValue(entry, key = "") {
+        return (
+            <div className="crumb-value" key={key}>
+                <Link to={`/reader/${entry.identifier}`}>
+                    {entry.title}
+                </Link>
+            </div>
         );
     }
 }
