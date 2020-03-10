@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import './breadcrumbs.css'
 import {connect} from "react-redux";
 import Utils from "../../common/utils";
+import {Link} from "react-router-dom";
 
 class BreadcrumbsView extends Component {
     render() {
@@ -27,9 +28,7 @@ class BreadcrumbsView extends Component {
 
                 return (
                     <div className={parentClass} key={`crumb-val-${i}`}>
-                        <div className="crumb-value">
-                            {crumb.title}
-                        </div>
+                        {this.renderCrumbValue(crumb)}
                     </div>
                 );
             }))
@@ -65,7 +64,9 @@ class BreadcrumbsView extends Component {
     renderCrumbValue(entry, key = "") {
         return (
             <div className="crumb-value" key={key}>
-                {entry.title}
+                <Link to={`/reader/${entry.identifier}`}>
+                    {entry.title}
+                </Link>
             </div>
         );
     }
