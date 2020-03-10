@@ -26,8 +26,8 @@ class BreadcrumbsView extends Component {
                 }
 
                 return (
-                    <div className={parentClass}>
-                        <div className="crumb-value" key={`crumb-val-${i}`}>
+                    <div className={parentClass} key={`crumb-val-${i}`}>
+                        <div className="crumb-value">
                             {crumb.title}
                         </div>
                     </div>
