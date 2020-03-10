@@ -1,10 +1,15 @@
 import React, {Component} from 'react'
 import './breadcrumbs.css'
 import {connect} from "react-redux";
+import Utils from "../../common/utils";
 
 class BreadcrumbsView extends Component {
     render() {
-        let path = this.getBreadCrumbPath();
+        let path = this.props.currPathEntry;
+        if (Utils.isNull(path)) {
+            return (<div className="crumb-container"></div>)
+        }
+
         return (
             <div className="crumb-container">
                 {this.renderCrumbs(path)}
@@ -15,9 +20,16 @@ class BreadcrumbsView extends Component {
     renderCrumbs(path) {
         if (path.length < 3) {
             return (path.map((crumb, i) => {
+                let parentClass = "crumb-last";
+                if (i === 0) {
+                    parentClass = "crumb-first";
+                }
+
                 return (
-                    <div className="crumb-value" key={`crumb-val-${i}`}>
-                        {crumb.title}
+                    <div className={parentClass}>
+                        <div className="crumb-value" key={`crumb-val-${i}`}>
+                            {crumb.title}
+                        </div>
                     </div>
                 );
             }))
@@ -53,104 +65,12 @@ class BreadcrumbsView extends Component {
             </React.Fragment>
         );
     }
-
-    getBreadCrumbPath() {
-        let path = this.props.data.path;
-        // TODO: Remove this -
-        path = this.getDummyPath();
-        return path;
-    }
-
-    // TODO: Dummy path
-    getDummyPath() {
-        return [
-            {
-                title: "1",
-                id: "1"
-            },
-            {
-                title: "2",
-                id: "2"
-            },
-            {
-                title: "3",
-                id: "3"
-            },
-            {
-                title: "4",
-                id: "4"
-            },
-            {
-                title: "5",
-                id: "5"
-            },
-            {
-                title: "5",
-                id: "5"
-            },
-            {
-                title: "5",
-                id: "5"
-            },
-            {
-                title: "5",
-                id: "5"
-            },
-            {
-                title: "5",
-                id: "5"
-            },
-            {
-                title: "5",
-                id: "5"
-            },
-            {
-                title: "5",
-                id: "5"
-            },
-            {
-                title: "5",
-                id: "5"
-            },
-            {
-                title: "5",
-                id: "5"
-            },
-            {
-                title: "5",
-                id: "5"
-            },
-            {
-                title: "5",
-                id: "5"
-            },
-            {
-                title: "5",
-                id: "5"
-            },
-            {
-                title: "5",
-                id: "5"
-            },
-            {
-                title: "5",
-                id: "5"
-            },
-            {
-                title: "5",
-                id: "5"
-            },
-            {
-                title: "5",
-                id: "5"
-            },
-        ];
-    }
 }
 
 const reduxToComponentMapper = (state) => {
     return {
         data: state.article.data,
+        currPathEntry: state.path.currPathEntry,
     };
 };
 
