@@ -42,27 +42,31 @@ class BreadcrumbsView extends Component {
         return (
             <React.Fragment>
                 <div className="crumb-first">
-                    <div className="crumb-value">
-                        {firstPath.title}
-                    </div>
+                    {this.renderCrumbValue(firstPath)}
                 </div>
 
                 <div className="crumbs-middle">
-                    {middlePaths.map((crumb, i) => {
-                        return (
-                            <div className="crumb-value" key={`crumb-val-${i}`}>
-                                {crumb.title}
-                            </div>
-                        )
-                    })}
+                    {middlePaths.map(
+                        (crumb, i) => {
+                            return (
+                                this.renderCrumbValue(crumb, `crumb-val-${i}`)
+                            )
+                        }
+                    )}
                 </div>
 
                 <div className="crumb-last">
-                    <div className="crumb-value">
-                        {lastPath.title}
-                    </div>
+                    {this.renderCrumbValue(lastPath)}
                 </div>
             </React.Fragment>
+        );
+    }
+
+    renderCrumbValue(entry, key = "") {
+        return (
+            <div className="crumb-value" key={key}>
+                {entry.title}
+            </div>
         );
     }
 }
