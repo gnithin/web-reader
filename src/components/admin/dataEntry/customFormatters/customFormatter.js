@@ -38,6 +38,14 @@ class CustomFormatter extends Component {
 
         return (
             <div className="formatter-wrapper">
+                <div className="delete-formatter" onClick={(e) => {
+                    this.props.deleteCustomFormatter(
+                        this.props.contentIndex,
+                        this.props.formatterIndex
+                    );
+                }}>
+                    <i className="fa fa-times" aria-hidden="true"></i>
+                </div>
                 <div>
                     <select value={this.state.currentType} onChange={(e) => {
                         let newType = e.target.value;
@@ -150,8 +158,10 @@ const componentToReduxMapper = (dispatcher) => {
             );
         },
 
-        deleteCustomFormatter: () => {
-            // TODO: Add logic here
+        deleteCustomFormatter: (contentIndex, formatterIndex) => {
+            dispatcher(
+                DataEntryActions.deleteCustomFormatter(contentIndex, formatterIndex)
+            );
         }
     };
 };

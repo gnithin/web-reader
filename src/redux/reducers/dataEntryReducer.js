@@ -2,6 +2,7 @@
 import {
     ACTION_ADD_CONTENT,
     ACTION_CF_ADD,
+    ACTION_CF_DELETE,
     ACTION_CF_UPDATE,
     ACTION_DELETE_CONTENT,
     ACTION_UPDATE_CONTENT
@@ -59,6 +60,18 @@ const dataEntryReducer = (state = initialState, action) => {
             let contents = [...state.contents];
             let content = contents[action.data.contentIndex];
             content.customFormatters[action.data.formatterIndex] = action.data.cfData;
+
+            return {
+                ...state,
+                contents: contents,
+            }
+        }
+
+        case ACTION_CF_DELETE: {
+            let contents = [...state.contents];
+            let content = contents[action.data.contentIndex];
+            content.customFormatters.splice(action.data.formatterIndex, 1);
+            content.customFormatters = [...content.customFormatters];
 
             return {
                 ...state,
