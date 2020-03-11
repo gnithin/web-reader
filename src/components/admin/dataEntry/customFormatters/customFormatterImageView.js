@@ -21,6 +21,9 @@ class CustomFormatterImageView extends Component {
                         this.setState({src: e.target.value})
                     }}
                     placeholder="Image Source"
+                    onBlur={(e) => {
+                        this.props.updateCb(this.state)
+                    }}
                 />
 
                 <br/>
@@ -33,6 +36,9 @@ class CustomFormatterImageView extends Component {
                         this.setState({alt: e.target.value})
                     }}
                     placeholder="Image Alt"
+                    onBlur={(e) => {
+                        this.props.updateCb(this.state)
+                    }}
                 />
 
                 <br/>

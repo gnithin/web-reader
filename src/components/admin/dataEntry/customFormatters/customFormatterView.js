@@ -121,6 +121,14 @@ class CustomFormatterView extends Component {
                 alt={formatter.alt}
                 updateCb={(newVal) => {
                     console.log("DEBUG: Update - ", newVal);
+                    this.props.updateCustomFormatter(
+                        this.props.contentIndex,
+                        this.props.formatterIndex,
+                        new CustomFormatterModel({
+                                                     ...newVal,
+                                                     type: CONSTANTS.CUSTOM_FORMATTERS.TYPES.IMAGE,
+                                                 })
+                    );
                 }}
             />
         );
@@ -133,6 +141,14 @@ class CustomFormatterView extends Component {
                 text={formatter.text}
                 updateCb={(newVal) => {
                     console.log("DEBUG: Update - ", newVal);
+                    this.props.updateCustomFormatter(
+                        this.props.contentIndex,
+                        this.props.formatterIndex,
+                        new CustomFormatterModel({
+                                                     ...newVal,
+                                                     type: CONSTANTS.CUSTOM_FORMATTERS.TYPES.HYPERLINK,
+                                                 })
+                    );
                 }}
             />
         );
@@ -145,6 +161,14 @@ class CustomFormatterView extends Component {
                 text={formatter.text}
                 updateCb={(newVal) => {
                     console.log("DEBUG: Update - ", newVal);
+                    this.props.updateCustomFormatter(
+                        this.props.contentIndex,
+                        this.props.formatterIndex,
+                        new CustomFormatterModel({
+                                                     ...newVal,
+                                                     type: CONSTANTS.CUSTOM_FORMATTERS.TYPES.STYLE,
+                                                 })
+                    );
                 }}
             />
         );

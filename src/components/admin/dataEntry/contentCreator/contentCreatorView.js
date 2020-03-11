@@ -122,7 +122,7 @@ class ContentCreatorView extends Component {
 
     updateContainer() {
         this.updateAlignment();
-        this.props.updateContentsForIndex({...this.getContentFromState()}, this.props.contentIndex);
+        this.props.updateContentsForIndex(this.getContentFromState(), this.props.contentIndex);
     }
 
     getContentFromState() {
