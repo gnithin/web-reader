@@ -10,9 +10,9 @@ class OnlyParagraph extends Component {
                 {false === Utils.isNull(this.props.title) && <h2>{this.props.title}</h2>}
                 <p
                     dangerouslySetInnerHTML={{
-                        _html: CustomFormatterManager.formatDescription(
+                        __html: CustomFormatterManager.formatDescription(
                             this.props.description,
-                            formatters
+                            this.props.formatters
                         )
                     }}
                 />

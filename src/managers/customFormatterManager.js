@@ -10,7 +10,7 @@ class CustomFormatterManager {
         // Find all the keyIds. Replace them appropriately
         let desc = description;
         for (let formatter in formatters) {
-            desc = this.formatDescriptionWithFormatter(description, formatter);
+            desc = this.formatDescriptionWithFormatter(desc, formatter);
         }
 
         return desc;
