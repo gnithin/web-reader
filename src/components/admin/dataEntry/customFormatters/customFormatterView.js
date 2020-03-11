@@ -85,7 +85,7 @@ class CustomFormatterView extends Component {
 
                 </div>
                 <div className="custom-formatter-key">
-                    Formatter key - <code>{this.getFormatterKey()}</code>
+                    Formatter key - <code>{formatter.keyId}</code>
                 </div>
                 <br/>
 

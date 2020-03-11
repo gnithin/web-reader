@@ -1,8 +1,11 @@
 import CONSTANTS from "../common/constants";
 import Utils from "../common/utils";
+import ReaderUtils from "../common/readerUtils";
 
 export default class CustomFormatter {
     constructor({type, src, alt, href, text, className}) {
+        this.keyId = ReaderUtils.generateCustomFormatterId(Utils.generateFourDigitId());
+
         this.type = CONSTANTS.CUSTOM_FORMATTERS.TYPES.IMAGE;
         if (false === Utils.isNull(type)) {
             this.type = type

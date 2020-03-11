@@ -8,7 +8,7 @@ export default class ReaderUtils {
         return comp[comp.length - 1]
     }
 
-    static getCustomFormatterKeyForIndex(formatterIndex) {
+    static generateCustomFormatterId(formatterIndex) {
         return `\${${formatterIndex}}`
     }
 }
