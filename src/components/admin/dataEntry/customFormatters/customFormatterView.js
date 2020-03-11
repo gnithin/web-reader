@@ -9,7 +9,7 @@ import CustomFormatterStyleView from "./customFormatterStyleView";
 import CustomFormatterModel from "../../../../models/customFormatter";
 import DataEntryActions from "../../../../redux/actions/dataEntryActions";
 
-class CustomFormatter extends Component {
+class CustomFormatterView extends Component {
     constructor(props) {
         super(props);
         this.state = this.getStateFromProps(props)
@@ -139,7 +139,7 @@ class CustomFormatter extends Component {
 
 }
 
-CustomFormatter.propTypes = {
+CustomFormatterView.propTypes = {
     contentIndex: PropTypes.number.isRequired,
     formatterIndex: PropTypes.number.isRequired,
 };
@@ -166,4 +166,4 @@ const componentToReduxMapper = (dispatcher) => {
     };
 };
 
-export default connect(reduxToComponentMapper, componentToReduxMapper)(CustomFormatter);
+export default connect(reduxToComponentMapper, componentToReduxMapper)(CustomFormatterView);

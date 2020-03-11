@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import {connect} from "react-redux";
 import './customFormattersList.css'
 import Utils from "../../../../common/utils";
-import CustomFormatter from "./customFormatter";
+import CustomFormatterView from "./customFormatterView";
 import CustomFormatterModel from 'models/customFormatter'
 import DataEntryActions from "../../../../redux/actions/dataEntryActions";
 
@@ -20,7 +20,7 @@ class CustomFormattersList extends Component {
                 <div className="custom-formatters-list">
                     {formatters.map((formatter, i) => {
                         return (
-                            <CustomFormatter
+                            <CustomFormatterView
                                 key={`custom-formatter-${this.props.contentIndex}-${i}`}
                                 contentIndex={this.props.contentIndex}
                                 formatterIndex={i}
