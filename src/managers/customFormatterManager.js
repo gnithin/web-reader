@@ -9,7 +9,7 @@ class CustomFormatterManager {
 
         // Find all the keyIds. Replace them appropriately
         let desc = description;
-        for (let formatter in formatters) {
+        for (let formatter of formatters) {
             desc = this.formatDescriptionWithFormatter(desc, formatter);
         }
 
@@ -19,7 +19,7 @@ class CustomFormatterManager {
     formatDescriptionWithFormatter(description, formatter) {
         switch (formatter.type) {
             case CONSTANTS.CUSTOM_FORMATTERS.TYPES.STYLE: {
-                let content = `<div className="${formatter.className}">${formatter.text}</div>`;
+                let content = `<span className="${formatter.className}">${formatter.text}</span>`;
                 let key = formatter.keyId;
                 return description.replace(
                     new RegExp(Utils.escapeRegexStr(key), "g"),
