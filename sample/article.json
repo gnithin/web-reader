@@ -24,22 +24,62 @@
     "contents": [
       {
         "title": "Lorem ipsum",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin est diam, pretium a fringilla sit amet, auctor ac diam. Etiam vel consectetur mi. Duis quis nisi condimentum, dapibus enim et, pharetra odio. Vestibulum vitae magna pellentesque, vehicula odio nec, pretium elit. Phasellus eu pretium mi. Nulla a suscipit nulla, vel hendrerit nibh. Nunc posuere sed ante vel viverra. Sed laoreet enim magna, vel ultricies urna ullamcorper vitae. Donec iaculis turpis et magna tincidunt, et sodales nisi congue.\n\n",
-        "imgLink": "https://via.placeholder.com/350x150",
+        "description": "${7155} Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin est diam, pretium a fringilla sit amet, auctor ac diam. Etiam vel consectetur mi. Duis quis nisi condimentum, dapibus enim et, pharetra odio. Vestibulum vitae magna pellentesque, vehicula odio nec, pretium elit. Phasellus eu pretium mi. Nulla a suscipit nulla, vel hendrerit nibh. Nunc posuere sed ante vel viverra. Sed laoreet enim magna, vel ultricies urna ullamcorper vitae. Donec iaculis turpis et magna tincidunt, et sodales nisi congue.\n\n",
+        "imageURL": "https://via.placeholder.com/350x150",
         "alignment": "right",
-        "type": "para_and_img"
+        "type": "para_and_img",
+        "customFormatters": [
+          {
+            "keyId": "${7155}",
+            "type": "hyper_link",
+            "src": "",
+            "alt": "",
+            "href": "https://google.com",
+            "text": "google",
+            "className": ""
+          }
+        ]
       },
       {
         "description": "Cras ipsum metus, fermentum at dui a, facilisis hendrerit ante. Quisque at arcu lacinia, interdum leo ut, scelerisque ex. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec scelerisque convallis odio, vitae euismod nisi luctus vel. Fusce et turpis bibendum, sodales dolor vel, scelerisque orci. Maecenas eu justo sit amet augue laoreet consectetur. Donec mattis et mi ut varius. Morbi et placerat dolor. ",
-        "imgLink": "https://via.placeholder.com/200x100",
+        "imageURL": "https://via.placeholder.com/200x100",
         "alignment": "left",
         "type": "para_and_img"
       },
       {
-        "description": "Nulla fringilla justo nec eros sollicitudin laoreet. Vivamus molestie magna non dolor hendrerit, venenatis fringilla orci condimentum. Nunc mattis libero lectus, nec rutrum arcu malesuada eu. Nulla facilisi. Suspendisse viverra ligula egestas mollis volutpat. Aenean ultricies eu arcu eu sollicitudin. Praesent consectetur tristique lorem quis eleifend. Duis ac diam accumsan, iaculis ex placerat, aliquam libero. Nunc vitae magna hendrerit tellus semper vestibulum. Duis ut scelerisque orci, non tincidunt neque. Fusce porta ultricies tellus, et bibendum massa pulvinar ut. Suspendisse imperdiet, urna non tincidunt egestas, orci odio auctor est, sit amet pellentesque leo elit sed mauris. Integer dictum faucibus fermentum. ",
-        "imgLink": "",
+        "description": "${7157} Nulla fringilla justo nec eros sollicitudin laoreet. Vivamus molestie magna non dolor hendrerit, venenatis fringilla orci condimentum. Nunc mattis libero lectus, nec rutrum arcu malesuada eu. Nulla facilisi. Suspendisse viverra ligula egestas mollis volutpat. Aenean ultricies eu arcu eu sollicitudin. Praesent consectetur tristique lorem quis eleifend. Duis ac diam accumsan, iaculis ex placerat, aliquam libero. Nunc vitae magna hendrerit tellus semper vestibulum. Duis ut scelerisque orci, non tincidunt neque. Fusce porta ultricies tellus, et bibendum massa pulvinar ut. Suspendisse imperdiet, urna non tincidunt egestas, orci odio auctor est, sit amet pellentesque leo elit sed mauris. Integer dictum faucibus fermentum. ",
+        "imageURL": "",
         "alignment": "",
-        "type": "para"
+        "type": "para",
+        "customFormatters": [
+          {
+            "keyId": "${7155}",
+            "type": "hyper_link",
+            "src": "",
+            "alt": "something",
+            "href": "https://google.com",
+            "text": "google",
+            "className": ""
+          },
+          {
+            "keyId": "${7156}",
+            "type": "image",
+            "src": "https://www.metallica.com/dw/image/v2/BCPJ_PRD/on/demandware.static/-/Sites-met-master/default/dwe8f4ca7c/images/hi-res/MVC_NEEDLE_1600x1600.png?sw=650",
+            "alt": "metallica",
+            "href": "",
+            "text": "",
+            "className": ""
+          },
+          {
+            "keyId": "${7157}",
+            "type": "style",
+            "src": "",
+            "alt": "",
+            "href": "",
+            "text": "something here",
+            "className": "p-5"
+          }
+        ]
       }
     ]
   }
