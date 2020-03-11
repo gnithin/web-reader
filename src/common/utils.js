@@ -81,4 +81,8 @@ export default class Utils {
         // Picked up from - https://stackoverflow.com/a/29640472/1518924
         return `${Math.floor(1000 + Math.random() * 9000)}`;
     }
+
+    static escapeRegexStr(s) {
+        return s.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+    }
 }

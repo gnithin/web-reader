@@ -41,6 +41,7 @@ class ArticleContainer extends Component {
                         imgTitle={content.title}
                         description={content.description}
                         isImgLeft={content.alignment === 'left'}
+                        formatters={content.customFormatters}
                     />
                 );
             case CONSTANTS.TYPES.PARA:
@@ -49,6 +50,7 @@ class ArticleContainer extends Component {
                         key={key}
                         description={content.description}
                         title={content.title}
+                        formatters={content.customFormatters}
                     />
                 );
             default:

@@ -36,6 +36,7 @@ ParagraphWithImage.propTypes = {
     description: PropTypes.string,
     title: PropTypes.string,
     isImgLeft: PropTypes.bool,
+    formatters: PropTypes.array,
 };
 
 export default ParagraphWithImage;
