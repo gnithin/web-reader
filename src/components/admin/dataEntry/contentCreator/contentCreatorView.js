@@ -2,32 +2,40 @@ import React, {Component} from 'react';
 import './contentCreator.css'
 import Utils from "../../../../common/utils";
 import PropTypes from 'prop-types'
+import {connect} from "react-redux";
+import DataEntryActions from "../../../../redux/actions/dataEntryActions";
 
 class ContentCreatorView extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            title: "",
-            description: "",
-            imageURL: "",
-            alignment: "",
-        };
+        this.state = this.getStateForProps(props);
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (
-            prevProps.description !== this.props.description ||
-            prevProps.imageURL !== this.props.imageURL ||
-            prevProps.alignment !== this.props.alignment ||
-            prevProps.title !== this.props.title
-        ) {
+        let prevContents = prevProps.contents;
+        let currContents = this.props.contents;
+        let prevContent = prevContents[prevProps.contentIndex];
+        let currContent = currContents[this.props.contentIndex];
 
-            this.setState({
-                              title: this.props.title,
-                              description: this.props.description,
-                              imageURL: this.props.imageURL,
-                              alignment: this.props.alignment,
-                          });
+        if (
+            prevProps.contentIndex !== this.props.contentIndex ||
+            prevContent !== currContent ||
+            prevContent.title !== currContent.title ||
+            prevContent.description !== currContent.description ||
+            prevContent.imageURL !== currContent.imageURL ||
+            prevContent.alignment !== currContent.alignment
+        ) {
+            this.setState(this.getStateForProps(this.props));
+        }
+    }
+
+    getStateForProps(props) {
+        let content = props.contents[props.contentIndex];
+        return {
+            title: content.title,
+            description: content.description,
+            imageURL: content.imageURL,
+            alignment: content.alignment,
         }
     }
 
@@ -43,7 +51,7 @@ class ContentCreatorView extends Component {
                             className="fa fa-times"
                             aria-hidden="true"
                             onClick={(_) => {
-                                this.props.deleteContentCb();
+                                this.props.deleteContentsForIndex(this.props.contentIndex);
                             }}
                         />
                     </span>
@@ -108,7 +116,7 @@ class ContentCreatorView extends Component {
 
     updateContainer() {
         this.updateAlignment();
-        this.props.updateContentCb({...this.state});
+        this.props.updateContentsForIndex({...this.state}, this.props.contentIndex);
     }
 
     updateAlignment() {
@@ -135,7 +143,7 @@ class ContentCreatorView extends Component {
                         this.updateContainer();
                     }}
                 >
-                    <option disabled value=""> Select Alignment</option>
+                    <option disabled value="">Select Alignment</option>
                     <option value="right">Right Align</option>
                     <option value="left">Left Align</option>
                 </select>
@@ -146,12 +154,25 @@ class ContentCreatorView extends Component {
 }
 
 ContentCreatorView.propType = {
-    updateContentCb: PropTypes.func.isRequired,
-    deleteContentCb: PropTypes.func.isRequired,
-    title: PropTypes.string,
-    description: PropTypes.string,
-    imageURL: PropTypes.string,
-    alignment: PropTypes.string,
+    contentIndex: PropTypes.number.isRequired,
 };
 
-export default ContentCreatorView;
+const reduxToPropsMapper = (state) => {
+    return {
+        contents: state.dataEntry.contents
+    }
+};
+
+const componentToReduxMapper = (dispatcher) => {
+    return {
+        updateContentsForIndex: (content, contentIndex) => {
+            dispatcher(DataEntryActions.updateContentsForIndex(content, contentIndex));
+        },
+
+        deleteContentsForIndex: (index) => {
+            dispatcher(DataEntryActions.deleteContentIndex(index));
+        }
+    };
+};
+
+export default connect(reduxToPropsMapper, componentToReduxMapper)(ContentCreatorView);

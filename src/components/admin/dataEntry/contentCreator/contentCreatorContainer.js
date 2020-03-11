@@ -39,16 +39,7 @@ class ContentCreatorContainer extends Component {
                 return (
                     <ContentCreatorView
                         key={`content-creator-${i}`}
-                        updateContentCb={(data) => {
-                            this.updateData(data, i)
-                        }}
-                        deleteContentCb={() => {
-                            this.props.deleteContents(i)
-                        }}
-                        title={content.title}
-                        description={content.description}
-                        imageURL={content.imageURL}
-                        alignment={content.alignment}
+                        contentIndex={i}
                     />
                 );
             })
@@ -59,13 +50,6 @@ class ContentCreatorContainer extends Component {
         this.props.addContent(
             new Content({})
         );
-    }
-
-    updateData(newData, index) {
-        // Update the data at the location
-        let newContents = [...this.props.contents];
-        newContents[index] = new Content(newData);
-        this.props.updateContents(newContents);
     }
 }
 
@@ -80,14 +64,6 @@ const componentToReduxMapper = (dispatcher) => {
         addContent: (content) => {
             dispatcher(DataEntryActions.addContent(content));
         },
-
-        updateContents: (contents) => {
-            dispatcher(DataEntryActions.updateContents(contents));
-        },
-
-        deleteContents: (index) => {
-            dispatcher(DataEntryActions.deleteContentIndex(index));
-        }
     };
 };
 
