@@ -130,16 +130,27 @@ class CustomFormatterView extends Component {
                 alt={formatter.alt}
                 updateCb={(newVal) => {
                     console.log("DEBUG: Update - ", newVal);
-                    this.props.updateCustomFormatter(
-                        this.props.contentIndex,
-                        this.props.formatterIndex,
-                        new CustomFormatterModel({
-                                                     ...newVal,
-                                                     type: CONSTANTS.CUSTOM_FORMATTERS.TYPES.IMAGE,
-                                                 })
-                    );
+                    this.updateFormatterForVal(newVal);
                 }}
             />
+        );
+    }
+
+    updateFormatterForVal(newVal) {
+        let content = this.props.contents[this.props.contentIndex];
+        let formatter = content.customFormatters[this.props.formatterIndex];
+
+        for (let k in newVal) {
+            if (!newVal.hasOwnProperty(k)) {
+                continue;
+            }
+            formatter[k] = newVal[k];
+        }
+
+        this.props.updateCustomFormatter(
+            this.props.contentIndex,
+            this.props.formatterIndex,
+            formatter,
         );
     }
 
@@ -150,14 +161,7 @@ class CustomFormatterView extends Component {
                 text={formatter.text}
                 updateCb={(newVal) => {
                     console.log("DEBUG: Update - ", newVal);
-                    this.props.updateCustomFormatter(
-                        this.props.contentIndex,
-                        this.props.formatterIndex,
-                        new CustomFormatterModel({
-                                                     ...newVal,
-                                                     type: CONSTANTS.CUSTOM_FORMATTERS.TYPES.HYPERLINK,
-                                                 })
-                    );
+                    this.updateFormatterForVal(newVal);
                 }}
             />
         );
@@ -170,14 +174,7 @@ class CustomFormatterView extends Component {
                 text={formatter.text}
                 updateCb={(newVal) => {
                     console.log("DEBUG: Update - ", newVal);
-                    this.props.updateCustomFormatter(
-                        this.props.contentIndex,
-                        this.props.formatterIndex,
-                        new CustomFormatterModel({
-                                                     ...newVal,
-                                                     type: CONSTANTS.CUSTOM_FORMATTERS.TYPES.STYLE,
-                                                 })
-                    );
+                    this.updateFormatterForVal(newVal);
                 }}
             />
         );
