@@ -6,6 +6,8 @@ import CONSTANTS from "../../../../common/constants";
 import CustomFormatterImageView from "./customFormatterImageView";
 import CustomFormatterHyperlinkView from "./customFormatterHyperlinkView";
 import CustomFormatterStyleView from "./customFormatterStyleView";
+import CustomFormatterModel from "../../../../models/customFormatter";
+import DataEntryActions from "../../../../redux/actions/dataEntryActions";
 
 class CustomFormatter extends Component {
     constructor(props) {
@@ -38,8 +40,15 @@ class CustomFormatter extends Component {
             <div className="formatter-wrapper">
                 <div>
                     <select value={this.state.currentType} onChange={(e) => {
+                        let newType = e.target.value;
+                        this.props.updateCustomFormatter(
+                            this.props.contentIndex,
+                            this.props.formatterIndex,
+                            new CustomFormatterModel({type: newType})
+                        );
+
                         return this.setState({
-                                                 currentType: e.target.value,
+                                                 currentType: newType,
                                              });
                     }}>
                         <option value={CONSTANTS.CUSTOM_FORMATTERS.TYPES.IMAGE}>
@@ -135,8 +144,16 @@ const reduxToComponentMapper = (state) => {
 
 const componentToReduxMapper = (dispatcher) => {
     return {
-        // TODO: Add logic here
+        updateCustomFormatter: (contentIndex, formatterIndex, newData) => {
+            dispatcher(
+                DataEntryActions.updateCustomFormatter(contentIndex, formatterIndex, newData)
+            );
+        },
+
+        deleteCustomFormatter: () => {
+            // TODO: Add logic here
+        }
     };
 };
 
-export default connect(reduxToComponentMapper, null)(CustomFormatter);
+export default connect(reduxToComponentMapper, componentToReduxMapper)(CustomFormatter);

@@ -2,6 +2,7 @@
 import {
     ACTION_ADD_CONTENT,
     ACTION_CF_ADD,
+    ACTION_CF_UPDATE,
     ACTION_DELETE_CONTENT,
     ACTION_UPDATE_CONTENT
 } from "../actions/dataEntryActions";
@@ -42,7 +43,6 @@ const dataEntryReducer = (state = initialState, action) => {
 
         case ACTION_CF_ADD: {
             let contents = [...state.contents];
-
             let content = contents[action.data.contentIndex];
             if (Utils.isNull(content.customFormatters)) {
                 content.customFormatters = []
@@ -53,6 +53,17 @@ const dataEntryReducer = (state = initialState, action) => {
                 ...state,
                 contents: contents
             };
+        }
+
+        case ACTION_CF_UPDATE: {
+            let contents = [...state.contents];
+            let content = contents[action.data.contentIndex];
+            content.customFormatters[action.data.formatterIndex] = action.data.cfData;
+
+            return {
+                ...state,
+                contents: contents,
+            }
         }
 
         default:
