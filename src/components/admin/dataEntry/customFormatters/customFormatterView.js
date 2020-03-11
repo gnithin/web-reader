@@ -39,21 +39,27 @@ class CustomFormatterView extends Component {
 
         return (
             <div className="formatter-wrapper">
+                <div>
+                    <h3>Edit Custom Formatter</h3>
+                </div>
 
                 <div className="formatter-top-bar">
                     <div className="formatter-selector">
-                        <select value={this.state.currentType} onChange={(e) => {
-                            let newType = e.target.value;
-                            this.props.updateCustomFormatter(
-                                this.props.contentIndex,
-                                this.props.formatterIndex,
-                                new CustomFormatterModel({type: newType})
-                            );
+                        <select
+                            value={this.state.currentType}
+                            className="form-control"
+                            onChange={(e) => {
+                                let newType = e.target.value;
+                                this.props.updateCustomFormatter(
+                                    this.props.contentIndex,
+                                    this.props.formatterIndex,
+                                    new CustomFormatterModel({type: newType})
+                                );
 
-                            return this.setState({
-                                                     currentType: newType,
-                                                 });
-                        }}>
+                                return this.setState({
+                                                         currentType: newType,
+                                                     });
+                            }}>
                             <option value={CONSTANTS.CUSTOM_FORMATTERS.TYPES.IMAGE}>
                                 Image
                             </option>
@@ -64,6 +70,7 @@ class CustomFormatterView extends Component {
                                 Style
                             </option>
                         </select>
+                        <br/>
                     </div>
 
                     <div className="delete-formatter" onClick={(e) => {
