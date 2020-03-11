@@ -4,6 +4,7 @@ import Utils from "../../../../common/utils";
 import PropTypes from 'prop-types'
 import {connect} from "react-redux";
 import DataEntryActions from "../../../../redux/actions/dataEntryActions";
+import CustomFormatters from "../customFormatters";
 
 class ContentCreatorView extends Component {
     constructor(props) {
@@ -110,6 +111,11 @@ class ContentCreatorView extends Component {
 
                 {this.displayAlignment()}
 
+                <div className="col-12 content-input">
+                    <CustomFormatters
+                        contentIndex={this.props.contentIndex}
+                    />
+                </div>
             </div>
         );
     }
