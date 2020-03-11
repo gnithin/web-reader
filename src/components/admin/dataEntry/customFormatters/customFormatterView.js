@@ -9,6 +9,7 @@ import CustomFormatterStyleView from "./customFormatterStyleView";
 import CustomFormatterModel from "../../../../models/customFormatter";
 import DataEntryActions from "../../../../redux/actions/dataEntryActions";
 import './customFormatter.css'
+import ReaderUtils from "../../../../common/readerUtils";
 
 class CustomFormatterView extends Component {
     constructor(props) {
@@ -83,12 +84,20 @@ class CustomFormatterView extends Component {
                     </div>
 
                 </div>
+                <div className="custom-formatter-key">
+                    Formatter key - <code>{this.getFormatterKey()}</code>
+                </div>
+                <br/>
 
                 <div>
                     {this.renderFormatter(formatter)}
                 </div>
             </div>
         );
+    }
+
+    getFormatterKey() {
+        return ReaderUtils.getCustomFormatterKeyForIndex(this.props.formatterIndex);
     }
 
     renderFormatter(formatter) {
