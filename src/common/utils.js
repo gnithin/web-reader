@@ -83,6 +83,6 @@ export default class Utils {
     }
 
     static escapeRegexStr(s) {
-        return s.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+        return s.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&');
     }
 }
