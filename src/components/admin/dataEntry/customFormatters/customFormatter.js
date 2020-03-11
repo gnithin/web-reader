@@ -26,4 +26,10 @@ const reduxToComponentMapper = (state) => {
     };
 };
 
+const componentToReduxMapper = (dispatcher) => {
+    return {
+        // TODO: Add logic here
+    };
+};
+
 export default connect(reduxToComponentMapper, null)(CustomFormatter);

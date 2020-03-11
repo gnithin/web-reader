@@ -1,9 +1,11 @@
 // NOTE: This does not do anything for now.
 import {
     ACTION_ADD_CONTENT,
+    ACTION_CF_ADD,
     ACTION_DELETE_CONTENT,
     ACTION_UPDATE_CONTENT
 } from "../actions/dataEntryActions";
+import Utils from "../../common/utils";
 
 let initialState = {
     contents: []
@@ -35,6 +37,21 @@ const dataEntryReducer = (state = initialState, action) => {
             return {
                 ...state,
                 contents: newContents,
+            };
+        }
+
+        case ACTION_CF_ADD: {
+            let contents = [...state.contents];
+
+            let content = contents[action.data.contentIndex];
+            if (Utils.isNull(content.customFormatters)) {
+                content.customFormatters = []
+            }
+            content.customFormatters.push(action.data.cfData);
+
+            return {
+                ...state,
+                contents: contents
             };
         }
 

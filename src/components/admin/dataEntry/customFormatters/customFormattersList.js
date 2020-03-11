@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import './customFormattersList.css'
 import Utils from "../../../../common/utils";
 import CustomFormatter from "./customFormatter";
+import DataEntryActions from "../../../../redux/actions/dataEntryActions";
 
 class CustomFormattersList extends Component {
     render() {
@@ -19,6 +20,7 @@ class CustomFormattersList extends Component {
                     {formatters.map((formatter, i) => {
                         return (
                             <CustomFormatter
+                                key={`custom-formatter-${this.props.contentIndex}-${i}`}
                                 contentIndex={this.props.contentIndex}
                                 formatterIndex={i}
                             />
@@ -31,7 +33,8 @@ class CustomFormattersList extends Component {
                     Click to add new custom-formatter &nbsp;
                     <button
                         onClick={(e) => {
-                            this.props.addCustomFormatter(this.props.contentIndex);
+                            // TODO: Add the data
+                            this.props.addCustomFormatter(this.props.contentIndex, {});
                         }}
                         className="btn btn-primary"
                     >
@@ -55,8 +58,8 @@ const reduxToComponentMapper = (state) => {
 
 const componentToReduxMapper = (dispatcher) => {
     return {
-        addCustomFormatter: (contentIndex) => {
-            // TODO: Add the formatter
+        addCustomFormatter: (contentIndex, data) => {
+            dispatcher(DataEntryActions.addCustomFormatter(contentIndex, data));
         }
     }
 };
