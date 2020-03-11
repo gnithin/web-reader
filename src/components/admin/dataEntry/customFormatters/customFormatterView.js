@@ -8,6 +8,7 @@ import CustomFormatterHyperlinkView from "./customFormatterHyperlinkView";
 import CustomFormatterStyleView from "./customFormatterStyleView";
 import CustomFormatterModel from "../../../../models/customFormatter";
 import DataEntryActions from "../../../../redux/actions/dataEntryActions";
+import './customFormatter.css'
 
 class CustomFormatterView extends Component {
     constructor(props) {
@@ -38,37 +39,42 @@ class CustomFormatterView extends Component {
 
         return (
             <div className="formatter-wrapper">
-                <div className="delete-formatter" onClick={(e) => {
-                    this.props.deleteCustomFormatter(
-                        this.props.contentIndex,
-                        this.props.formatterIndex
-                    );
-                }}>
-                    <i className="fa fa-times" aria-hidden="true"></i>
-                </div>
-                <div>
-                    <select value={this.state.currentType} onChange={(e) => {
-                        let newType = e.target.value;
-                        this.props.updateCustomFormatter(
-                            this.props.contentIndex,
-                            this.props.formatterIndex,
-                            new CustomFormatterModel({type: newType})
-                        );
 
-                        return this.setState({
-                                                 currentType: newType,
-                                             });
+                <div className="formatter-top-bar">
+                    <div className="formatter-selector">
+                        <select value={this.state.currentType} onChange={(e) => {
+                            let newType = e.target.value;
+                            this.props.updateCustomFormatter(
+                                this.props.contentIndex,
+                                this.props.formatterIndex,
+                                new CustomFormatterModel({type: newType})
+                            );
+
+                            return this.setState({
+                                                     currentType: newType,
+                                                 });
+                        }}>
+                            <option value={CONSTANTS.CUSTOM_FORMATTERS.TYPES.IMAGE}>
+                                Image
+                            </option>
+                            <option value={CONSTANTS.CUSTOM_FORMATTERS.TYPES.HYPERLINK}>
+                                Hyperlink
+                            </option>
+                            <option value={CONSTANTS.CUSTOM_FORMATTERS.TYPES.STYLE}>
+                                Style
+                            </option>
+                        </select>
+                    </div>
+
+                    <div className="delete-formatter" onClick={(e) => {
+                        this.props.deleteCustomFormatter(
+                            this.props.contentIndex,
+                            this.props.formatterIndex
+                        );
                     }}>
-                        <option value={CONSTANTS.CUSTOM_FORMATTERS.TYPES.IMAGE}>
-                            Image
-                        </option>
-                        <option value={CONSTANTS.CUSTOM_FORMATTERS.TYPES.HYPERLINK}>
-                            Hyperlink
-                        </option>
-                        <option value={CONSTANTS.CUSTOM_FORMATTERS.TYPES.STYLE}>
-                            Style
-                        </option>
-                    </select>
+                        <i className="fa fa-times" aria-hidden="true"></i>
+                    </div>
+
                 </div>
 
                 <div>
