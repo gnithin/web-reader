@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import './customFormattersList.css'
 import Utils from "../../../../common/utils";
 import CustomFormatter from "./customFormatter";
+import CustomFormatterModel from 'models/customFormatter'
 import DataEntryActions from "../../../../redux/actions/dataEntryActions";
 
 class CustomFormattersList extends Component {
@@ -26,15 +27,17 @@ class CustomFormattersList extends Component {
                             />
                         );
                     })}
-
                 </div>
 
                 <div className="add-new-custom-formatter">
                     Click to add new custom-formatter &nbsp;
                     <button
                         onClick={(e) => {
-                            // TODO: Add the data
-                            this.props.addCustomFormatter(this.props.contentIndex, {});
+                            // Add the data
+                            this.props.addCustomFormatter(
+                                this.props.contentIndex,
+                                new CustomFormatterModel({})
+                            );
                         }}
                         className="btn btn-primary"
                     >
