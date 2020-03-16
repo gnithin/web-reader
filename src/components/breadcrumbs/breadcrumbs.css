@@ -6,29 +6,31 @@
     height: 100%;
 }
 
-.crumb-container>div {
+.crumbs-middle {
+    display: flex;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: scroll;
+}
+
+.crumb-value {
     margin: 0px 5px;
     border: 1px solid #000;
     padding: 2px 5px;
 }
 
-.crumb-container>div:last-of-type {
+.crumb-last > div {
     background-color: #000;
     color: #FFF;
 }
 
-.crumb-container>div:first-of-type {
+.crumb-first > div {
     background-color: orange;
     color: #FFF;
 }
 
-.crumb-value {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.crumb-value>a, .crumb-value a:hover {
+.crumb-value > a, .crumb-value a:hover {
     color: inherit;
     text-decoration: underline;
 }

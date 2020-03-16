@@ -13,6 +13,9 @@ import './reader.css'
 import {connect} from "react-redux";
 import ArticleActions from "../../redux/actions/articleActions";
 import {Link} from "react-router-dom";
+import RightBarView from "./rightBarView";
+import PathActions from "../../redux/actions/pathActions";
+import Utils from "../../common/utils";
 
 const READER_URL_KEY = "id";
 
@@ -48,10 +51,19 @@ class ReaderContainer extends Component {
                               isLoading: false,
                           });
             this.props.addArticle(data);
+            this.updatePathFromData(data);
 
         }).catch(err => {
             console.error("Error fetching data from server - ", err)
         })
+    }
+
+    updatePathFromData(data) {
+        if (Utils.isNull(data.paths) || data.paths.length === 0) {
+            console.log("Not adding paths, since the list is empty");
+            return;
+        }
+        this.props.addPath(data.paths);
     }
 
     render() {
@@ -81,8 +93,12 @@ class ReaderContainer extends Component {
                 <Row noGutters={true} className="main-content-container">
                     {this.getSidebar()}
 
-                    <Col className="article-container">
+                    <Col md={7} className="article-container">
                         <Article/>
+                    </Col>
+
+                    <Col md={3} className="tags-container d-none d-md-block">
+                        <RightBarView/>
                     </Col>
                 </Row>
             </Container>
@@ -118,6 +134,10 @@ const componentToReduxMapper = (dispatcher) => {
     return {
         addArticle: (article) => {
             dispatcher(ArticleActions.addArticleData(article));
+        },
+
+        addPath: (path) => {
+            dispatcher(PathActions.addPath(path))
         }
     }
 };

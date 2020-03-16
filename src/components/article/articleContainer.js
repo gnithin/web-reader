@@ -3,7 +3,7 @@ import './article.css'
 import Utils from 'common/utils'
 import {connect} from "react-redux";
 import CONSTANTS from "../../common/constants";
-import ParagraphWithImage from "../readerComponents/imageParagraph";
+import ParagraphWithImage from "../readerComponents/paragraphWithImage";
 import OnlyParagraph from "../readerComponents/onlyParagraph";
 
 class ArticleContainer extends Component {
@@ -33,16 +33,15 @@ class ArticleContainer extends Component {
     getComponentForContent(content, key) {
         switch (content.type) {
             case CONSTANTS.TYPES.PARA_AND_IMG:
-                // TODO: Remove the hard-coded width and height
                 return (
                     <ParagraphWithImage
                         key={key}
                         imgSrc={content.imageURL}
+                        title={content.title}
+                        imgTitle={content.title}
                         description={content.description}
                         isImgLeft={content.alignment === 'left'}
-                        imgWidth={100}
-                        imgHeight={100}
-                        title={content.title}
+                        formatters={content.customFormatters}
                     />
                 );
             case CONSTANTS.TYPES.PARA:
@@ -50,6 +49,8 @@ class ArticleContainer extends Component {
                     <OnlyParagraph
                         key={key}
                         description={content.description}
+                        title={content.title}
+                        formatters={content.customFormatters}
                     />
                 );
             default:

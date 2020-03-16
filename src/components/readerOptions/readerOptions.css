@@ -7,7 +7,6 @@
 .options-list {
     width: 100%;
     text-align: center;
-    margin-top: 20px;
 }
 
 .options-list > .list-group-item:hover {
@@ -17,7 +16,19 @@
 
 .options-wrapper {
     overflow: scroll;
-    margin: 40px 0px;
+    margin: 0px 0px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+}
+
+.options-content-wrapper {
+    max-height: 70vh;
+    overflow-y: scroll;
+    border: 1px solid lightgrey;
+}
+
+.options-title-wrapper {
+    margin: 20px 0px;
 }

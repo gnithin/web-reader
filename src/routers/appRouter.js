@@ -4,6 +4,9 @@ import Reader from 'components/reader'
 import AdminRouter from "./adminRouter";
 import ReaderComponentTest from "../components/readerComponents/componentTest.js";
 import ReaderOptions from "../components/readerOptions";
+import TagSearchBox from "../components/tagSearchBox";
+import {connect} from "react-redux";
+import PathActions from "../redux/actions/pathActions";
 
 class AppRouter extends Component {
     render() {
@@ -18,13 +21,28 @@ class AppRouter extends Component {
                     <Route
                         exact
                         path="/reader"
-                        component={ReaderOptions}
+                        render={(props) => {
+                            // Reset everything whenever this path is reached
+                            this.props.resetPath();
+
+                            return (
+                                <ReaderOptions
+                                    {...props}
+                                />
+                            )
+                        }}
                     />
 
                     <Route
                         exact
                         path="/reader/:id"
                         component={Reader}
+                    />
+
+                    <Route
+                        exact
+                        path="/search"
+                        component={TagSearchBox}
                     />
 
                     <Route
@@ -47,4 +65,16 @@ class AppRouter extends Component {
     }
 }
 
-export default AppRouter;
+const reduxToComponentMapper = (state) => {
+    return {}
+};
+
+const componentToReduxMapper = (dispatch) => {
+    return {
+        resetPath: () => {
+            dispatch(PathActions.resetPaths());
+        },
+    }
+};
+
+export default connect(reduxToComponentMapper, componentToReduxMapper)(AppRouter);
