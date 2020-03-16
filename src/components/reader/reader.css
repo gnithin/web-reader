@@ -11,7 +11,6 @@
 }
 
 .sidebar-container {
-    border: 1px solid #000;
     height: 100%;
     overflow: auto;
     padding: 15px;
@@ -19,8 +18,15 @@
 }
 
 .article-container {
-    border: 1px solid #000;
+    border: 1px solid #d41b2d;
+    border-top-width: 0px;
+    border-bottom-width: 0px;
     height: 100%;
     overflow: auto;
-    padding: 10px 0px;
+    padding: 10px !important;
+}
+
+.top-bar-container {
+    border: 0px solid #d41b2d;
+    border-bottom-width: 1px;
 }
