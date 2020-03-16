@@ -21,12 +21,17 @@
 }
 
 .crumb-last > div {
-    background-color: #000;
+    background-color: #d41b2d1F;
     color: #FFF;
 }
 
+.crumb-last > div:hover {
+    background-color: #FFF;
+    color: #d41b2d;
+}
+
 .crumb-first > div {
-    background-color: orange;
+    background-color: #d41b2d1F;
     color: #FFF;
 }
 

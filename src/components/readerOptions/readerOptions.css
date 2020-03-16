@@ -10,7 +10,7 @@
 }
 
 .options-list > .list-group-item:hover {
-    background-color: dodgerblue;
+    background-color: #d41b2d;
     color: white;
 }
 
@@ -31,4 +31,13 @@
 
 .options-title-wrapper {
     margin: 20px 0px;
+}
+
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+    background-color: #d41b2d !important;
+    border-color: #d41b2d !important;
+}
+
+a, a:hover, a:visited {
+    color: #d41b2d;
 }
