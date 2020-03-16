@@ -17,10 +17,15 @@ class CustomFormatterManager {
     }
 
     formatDescriptionWithFormatter(description, formatter) {
+        let key = formatter.keyId;
+        // TODO: This null-check is only added due to the backend not supporting this property
+        if (Utils.isNull(key)) {
+            key = "";
+        }
+
         switch (formatter.type) {
             case CONSTANTS.CUSTOM_FORMATTERS.TYPES.STYLE: {
                 let content = `<span className="${formatter.className}">${formatter.text}</span>`;
-                let key = formatter.keyId;
                 return description.replace(
                     new RegExp(Utils.escapeRegexStr(key), "g"),
                     content
@@ -29,7 +34,6 @@ class CustomFormatterManager {
 
             case CONSTANTS.CUSTOM_FORMATTERS.TYPES.IMAGE: {
                 let content = `<img src="${formatter.src}" alt="${formatter.alt}"/>`;
-                let key = formatter.keyId;
                 return description.replace(
                     new RegExp(Utils.escapeRegexStr(key), "g"),
                     content
@@ -38,7 +42,6 @@ class CustomFormatterManager {
 
             case CONSTANTS.CUSTOM_FORMATTERS.TYPES.HYPERLINK: {
                 let content = `<a href="${formatter.href}">${formatter.text}</a>`;
-                let key = formatter.keyId;
                 return description.replace(
                     new RegExp(Utils.escapeRegexStr(key), "g"),
                     content

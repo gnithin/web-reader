@@ -38,6 +38,16 @@
     border-color: #d41b2d !important;
 }
 
+.btn-light {
+    background-color: #FFF !important;
+    border-color: #FFF !important;
+    color: #d41b2d !important;
+}
+
+.btn-light:hover {
+    color: #000 !important;
+}
+
 a, a:hover, a:visited {
     color: #d41b2d;
 }
