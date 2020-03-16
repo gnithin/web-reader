@@ -73,7 +73,7 @@ class ReaderContainer extends Component {
 
         return (
             <Container fluid={true} className="reader-container">
-                <Row noGutters={true}>
+                <Row noGutters={true} className="top-bar-container">
                     <Col xs={{span: 'auto'}} className="d-none d-md-block">
                         <Button variant="light" onClick={this.toggleSidebar.bind(this)}>
                             <FontAwesomeIcon icon={faBars}/>
