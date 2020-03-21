@@ -2,9 +2,7 @@ import React, {Component} from 'react'
 import './article.css'
 import Utils from 'common/utils'
 import {connect} from "react-redux";
-import CONSTANTS from "../../common/constants";
-import ParagraphWithImage from "../readerComponents/paragraphWithImage";
-import OnlyParagraph from "../readerComponents/onlyParagraph";
+import ArticleTypeContainer from "../readerComponents/articleTypeContainer";
 
 class ArticleContainer extends Component {
     render() {
@@ -23,39 +21,16 @@ class ArticleContainer extends Component {
                 </h1>
                 <div className="article-contents-container">
                     {article.contents.map((content, i) => {
-                        return this.getComponentForContent(content, `content-${i}`);
+                        return (
+                            <ArticleTypeContainer
+                                key={`content-${i}`}
+                                content={content}
+                            />
+                        );
                     })}
                 </div>
             </React.Fragment>
         )
-    }
-
-    getComponentForContent(content, key) {
-        switch (content.type) {
-            case CONSTANTS.TYPES.PARA_AND_IMG:
-                return (
-                    <ParagraphWithImage
-                        key={key}
-                        imgSrc={content.imageURL}
-                        title={content.title}
-                        imgTitle={content.title}
-                        description={content.description}
-                        isImgLeft={content.alignment === 'left'}
-                        formatters={content.customFormatters}
-                    />
-                );
-            case CONSTANTS.TYPES.PARA:
-                return (
-                    <OnlyParagraph
-                        key={key}
-                        description={content.description}
-                        title={content.title}
-                        formatters={content.customFormatters}
-                    />
-                );
-            default:
-                return <React.Fragment key={key}/>
-        }
     }
 }
 
