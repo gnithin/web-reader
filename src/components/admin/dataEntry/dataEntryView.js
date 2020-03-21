@@ -6,6 +6,7 @@ import ChooseParent from "./chooseParent/chooseParentContainer";
 import ContentCreator from "./contentCreator/contentCreatorContainer";
 import {connect} from "react-redux";
 import TagCreatorView from "./tagCreator/tagCreatorView";
+import Preview from './preview'
 import CONSTANTS from "../../../common/constants";
 
 class DataEntryView extends Component {
@@ -69,6 +70,14 @@ class DataEntryView extends Component {
 
                 <div className="row da-input-entry no-gutters">
                     <div className="col-12">
+                        <Preview
+                            dataEntry={this.getDataEntry()}
+                        />
+                    </div>
+                </div>
+
+                <div className="row da-input-entry no-gutters">
+                    <div className="col-12">
                         <button className="btn btn-primary" onClick={(e) => {
                             this.createDataEntry()
                         }}>
@@ -108,13 +117,16 @@ class DataEntryView extends Component {
     }
 
     createDataEntry() {
-        let entries = {
+        this.props.addEntryCb(this.getDataEntry());
+    }
+
+    getDataEntry() {
+        return {
             parentId: this.state.parentId,
             title: this.state.title,
             contents: this.props.contents,
             tags: this.processTags(this.state.tags),
         };
-        this.props.addEntryCb(entries);
     }
 
     parentSelectedHandler(parentData) {
