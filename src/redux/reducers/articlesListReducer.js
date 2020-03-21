@@ -1,5 +1,6 @@
 import {
     ACTION_SELECT_ARTICLE_FROM_LIST,
+    ACTION_UPDATE_AND_SELECT_ARTICLE_FROM_LIST,
     ACTION_UPDATE_ARTICLES_LIST
 } from "../actions/articlesListActions";
 
@@ -29,6 +30,21 @@ const articlesListReducer = (state = initialState, action) => {
                 selectedIndex: index,
                 selectedArticle: state.data[index],
             };
+
+        case ACTION_UPDATE_AND_SELECT_ARTICLE_FROM_LIST: {
+            let index = action.data.index;
+            let articles = action.data.articles;
+            if (index < 0 || index >= articles.length) {
+                return state;
+            }
+
+            return {
+                ...state,
+                data: [...articles],
+                selectedIndex: index,
+                selectedArticle: articles[index],
+            };
+        }
 
         default:
             return state;
