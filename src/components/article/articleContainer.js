@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import './article.css'
 import Utils from 'common/utils'
 import {connect} from "react-redux";
-import ArticleTypeContainer from "../readerComponents/articleTypeContainer";
+import ArticleContentTypeContainer from "../readerComponents/articleContentTypeContainer";
 
 class ArticleContainer extends Component {
     render() {
@@ -22,7 +22,7 @@ class ArticleContainer extends Component {
                 <div className="article-contents-container">
                     {article.contents.map((content, i) => {
                         return (
-                            <ArticleTypeContainer
+                            <ArticleContentTypeContainer
                                 key={`content-${i}`}
                                 content={content}
                             />

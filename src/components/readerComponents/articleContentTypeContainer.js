@@ -4,7 +4,7 @@ import CONSTANTS from "../../common/constants";
 import ParagraphWithImage from "./paragraphWithImage";
 import OnlyParagraph from "./onlyParagraph";
 
-class ArticleTypeContainer extends Component {
+class ArticleContentTypeContainer extends Component {
     render() {
         let content = this.props.content;
         switch (content.type) {
@@ -28,14 +28,14 @@ class ArticleTypeContainer extends Component {
                         formatters={content.customFormatters}
                     />
                 );
-               
+
             default:
                 return <React.Fragment/>
         }
     }
 }
 
-ArticleTypeContainer.propTypes = {
+ArticleContentTypeContainer.propTypes = {
     content: PropTypes.object.isRequired,
 };
-export default ArticleTypeContainer;
+export default ArticleContentTypeContainer;
