@@ -16,6 +16,10 @@ export default class Content {
         this.customFormatters = []
     }
 
+    assignType() {
+        this.type = this.findType();
+    }
+
     findType() {
         // NOTE: This can get complicated in the future
         let type = CONSTANTS.TYPES.PARA;
