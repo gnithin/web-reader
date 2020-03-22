@@ -11,7 +11,6 @@ class PreviewContainer extends Component {
         return (
             <div className="preview-container">
                 <h2>Preview</h2>
-                <br/>
                 <ArticleView article={entry}/>
             </div>
         );

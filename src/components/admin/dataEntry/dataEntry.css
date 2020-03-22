@@ -8,10 +8,28 @@
 
 .da-heading {
     display: flex;
-    justify-content: center;
 }
 
 .da-input-info {
     display: flex;
     justify-content: center;
+}
+
+.preview-form-wrapper {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.admin-content {
+    height: calc(100vh - 100px);
+    overflow-y: scroll;
+}
+
+.preview-content-wrapper {
+    border: 0px solid #000;
+    border-left-width: 1px;
+}
+
+.all-content-wrapper {
+    border: 1px solid #000;
 }
