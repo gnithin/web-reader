@@ -136,6 +136,7 @@ class ContentCreatorView extends Component {
             }
             currContent[k] = this.state[k];
         }
+        currContent.assignType();
         return currContent;
     }
 
