@@ -5,7 +5,7 @@ class CustomFormatterHyperlinkView extends Component {
         super(props);
         this.state = {
             href: "",
-            alt: "",
+            text: "",
         }
     }
 
@@ -29,11 +29,11 @@ class CustomFormatterHyperlinkView extends Component {
                 <input
                     type="string"
                     className="form-control"
-                    value={this.state.alt}
+                    value={this.state.text}
                     onChange={(e) => {
-                        this.setState({alt: e.target.value})
+                        this.setState({text: e.target.value})
                     }}
-                    placeholder="Hyperlink alt"
+                    placeholder="Hyperlink text"
                     onBlur={(e) => {
                         this.props.updateCb(this.state)
                     }}
