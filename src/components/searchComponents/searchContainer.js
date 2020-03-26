@@ -1,13 +1,12 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {connect} from "react-redux";
-import Utils from 'common/utils';
 import SearchComponent from './searchComponent';
-import SearchResults from './searchResults';
 import ArticleDataSource from "../../services/articleService";
-import SearchActions from 'redux/actions/searchActions';
+import SearchActions from "../../redux/actions/searchActions";
+import Utils from "../../common/utils";
 
 class SearchContainer extends Component {
-    componentWillMount() {
+    componentDidMount() {
         this.query = new URLSearchParams(this.props.location.search);
         const searchQuery = this.query.get("title");
         this.props.addSearchTags([searchQuery]);
@@ -24,14 +23,14 @@ class SearchContainer extends Component {
 
         }).catch(err => {
             console.error("Error fetching data from server - ", err)
-        })  
+        })
     }
 
     render() {
         return (
             <div>
-                <SearchComponent tags={this.props.tags} suggestions={this.props.suggestions} />
-                <SearchResults data={this.props.data} searchQuery={this.query.get("title")}/>
+                <SearchComponent tags={this.props.tags} suggestions={this.props.suggestions}/>
+                {/*<SearchResults data={this.props.data} searchQuery={this.query.get("title")}/>*/}
             </div>
         )
     }
@@ -50,8 +49,11 @@ const componentToReduxMapper = (dispatcher) => {
 
 const reduxToComponentMapper = (state) => {
     let localSuggestion = []
-    if (!Utils.isNull(state.article.data.tags))
-        localSuggestion = state.article.data.tags.map((val) => {return {id: val, text: val}})
+    if (!Utils.isNull(state.article.data.tags)) {
+        localSuggestion = state.article.data.tags.map((val) => {
+            return {id: val, text: val}
+        })
+    }
 
     return {
         searchData: Object.values(state.search.data),
