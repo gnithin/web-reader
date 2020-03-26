@@ -22,8 +22,7 @@ class SearchComponent extends Component {
     }
 
     handleAddition(reactTagsTag) {
-        let tag = reactTagsTag.text;
-        this.props.addSearchTag(tag);
+        this.props.addSearchTag(this.getTagFromReactTag(reactTagsTag));
     }
 
     // handleDelete(i) {
@@ -98,6 +97,10 @@ class SearchComponent extends Component {
                          })
         }
         return newTags;
+    }
+
+    getTagFromReactTag(reactTag) {
+        return reactTag.text;
     }
 }
 
