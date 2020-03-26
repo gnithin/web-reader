@@ -16,6 +16,7 @@ class SearchContainer extends Component {
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (this.props.tags !== prevProps.tags) {
+            // TODO: update the url
             this.fetchContentForTags()
         }
     }
@@ -44,7 +45,6 @@ class SearchContainer extends Component {
 
 const reduxToComponentMapper = (state) => {
     return {
-        // searchData: Object.values(state.search.data),
         tags: state.search.tags,
     }
 };

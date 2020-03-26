@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
 import {WithContext as ReactTags} from 'react-tag-input';
 import {connect} from "react-redux";
-import ArticleActions from "../../redux/actions/articleActions";
 import './style.css';
-import Utils from 'common/utils';
-import ArticleDataSource from 'services/articleService';
+import Utils from "../../common/utils";
+import searchActions from "../../redux/actions/searchActions";
 
 const KeyCodes = {
     comma: 188,
@@ -17,31 +16,14 @@ class SearchComponent extends Component {
     constructor(props) {
         super(props);
 
-        this.state = this.getStateFromProps(props);
-
         this.handleAddition = this.handleAddition.bind(this);
         // this.handleDelete = this.handleDelete.bind(this);
         // this.handleDrag = this.handleDrag.bind(this);
     }
 
-    getStateFromProps(props) {
-        return {
-            tags: props.tags,
-        }
-    }
-
-    handleAddition(tag) {
-        const newTags = [...this.state.tags, tag];
-        ArticleDataSource.fetchDataSourceForTags(newTags).then((data) => {
-            console.log("Got data");
-            console.log(data);
-
-            this.setState({tags: newTags});
-            // this.props.addArticle(data);
-
-        }).catch(err => {
-            console.error("Error fetching data from server - ", err)
-        })
+    handleAddition(reactTagsTag) {
+        let tag = reactTagsTag.text;
+        this.props.addSearchTag(tag);
     }
 
     // handleDelete(i) {
@@ -82,20 +64,34 @@ class SearchComponent extends Component {
 
     render() {
         console.log("DEBUG: tags - ", this.props.tags);
+        let tags = this.transformListForReactTags(this.props.tags);
+        let suggestions = this.transformListForReactTags(this.props.suggestions);
 
         return (
             <div className="px-md-2">
-                <ReactTags tags={this.state.tags}
-                           key={(new Date()).getTime() + ''}
-                           inputFieldPosition='top'
-                           suggestions={this.props.suggestions}
-                           handleDelete={this.handleDelete}
-                           handleAddition={this.handleAddition}
-                           handleDrag={this.handleDrag}
-                           minQueryLength={1}
-                           delimiters={delimiters}/>
+                <ReactTags
+                    tags={tags}
+                    inputFieldPosition='top'
+                    suggestions={suggestions}
+                    handleDelete={this.handleDelete}
+                    handleAddition={this.handleAddition}
+                    handleDrag={this.handleDrag}
+                    minQueryLength={1}
+                    delimiters={delimiters}
+                />
             </div>
         )
+    }
+
+    transformListForReactTags(tags) {
+        let newTags = [];
+        for (let t of tags) {
+            newTags.push({
+                             id: t,
+                             text: t,
+                         })
+        }
+        return newTags;
     }
 }
 
@@ -115,8 +111,8 @@ const reduxToComponentMapper = (state) => {
 
 const componentToReduxMapper = (dispatcher) => {
     return {
-        addArticle: (article) => {
-            dispatcher(ArticleActions.addArticleData(article));
+        addSearchTag: (newTag) => {
+            dispatcher(searchActions.addSearchTag(newTag));
         }
     }
 };

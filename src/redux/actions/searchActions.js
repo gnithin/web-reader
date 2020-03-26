@@ -16,5 +16,4 @@ export default class SearchActions {
     static addSearchTag(tag) {
         return ActionUtils.createAction(APPEND_SEARCH_TAG, tag);
     }
-
 }
