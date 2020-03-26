@@ -9,8 +9,8 @@ class SearchContainer extends Component {
     componentDidMount() {
         let query = new URLSearchParams(this.props.location.search);
         const searchQuery = query.get("title");
-        if (false === Utils.isNull(searchQuery)) {
-            this.props.setSearchTags([searchQuery])
+        if (false === Utils.isEmptyStr(searchQuery)) {
+            this.props.setSearchTags(this.getTagsListFromTags(searchQuery))
         }
     }
 
@@ -40,6 +40,14 @@ class SearchContainer extends Component {
                 {/*<SearchResults data={this.props.data} searchQuery={this.query.get("title")}/>*/}
             </div>
         )
+    }
+
+    getTagsListFromTags(tags) {
+        return tags.split(",")
+    }
+
+    getTagsFromTagsList(tagsList) {
+        return tagsList.join(",")
     }
 }
 
