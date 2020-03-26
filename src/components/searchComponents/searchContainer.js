@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import SearchComponent from './searchComponent';
-import ArticleDataSource from "../../services/articleService";
 import SearchActions from "../../redux/actions/searchActions";
 import Utils from "../../common/utils";
+import TagService from "../../services/tagService";
 
 class SearchContainer extends Component {
     componentDidMount() {
@@ -15,7 +15,7 @@ class SearchContainer extends Component {
 
     fetchContentForTags() {
         console.log(this.props.tags);
-        ArticleDataSource.fetchDataSourceForTags(this.props.tags).then((data) => {
+        TagService.fetchDataSourceForTags(this.props.tags).then((data) => {
             console.log("Got data");
             console.log(data);
 
