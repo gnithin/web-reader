@@ -13,6 +13,11 @@ export default class Content {
         } else {
             this.type = this.findType()
         }
+        this.customFormatters = []
+    }
+
+    assignType() {
+        this.type = this.findType();
     }
 
     findType() {

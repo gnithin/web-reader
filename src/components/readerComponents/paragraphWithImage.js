@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types'
 import Utils from "../../common/utils";
+import CustomFormatterManager from 'managers/customFormatterManager'
 
 class ParagraphWithImage extends Component {
     render() {
@@ -20,9 +21,14 @@ class ParagraphWithImage extends Component {
                     className={imageFloat}
                     style={imgStyle}
                 />
-                <p>
-                    {this.props.description}
-                </p>
+                <p
+                    dangerouslySetInnerHTML={{
+                        __html: CustomFormatterManager.formatDescription(
+                            this.props.description,
+                            this.props.formatters
+                        )
+                    }}
+                />
             </div>
         );
     }
@@ -36,6 +42,7 @@ ParagraphWithImage.propTypes = {
     description: PropTypes.string,
     title: PropTypes.string,
     isImgLeft: PropTypes.bool,
+    formatters: PropTypes.array,
 };
 
 export default ParagraphWithImage;

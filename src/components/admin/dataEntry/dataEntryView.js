@@ -6,6 +6,7 @@ import ChooseParent from "./chooseParent/chooseParentContainer";
 import ContentCreator from "./contentCreator/contentCreatorContainer";
 import {connect} from "react-redux";
 import TagCreatorView from "./tagCreator/tagCreatorView";
+import Preview from './preview'
 import CONSTANTS from "../../../common/constants";
 
 class DataEntryView extends Component {
@@ -16,18 +17,69 @@ class DataEntryView extends Component {
             title: "",
             tags: null,
             parentId: null,
+            showPreview: true,
         }
     }
 
     render() {
         return (
             <div className="container-fluid data-entry-container">
-                <div className="row da-input-entry da-heading">
-                    <h2>Data Entry Dashboard</h2>
+                <div className="row da-input-entry da-heading no-gutters">
+                    <h2 className="col-12 col-sm-8">Data Entry Dashboard</h2>
+                    <div className="col-12 col-sm-4 preview-form-wrapper">
+                        <div className="form-check">
+                            <input
+                                type="checkbox"
+                                className="form-check-input"
+                                id="show-preview"
+                                checked={this.state.showPreview}
+                                onChange={(e) => {
+                                    this.setState({showPreview: e.target.checked});
+                                }}
+                            />
+                            <label className="form-check-label" htmlFor="show-preview">
+                                Show Preview
+                            </label>
+                        </div>
+
+                    </div>
                 </div>
 
                 {this.getInfo()}
+                <div className="row no-gutters all-content-wrapper">
+                    {this.renderAdminForms()}
+                    {this.renderPreview()}
+                </div>
+            </div>
+        );
+    }
 
+    renderPreview() {
+        if (false === this.state.showPreview) {
+            return (<React.Fragment/>);
+        }
+
+        return (
+            <div className="col-12 col-md-6 admin-content preview-content-wrapper">
+                <div className="row da-input-entry no-gutters">
+                    <div className="col-12">
+                        <Preview
+                            dataEntry={this.getDataEntry()}
+                        />
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    renderAdminForms() {
+        let wrapperClasses = "col-12 col-md-12 admin-content";
+        if (this.state.showPreview) {
+            wrapperClasses = "col-12 col-md-6 admin-content";
+        }
+
+        return (
+            <div className={wrapperClasses}>
                 <div className="row da-input-entry no-gutters">
                     <div className="col-12">
                         <input
@@ -76,7 +128,6 @@ class DataEntryView extends Component {
                         </button>
                     </div>
                 </div>
-
             </div>
         );
     }
@@ -108,13 +159,16 @@ class DataEntryView extends Component {
     }
 
     createDataEntry() {
-        let entries = {
+        this.props.addEntryCb(this.getDataEntry());
+    }
+
+    getDataEntry() {
+        return {
             parentId: this.state.parentId,
             title: this.state.title,
             contents: this.props.contents,
             tags: this.processTags(this.state.tags),
         };
-        this.props.addEntryCb(entries);
     }
 
     parentSelectedHandler(parentData) {

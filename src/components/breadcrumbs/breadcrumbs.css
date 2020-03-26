@@ -16,17 +16,22 @@
 
 .crumb-value {
     margin: 0px 5px;
-    border: 1px solid #000;
+    border: 1px solid #d41b2d5F;
     padding: 2px 5px;
 }
 
 .crumb-last > div {
-    background-color: #000;
+    background-color: #d41b2d1F;
     color: #FFF;
 }
 
+.crumb-last > div:hover {
+    background-color: #FFF;
+    color: #d41b2d;
+}
+
 .crumb-first > div {
-    background-color: orange;
+    background-color: #d41b2d1F;
     color: #FFF;
 }
 

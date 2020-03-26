@@ -3,8 +3,24 @@ import './sidebar.css'
 import {connect} from "react-redux";
 import Utils from "../../common/utils";
 import ChildrenBarView from "./childrenBarView";
+import ArticleService from "../../services/articleService";
+import ArticlesListActions from "../../redux/actions/articlesListActions";
 
 class SidebarView extends Component {
+    componentDidMount() {
+        if (Utils.isNull(this.props.parentArticle)) {
+            this.updateParentArticle();
+        }
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.article !== this.props.article) {
+            if (Utils.isNull(this.props.parentArticle)) {
+                this.updateParentArticle();
+            }
+        }
+    }
+
     render() {
         let article = this.props.article;
         if (Utils.isEmptyObject(article)) {
@@ -40,6 +56,42 @@ class SidebarView extends Component {
         );
     }
 
+    updateParentArticle() {
+        if (Utils.isEmptyObject(this.props.article)) {
+            console.log("Cannot fetch the parent-article if current article is empty!");
+            return;
+        }
+
+        let currData = this.props.article;
+        if (Utils.isNull(currData.paths) || currData.paths.length === 0) {
+            console.log("Cannot fetch the parent-article if there are no paths!");
+            return;
+        }
+
+        let earliestParentId = currData.paths[0].identifier;
+
+        ArticleService.fetchDataSource()
+            .then(articlesList => {
+                if (Utils.isNull(articlesList)) {
+                    console.error("Got empty articles-list!");
+                    return;
+                }
+
+                console.log("Articles list - ", articlesList);
+                let i = 0;
+                for (let entry of articlesList) {
+                    if (entry._id === earliestParentId) {
+                        this.props.updateAndSelectArticlesList(articlesList, i);
+                        break;
+                    }
+                    i += 1;
+                }
+                console.log("Cannot find entry for - ", earliestParentId);
+
+            }).catch(err => {
+            console.log("Error fetching data!", err);
+        });
+    }
 }
 
 const reduxToComponentMapper = (state) => {
@@ -49,4 +101,12 @@ const reduxToComponentMapper = (state) => {
     }
 };
 
-export default connect(reduxToComponentMapper, null)(SidebarView);
+const componentToReduxMapper = (dispatcher) => {
+    return {
+        updateAndSelectArticlesList: (articlesList, index) => {
+            dispatcher(ArticlesListActions.updateAndSelectFromArticlesList(articlesList, index));
+        }
+    }
+};
+
+export default connect(reduxToComponentMapper, componentToReduxMapper)(SidebarView);
