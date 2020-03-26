@@ -1,4 +1,4 @@
-import {APPEND_SEARCH_TAG, SET_SEARCH_TAGS} from "../actions/searchActions";
+import {APPEND_SEARCH_TAG, SET_SEARCH_RESULTS, SET_SEARCH_TAGS} from "../actions/searchActions";
 
 const initialState = {
     searchResults: [],
@@ -18,6 +18,13 @@ const searchReducer = (state = initialState, action) => {
             return {
                 ...state,
                 tags: [...state.tags, action.data]
+            }
+        }
+
+        case SET_SEARCH_RESULTS: {
+            return {
+                ...state,
+                searchResults: [...action.data],
             }
         }
 

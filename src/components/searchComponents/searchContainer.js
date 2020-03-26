@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import SearchComponent from './searchComponent';
 import SearchActions from "../../redux/actions/searchActions";
 import Utils from "../../common/utils";
+import TagService from "../../services/tagService";
 
 class SearchContainer extends Component {
     componentDidMount() {
@@ -13,19 +14,23 @@ class SearchContainer extends Component {
         }
     }
 
-    //
-    // fetchContentForTags() {
-    //     console.log(this.props.tags);
-    //     TagService.fetchDataSourceForTags(this.props.tags).then((data) => {
-    //         console.log("Got data");
-    //         console.log(data);
-    //
-    //         this.props.setSearchData(data);
-    //
-    //     }).catch(err => {
-    //         console.error("Error fetching data from server - ", err)
-    //     })
-    // }
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.props.tags !== prevProps.tags) {
+            this.fetchContentForTags()
+        }
+    }
+
+    fetchContentForTags() {
+        TagService.fetchDataSourceForTags(this.props.tags)
+            .then((results) => {
+                console.log("Search results - ", results);
+                this.props.setSearchResults(results);
+
+            })
+            .catch(err => {
+                console.error("Error fetching data from server - ", err)
+            })
+    }
 
     render() {
         return (
@@ -46,9 +51,13 @@ const reduxToComponentMapper = (state) => {
 
 const componentToReduxMapper = (dispatcher) => {
     return {
-        setSearchTags: (data) => {
-            dispatcher(SearchActions.setSearchTags(data));
+        setSearchTags: (tags) => {
+            dispatcher(SearchActions.setSearchTags(tags));
         },
+
+        setSearchResults: (results) => {
+            dispatcher(SearchActions.setSearchResults(results))
+        }
 
         // addSearchTags: (tags) => {
         //     dispatcher(SearchActions.addSearchTags(tags));
