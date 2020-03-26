@@ -5,10 +5,12 @@ import SearchActions from "../../redux/actions/searchActions";
 import Utils from "../../common/utils";
 import TagService from "../../services/tagService";
 
+const SEARCH_PARAM = "title";
+
 class SearchContainer extends Component {
     componentDidMount() {
         let query = new URLSearchParams(this.props.location.search);
-        const searchQuery = query.get("title");
+        const searchQuery = query.get(SEARCH_PARAM);
         if (false === Utils.isEmptyStr(searchQuery)) {
             this.props.setSearchTags(this.getTagsListFromTags(searchQuery))
         }
@@ -16,9 +18,14 @@ class SearchContainer extends Component {
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (this.props.tags !== prevProps.tags) {
-            // TODO: update the url
+            this.updateUrlWithTags();
             this.fetchContentForTags()
         }
+    }
+
+    updateUrlWithTags() {
+        let tags = this.getTagsFromTagsList(this.props.tags);
+        window.history.pushState({}, "", `?${SEARCH_PARAM}=${tags}`)
     }
 
     fetchContentForTags() {
@@ -43,7 +50,9 @@ class SearchContainer extends Component {
     }
 
     getTagsListFromTags(tags) {
-        return tags.split(",")
+        return tags.split(",").map(t => {
+            return t.trim()
+        })
     }
 
     getTagsFromTagsList(tagsList) {
