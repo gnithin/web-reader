@@ -74,9 +74,9 @@ class SearchComponent extends Component {
                     tags={tags}
                     inputFieldPosition='top'
                     suggestions={suggestions}
-                    handleDelete={this.handleDelete}
                     handleAddition={this.handleAddition}
-                    handleDrag={this.handleDrag}
+                    handleDelete={this.handleDelete}
+                    allowDragDrop={false}
                     minQueryLength={1}
                     delimiters={delimiters}
                 />
