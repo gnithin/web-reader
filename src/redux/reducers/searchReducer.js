@@ -1,4 +1,9 @@
-import {APPEND_SEARCH_TAG, SET_SEARCH_RESULTS, SET_SEARCH_TAGS} from "../actions/searchActions";
+import {
+    APPEND_SEARCH_TAG,
+    DELETE_SEARCH_TAG_INDEX,
+    SET_SEARCH_RESULTS,
+    SET_SEARCH_TAGS
+} from "../actions/searchActions";
 
 const initialState = {
     searchResults: [],
@@ -25,6 +30,19 @@ const searchReducer = (state = initialState, action) => {
             return {
                 ...state,
                 searchResults: [...action.data],
+            }
+        }
+
+        case DELETE_SEARCH_TAG_INDEX: {
+            let index = action.data;
+            if (index < 0 || index >= state.tags.length) {
+                return state;
+            }
+
+            state.tags.splice(index, 1);
+            return {
+                ...state,
+                tags: [...state.tags],
             }
         }
 

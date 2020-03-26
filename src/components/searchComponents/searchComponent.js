@@ -13,53 +13,13 @@ const KeyCodes = {
 const delimiters = [KeyCodes.comma, KeyCodes.enter];
 
 class SearchComponent extends Component {
-    constructor(props) {
-        super(props);
-
-        this.handleAddition = this.handleAddition.bind(this);
-        // this.handleDelete = this.handleDelete.bind(this);
-        // this.handleDrag = this.handleDrag.bind(this);
-    }
-
     handleAddition(reactTagsTag) {
         this.props.addSearchTag(this.getTagFromReactTag(reactTagsTag));
     }
 
-    // handleDelete(i) {
-    //     const { tags } = this.state;
-    //     this.setState({
-    //      tags: tags.filter((tag, index) => index !== i),
-    //     });
-    //     const newTags = this.state.tags.filter((tag, index) => index !== i);
-    //     ArticleDataSource.fetchDataSourceForTags(newTags).then((data) => {
-    //         console.log("Got data");
-    //         console.log(data);
-    //
-    //         this.setState({ tags: newTags });
-    //         // this.props.addArticle(data);
-    //
-    //     }).catch(err => {
-    //         console.error("Error fetching data from server - ", err)
-    //     })
-    // }
-    // handleDrag(tag, currPos, newPos) {
-    //     const tags = [...this.state.tags];
-    //     const newTags = tags.slice();
-    //
-    //     newTags.splice(currPos, 1);
-    //     newTags.splice(newPos, 0, tag);
-    //
-    //     ArticleDataSource.fetchDataSourceForTags(newTags).then((data) => {
-    //         console.log("Got data");
-    //         console.log(data);
-    //
-    //         this.setState({ tags: newTags });
-    //         // this.props.addArticle(data);
-    //
-    //     }).catch(err => {
-    //         console.error("Error fetching data from server - ", err)
-    //     })
-    // }
+    handleDelete(i) {
+        this.props.deleteTagByIndex(i);
+    }
 
     render() {
         console.log("DEBUG: tags - ", this.props.tags);
@@ -74,8 +34,8 @@ class SearchComponent extends Component {
                     tags={tags}
                     inputFieldPosition='top'
                     suggestions={suggestions}
-                    handleAddition={this.handleAddition}
-                    handleDelete={this.handleDelete}
+                    handleAddition={this.handleAddition.bind(this)}
+                    handleDelete={this.handleDelete.bind(this)}
                     allowDragDrop={false}
                     minQueryLength={1}
                     delimiters={delimiters}
@@ -115,6 +75,9 @@ const componentToReduxMapper = (dispatcher) => {
     return {
         addSearchTag: (newTag) => {
             dispatcher(searchActions.addSearchTag(newTag));
+        },
+        deleteTagByIndex: (tagIndex) => {
+            dispatcher(searchActions.deleteSearchTagByIndex(tagIndex))
         }
     }
 };
