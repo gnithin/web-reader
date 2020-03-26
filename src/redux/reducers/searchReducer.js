@@ -1,25 +1,26 @@
-import {ADD_SEARCH_TAGS, SEARCH_DATA} from "../actions/searchActions";
+import {APPEND_SEARCH_TAG, SET_SEARCH_TAGS} from "../actions/searchActions";
 
 const initialState = {
-    data: [],
+    searchResults: [],
     tags: []
 };
 
 const searchReducer = (state = initialState, action) => {
     switch (action.type) {
-        case ADD_SEARCH_TAGS:
+        case SET_SEARCH_TAGS: {
             return {
                 ...state,
                 tags: action.data,
             };
-        break;
-        
-        case SEARCH_DATA:
-                return {
-                    ...state,
-                    data: action.data
-                };
-        break;
+        }
+
+        case APPEND_SEARCH_TAG: {
+            return {
+                ...state,
+                tags: [...state.tags, action.data]
+            }
+        }
+
         default:
             return state;
     }

@@ -3,63 +3,57 @@ import {connect} from "react-redux";
 import SearchComponent from './searchComponent';
 import SearchActions from "../../redux/actions/searchActions";
 import Utils from "../../common/utils";
-import TagService from "../../services/tagService";
 
 class SearchContainer extends Component {
     componentDidMount() {
-        this.query = new URLSearchParams(this.props.location.search);
-        const searchQuery = this.query.get("title");
-        this.props.addSearchTags([searchQuery]);
-        this.fetchContentForTags();
+        let query = new URLSearchParams(this.props.location.search);
+        const searchQuery = query.get("title");
+        if (false === Utils.isNull(searchQuery)) {
+            this.props.setSearchTags([searchQuery])
+        }
     }
 
-    fetchContentForTags() {
-        console.log(this.props.tags);
-        TagService.fetchDataSourceForTags(this.props.tags).then((data) => {
-            console.log("Got data");
-            console.log(data);
-
-            this.props.setSearchData(data);
-
-        }).catch(err => {
-            console.error("Error fetching data from server - ", err)
-        })
-    }
+    //
+    // fetchContentForTags() {
+    //     console.log(this.props.tags);
+    //     TagService.fetchDataSourceForTags(this.props.tags).then((data) => {
+    //         console.log("Got data");
+    //         console.log(data);
+    //
+    //         this.props.setSearchData(data);
+    //
+    //     }).catch(err => {
+    //         console.error("Error fetching data from server - ", err)
+    //     })
+    // }
 
     render() {
         return (
             <div>
-                <SearchComponent tags={this.props.tags} suggestions={this.props.suggestions}/>
+                <SearchComponent/>
                 {/*<SearchResults data={this.props.data} searchQuery={this.query.get("title")}/>*/}
             </div>
         )
     }
 }
 
+const reduxToComponentMapper = (state) => {
+    return {
+        // searchData: Object.values(state.search.data),
+        tags: state.search.tags,
+    }
+};
+
 const componentToReduxMapper = (dispatcher) => {
     return {
-        setSearchData: (data) => {
-            dispatcher(SearchActions.updateSearchData(data));
+        setSearchTags: (data) => {
+            dispatcher(SearchActions.setSearchTags(data));
         },
-        addSearchTags: (tags) => {
-            dispatcher(SearchActions.addSearchTags(tags));
-        }
-    }
-}
 
-const reduxToComponentMapper = (state) => {
-    let localSuggestion = []
-    if (!Utils.isNull(state.article.data.tags)) {
-        localSuggestion = state.article.data.tags.map((val) => {
-            return {id: val, text: val}
-        })
+        // addSearchTags: (tags) => {
+        //     dispatcher(SearchActions.addSearchTags(tags));
+        // }
     }
-
-    return {
-        searchData: Object.values(state.search.data),
-        tags: state.search.tags,
-        suggestions: localSuggestion,
-    }
-}
+};
 
 export default connect(reduxToComponentMapper, componentToReduxMapper)(SearchContainer);
