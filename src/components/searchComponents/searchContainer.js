@@ -3,19 +3,24 @@ import {connect} from "react-redux";
 import Utils from 'common/utils';
 import SearchComponent from './searchComponent';
 import SearchResults from './searchResults';
+import ArticleDataSource from "../../services/articleService";
+import SearchActions from 'redux/actions/searchActions';
 
 class SearchContainer extends Component {
     componentWillMount() {
-        this.query = new URLSearchParams(useLocation().search);
-        this.fetchContentForTags()
+        this.query = new URLSearchParams(this.props.location.search);
+        const searchQuery = this.query.get("title");
+        this.props.addSearchTags([searchQuery]);
+        this.fetchContentForTags();
     }
 
     fetchContentForTags() {
-        ArticleDataSource.fetchDataSourceForTags(this.props.tags.toString()).then((data) => {
+        console.log(this.props.tags);
+        ArticleDataSource.fetchDataSourceForTags(this.props.tags).then((data) => {
             console.log("Got data");
             console.log(data);
 
-            // this.props.addArticle(data);
+            this.props.setSearchData(data);
 
         }).catch(err => {
             console.error("Error fetching data from server - ", err)
@@ -26,14 +31,21 @@ class SearchContainer extends Component {
         return (
             <div>
                 <SearchComponent tags={this.props.tags} suggestions={this.props.suggestions} />
-                <SearchResults tagString={this.props.tags.toString()}/>
+                <SearchResults data={this.props.data} searchQuery={this.query.get("title")}/>
             </div>
         )
     }
 }
 
 const componentToReduxMapper = (dispatcher) => {
-
+    return {
+        setSearchData: (data) => {
+            dispatcher(SearchActions.updateSearchData(data));
+        },
+        addSearchTags: (tags) => {
+            dispatcher(SearchActions.addSearchTags(tags));
+        }
+    }
 }
 
 const reduxToComponentMapper = (state) => {
@@ -42,7 +54,8 @@ const reduxToComponentMapper = (state) => {
         localSuggestion = state.article.data.tags.map((val) => {return {id: val, text: val}})
 
     return {
-        tags: state.tags,
+        searchData: Object.values(state.search.data),
+        tags: state.search.tags,
         suggestions: localSuggestion,
     }
 }

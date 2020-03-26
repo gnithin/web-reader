@@ -1,20 +1,28 @@
-import {ACTION_ADD_ARTICLE} from "../actions/articleActions";
+import {ADD_SEARCH_TAGS, SEARCH_DATA} from "../actions/searchActions";
 
 const initialState = {
-    data: {},
+    data: [],
+    tags: []
 };
 
-const articleReducer = (state = initialState, action) => {
+const searchReducer = (state = initialState, action) => {
     switch (action.type) {
-        case ACTION_ADD_ARTICLE:
+        case ADD_SEARCH_TAGS:
             return {
                 ...state,
-                data: action.data,
+                tags: action.data,
             };
-
+        break;
+        
+        case SEARCH_DATA:
+                return {
+                    ...state,
+                    data: action.data
+                };
+        break;
         default:
             return state;
     }
 };
 
-export default articleReducer;
+export default searchReducer;

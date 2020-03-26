@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from "react-redux";
+import {Row} from "react-bootstrap";
 
 import Utils from 'common/utils';
 
@@ -27,7 +28,7 @@ class SearchResult extends Component {
 
 const reduxToComponentMapper = (state) => {
     let localTextArr = [];
-    if (Utils.isNull(state.search.data))
+    if (!Utils.isNull(state.search.data))
         localTextArr = state.search.data.map((val) => val.content)
 
     return {

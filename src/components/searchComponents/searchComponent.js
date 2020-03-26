@@ -19,9 +19,9 @@ class SearchComponent extends Component {
 
         this.state = {
             tags: [],
-            suggestions: props.suggestions,
-            currentPageId: props.pageId
+            suggestions: props.suggestions
         };
+        
         this.handleDelete = this.handleDelete.bind(this);
         this.handleAddition = this.handleAddition.bind(this);
         this.handleDrag = this.handleDrag.bind(this);
