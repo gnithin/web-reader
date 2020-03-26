@@ -75,10 +75,6 @@ const componentToReduxMapper = (dispatcher) => {
         setSearchResults: (results) => {
             dispatcher(SearchActions.setSearchResults(results))
         }
-
-        // addSearchTags: (tags) => {
-        //     dispatcher(SearchActions.addSearchTags(tags));
-        // }
     }
 };
 
