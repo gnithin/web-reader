@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import {WithContext as ReactTags} from 'react-tag-input';
 import {connect} from "react-redux";
 import './style.css';
-import Utils from "../../common/utils";
 import searchActions from "../../redux/actions/searchActions";
+import Utils from "../../common/utils";
 
 const KeyCodes = {
     comma: 188,
@@ -64,6 +64,8 @@ class SearchComponent extends Component {
 
     render() {
         console.log("DEBUG: tags - ", this.props.tags);
+        console.log("DEBUG: suggestions - ", this.props.suggestions);
+
         let tags = this.transformListForReactTags(this.props.tags);
         let suggestions = this.transformListForReactTags(this.props.suggestions);
 
@@ -84,6 +86,10 @@ class SearchComponent extends Component {
     }
 
     transformListForReactTags(tags) {
+        if (Utils.isNull(tags)) {
+            return [];
+        }
+
         let newTags = [];
         for (let t of tags) {
             newTags.push({
@@ -96,16 +102,9 @@ class SearchComponent extends Component {
 }
 
 const reduxToComponentMapper = (state) => {
-    let localSuggestion = [];
-    if (!Utils.isNull(state.article.data.tags)) {
-        localSuggestion = state.article.data.tags.map((val) => {
-            return {id: val, text: val}
-        })
-    }
-
     return {
         tags: state.search.tags,
-        suggestions: localSuggestion,
+        suggestions: state.article.data.tags,
     }
 };
 
