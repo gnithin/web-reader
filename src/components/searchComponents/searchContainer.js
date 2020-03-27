@@ -42,7 +42,7 @@ class SearchContainer extends Component {
 
     render() {
         return (
-            <div>
+            <div className="container-fluid">
                 <SearchComponent/>
                 {/*<SearchResults data={this.props.data} searchQuery={this.query.get("title")}/>*/}
             </div>

@@ -29,17 +29,19 @@ class SearchComponent extends Component {
         let suggestions = this.transformListForReactTags(this.props.suggestions);
 
         return (
-            <div className="px-md-2">
-                <ReactTags
-                    tags={tags}
-                    inputFieldPosition='top'
-                    suggestions={suggestions}
-                    handleAddition={this.handleAddition.bind(this)}
-                    handleDelete={this.handleDelete.bind(this)}
-                    allowDragDrop={false}
-                    minQueryLength={1}
-                    delimiters={delimiters}
-                />
+            <div className="row">
+                <div className="col">
+                    <ReactTags
+                        tags={tags}
+                        inputFieldPosition='top'
+                        suggestions={suggestions}
+                        handleAddition={this.handleAddition.bind(this)}
+                        handleDelete={this.handleDelete.bind(this)}
+                        allowDragDrop={false}
+                        minQueryLength={1}
+                        delimiters={delimiters}
+                    />
+                </div>
             </div>
         )
     }
