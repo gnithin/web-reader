@@ -1,0 +1,17 @@
+.results-top-bar {
+    margin-bottom: 10px;
+    border: 0px solid #d41b2d;
+    border-bottom-width: 1px;
+    padding: 5px 0px;
+}
+
+.results-top-bar-contents {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.results-title {
+    margin-left: 20px;
+    font-size: 140%;
+}
