@@ -5,6 +5,11 @@ import SearchResults from './searchResults';
 import SearchActions from "../../redux/actions/searchActions";
 import Utils from "../../common/utils";
 import TagService from "../../services/tagService";
+import Button from "react-bootstrap/Button";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faHome} from "@fortawesome/free-solid-svg-icons";
+import {Link} from "react-router-dom";
+import './searchStyle.css'
 
 const SEARCH_PARAM = "title";
 
@@ -44,10 +49,25 @@ class SearchContainer extends Component {
     render() {
         return (
             <div className="container-fluid">
+                {this.renderTopBar()}
                 <SearchComponent/>
                 <SearchResults/>
             </div>
         )
+    }
+
+    renderTopBar() {
+        return (
+            <div className="row results-top-bar">
+                <div className="col">
+                    <Link to="/reader">
+                        <Button variant="light">
+                            <FontAwesomeIcon icon={faHome}/>
+                        </Button>
+                    </Link>
+                </div>
+            </div>
+        );
     }
 
     getTagsListFromTags(tags) {
