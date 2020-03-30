@@ -3,10 +3,12 @@ import articleReducer from "./articleReducer";
 import dataEntryReducer from "./dataEntryReducer";
 import articlesListReducer from "./articlesListReducer";
 import pathReducer from "./pathReducer";
+import SearchReducer from "./searchReducer";
 
 export default combineReducers({
                                    article: articleReducer,
                                    articlesList: articlesListReducer,
                                    dataEntry: dataEntryReducer,
                                    path: pathReducer,
+                                   search: SearchReducer
                                })

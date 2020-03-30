@@ -4,9 +4,10 @@ import Reader from 'components/reader'
 import AdminRouter from "./adminRouter";
 import ReaderComponentTest from "../components/readerComponents/componentTest.js";
 import ReaderOptions from "../components/readerOptions";
-import TagSearchBox from "../components/tagSearchBox";
+// import TagSearchBox from "../components/tagSearchBox";
 import {connect} from "react-redux";
 import PathActions from "../redux/actions/pathActions";
+import SearchContainer from "../components/searchComponents";
 
 class AppRouter extends Component {
     render() {
@@ -42,7 +43,7 @@ class AppRouter extends Component {
                     <Route
                         exact
                         path="/search"
-                        component={TagSearchBox}
+                        component={SearchContainer}
                     />
 
                     <Route

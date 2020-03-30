@@ -9,6 +9,10 @@
     text-align: center;
 }
 
+.options-list > .list-group-item {
+    border-width: 0px;
+}
+
 .options-list > .list-group-item:hover {
     background-color: #d41b2d;
     color: white;

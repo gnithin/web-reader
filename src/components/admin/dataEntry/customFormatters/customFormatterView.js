@@ -129,7 +129,6 @@ class CustomFormatterView extends Component {
                 src={formatter.src}
                 alt={formatter.alt}
                 updateCb={(newVal) => {
-                    console.log("DEBUG: Update - ", newVal);
                     this.updateFormatterForVal(newVal);
                 }}
             />
@@ -160,7 +159,6 @@ class CustomFormatterView extends Component {
                 href={formatter.href}
                 text={formatter.text}
                 updateCb={(newVal) => {
-                    console.log("DEBUG: Update - ", newVal);
                     this.updateFormatterForVal(newVal);
                 }}
             />
@@ -173,7 +171,6 @@ class CustomFormatterView extends Component {
                 className={formatter.className}
                 text={formatter.text}
                 updateCb={(newVal) => {
-                    console.log("DEBUG: Update - ", newVal);
                     this.updateFormatterForVal(newVal);
                 }}
             />

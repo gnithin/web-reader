@@ -1,0 +1,7 @@
+.result-container {
+   margin: 5px;
+}
+
+.result-title, .result-tags {
+    color: #d41b2d;
+}

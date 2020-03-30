@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 
 class TagSearchBoxView extends Component {
     render() {
+        console.log(this.props.match.params)
         return (
             <div className="row">
                 <div className="col" style={{
