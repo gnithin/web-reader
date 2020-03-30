@@ -59,12 +59,13 @@ class SearchContainer extends Component {
     renderTopBar() {
         return (
             <div className="row results-top-bar">
-                <div className="col">
+                <div className="col results-top-bar-contents">
                     <Link to="/reader">
                         <Button variant="light">
                             <FontAwesomeIcon icon={faHome}/>
                         </Button>
                     </Link>
+                    <div className="results-title">Search Tags</div>
                 </div>
             </div>
         );
