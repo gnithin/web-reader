@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import SearchComponent from './searchComponent';
+import SearchResults from './searchResults';
 import SearchActions from "../../redux/actions/searchActions";
 import Utils from "../../common/utils";
 import TagService from "../../services/tagService";
@@ -44,7 +45,7 @@ class SearchContainer extends Component {
         return (
             <div className="container-fluid">
                 <SearchComponent/>
-                {/*<SearchResults data={this.props.data} searchQuery={this.query.get("title")}/>*/}
+                <SearchResults/>
             </div>
         )
     }
