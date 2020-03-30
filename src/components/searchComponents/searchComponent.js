@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {WithContext as ReactTags} from 'react-tag-input';
 import {connect} from "react-redux";
-import './style.css';
+import './tagsStyle.css';
 import searchActions from "../../redux/actions/searchActions";
 import Utils from "../../common/utils";
 
