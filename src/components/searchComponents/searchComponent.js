@@ -32,6 +32,9 @@ class SearchComponent extends Component {
             <div className="row">
                 <div className="col">
                     <ReactTags
+                        classNames={{
+                            tagInputField: 'form-control'
+                        }}
                         tags={tags}
                         inputFieldPosition='top'
                         suggestions={suggestions}
@@ -40,6 +43,7 @@ class SearchComponent extends Component {
                         allowDragDrop={false}
                         minQueryLength={1}
                         delimiters={delimiters}
+                        placeholder="Search tags"
                     />
                 </div>
             </div>
