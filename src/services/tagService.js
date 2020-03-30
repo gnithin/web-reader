@@ -3,8 +3,8 @@ import serviceUtils from "./serviceUtils";
 const TAG_ENDPOINT = "https://interactive-manual-server.herokuapp.com/im/v1/topics";
 
 export default class TagService {
-    static fetchDataSourceForTags(tagArr) {
-        let tagQuery = tagArr.join(",");
+    static fetchDataSourceForTags(tagsList) {
+        let tagQuery = tagsList.join(",");
         return fetch(`${TAG_ENDPOINT}?tags=${tagQuery}`).then(resp => {
             if (!resp.ok) {
                 throw Error(`Error when fetching tags ${resp}`)
