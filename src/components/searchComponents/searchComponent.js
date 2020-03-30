@@ -22,9 +22,6 @@ class SearchComponent extends Component {
     }
 
     render() {
-        console.log("DEBUG: tags - ", this.props.tags);
-        console.log("DEBUG: suggestions - ", this.props.suggestions);
-
         let tags = this.transformListForReactTags(this.props.tags);
         let suggestions = this.transformListForReactTags(this.props.suggestions);
 
