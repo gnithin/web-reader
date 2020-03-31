@@ -65,12 +65,14 @@ class ContentCreatorView extends Component {
                         className="form-control"
                         placeholder="Title"
                         onChange={(e) => {
-                            return this.setState({
-                                                     title: e.target.value,
-                                                 });
-                        }}
-                        onBlur={(_) => {
-                            this.updateContainer();
+                            this.setState(
+                                {
+                                    title: e.target.value,
+                                },
+                                () => {
+                                    this.updateContainer();
+                                }
+                            );
                         }}
                         autoFocus={true}
                     />
@@ -82,12 +84,14 @@ class ContentCreatorView extends Component {
                         className="form-control"
                         placeholder="Enter content description here"
                         onChange={(e) => {
-                            return this.setState({
-                                                     description: e.target.value,
-                                                 });
-                        }}
-                        onBlur={(_) => {
-                            this.updateContainer();
+                            return this.setState(
+                                {
+                                    description: e.target.value,
+                                },
+                                () => {
+                                    this.updateContainer();
+                                }
+                            );
                         }}
                     />
                 </div>
@@ -99,12 +103,13 @@ class ContentCreatorView extends Component {
                         className="form-control"
                         placeholder="Enter image link here"
                         onChange={(e) => {
-                            return this.setState({
-                                                     imageURL: e.target.value,
-                                                 });
-                        }}
-                        onBlur={(_) => {
-                            this.updateContainer();
+                            this.setState(
+                                {
+                                    imageURL: e.target.value,
+                                },
+                                () => {
+                                    this.updateContainer();
+                                });
                         }}
                     />
                 </div>
@@ -158,10 +163,12 @@ class ContentCreatorView extends Component {
                 <select
                     value={this.state.alignment}
                     onChange={(e) => {
-                        this.setState({alignment: e.target.value})
-                    }}
-                    onBlur={(_) => {
-                        this.updateContainer();
+                        this.setState(
+                            {alignment: e.target.value},
+                            () => {
+                                this.updateContainer();
+                            }
+                        )
                     }}
                 >
                     <option disabled value="">Select Alignment</option>

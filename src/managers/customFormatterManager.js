@@ -18,9 +18,10 @@ class CustomFormatterManager {
 
     formatDescriptionWithFormatter(description, formatter) {
         let key = formatter.keyId;
-        // TODO: This null-check is only added due to the backend not supporting this property
+
+        // NOTE: This null-check is only added due to the backend not supporting this property
         if (Utils.isNull(key)) {
-            key = "";
+            return description;
         }
 
         switch (formatter.type) {

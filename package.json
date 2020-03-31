@@ -10,16 +10,18 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "bootstrap": "^4.4.1",
+    "clipboard": "^2.0.6",
     "react": "^16.12.0",
     "react-bootstrap": "^1.0.0-beta.16",
+    "react-clipboard.js": "^2.0.16",
+    "react-dnd": "^5.0.0",
+    "react-dnd-html5-backend": "^3.0.2",
     "react-dom": "^16.12.0",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0",
-    "redux": "^4.0.5",
-    "react-dnd": "^5.0.0",
-    "react-dnd-html5-backend": "^3.0.2",
-    "react-tag-input": "^6.4.2"
+    "react-tag-input": "^6.4.2",
+    "redux": "^4.0.5"
   },
   "scripts": {
     "start": "react-scripts start",

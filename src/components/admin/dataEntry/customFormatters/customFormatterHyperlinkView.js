@@ -17,12 +17,14 @@ class CustomFormatterHyperlinkView extends Component {
                     className="form-control"
                     value={this.state.href}
                     onChange={(e) => {
-                        this.setState({href: e.target.value})
+                        this.setState(
+                            {href: e.target.value},
+                            () => {
+                                this.props.updateCb(this.state)
+                            }
+                        )
                     }}
                     placeholder="Hyperlink href"
-                    onBlur={(e) => {
-                        this.props.updateCb(this.state)
-                    }}
                 />
                 <br/>
 
@@ -31,12 +33,14 @@ class CustomFormatterHyperlinkView extends Component {
                     className="form-control"
                     value={this.state.text}
                     onChange={(e) => {
-                        this.setState({text: e.target.value})
+                        this.setState(
+                            {text: e.target.value},
+                            () => {
+                                this.props.updateCb(this.state)
+                            }
+                        )
                     }}
                     placeholder="Hyperlink text"
-                    onBlur={(e) => {
-                        this.props.updateCb(this.state)
-                    }}
                 />
                 <br/>
 
