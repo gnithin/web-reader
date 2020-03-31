@@ -26,7 +26,17 @@ class CustomFormatterManager {
 
         switch (formatter.type) {
             case CONSTANTS.CUSTOM_FORMATTERS.TYPES.STYLE: {
-                let content = `<span className="${formatter.className}">${formatter.text}</span>`;
+                let classStr = '';
+                if (false === Utils.isEmptyStr(formatter.className)) {
+                    classStr = `class="${formatter.className}"`
+                }
+
+                let styleStr = '';
+                if (false === Utils.isEmptyStr(formatter.styleStr)) {
+                    styleStr = `style="${formatter.styleStr}"`
+                }
+
+                let content = `<span ${classStr} ${styleStr}>${formatter.text}</span>`;
                 return description.replace(
                     new RegExp(Utils.escapeRegexStr(key), "g"),
                     content
