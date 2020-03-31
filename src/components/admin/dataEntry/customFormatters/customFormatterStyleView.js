@@ -6,12 +6,29 @@ class CustomFormatterStyleView extends Component {
         this.state = {
             className: "",
             text: "",
+            styleStr: "",
         }
     }
 
     render() {
         return (
             <div className="cf-style-wrapper">
+                <input
+                    type="string"
+                    className="form-control"
+                    placeholder="Style text"
+                    value={this.state.text}
+                    onChange={(e) => {
+                        this.setState(
+                            {text: e.target.value},
+                            () => {
+                                this.props.updateCb(this.state)
+                            }
+                        )
+                    }}
+                />
+                <br/>
+
                 <input
                     type="string"
                     className="form-control"
@@ -31,11 +48,11 @@ class CustomFormatterStyleView extends Component {
                 <input
                     type="string"
                     className="form-control"
-                    placeholder="Style text"
-                    value={this.state.text}
+                    placeholder="Style string"
+                    value={this.state.styleStr}
                     onChange={(e) => {
                         this.setState(
-                            {text: e.target.value},
+                            {styleStr: e.target.value},
                             () => {
                                 this.props.updateCb(this.state)
                             }
