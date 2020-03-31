@@ -18,12 +18,14 @@ class CustomFormatterImageView extends Component {
                     className="form-control"
                     value={this.state.src}
                     onChange={(e) => {
-                        this.setState({src: e.target.value})
+                        this.setState(
+                            {src: e.target.value},
+                            () => {
+                                this.props.updateCb(this.state)
+                            }
+                        )
                     }}
                     placeholder="Image Source"
-                    onBlur={(e) => {
-                        this.props.updateCb(this.state)
-                    }}
                 />
 
                 <br/>
@@ -33,12 +35,14 @@ class CustomFormatterImageView extends Component {
                     className="form-control"
                     value={this.state.alt}
                     onChange={(e) => {
-                        this.setState({alt: e.target.value})
+                        this.setState(
+                            {alt: e.target.value},
+                            () => {
+                                this.props.updateCb(this.state)
+                            }
+                        )
                     }}
                     placeholder="Image Alt"
-                    onBlur={(e) => {
-                        this.props.updateCb(this.state)
-                    }}
                 />
 
                 <br/>
