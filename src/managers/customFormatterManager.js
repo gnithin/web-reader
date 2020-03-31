@@ -52,7 +52,17 @@ class CustomFormatterManager {
             }
 
             case CONSTANTS.CUSTOM_FORMATTERS.TYPES.HYPERLINK: {
-                let content = `<a href="${formatter.href}">${formatter.text}</a>`;
+                let shouldOpenInNewTab = true;
+                if (false === Utils.isNull(formatter.shouldOpenInNewTab)) {
+                    shouldOpenInNewTab = formatter.shouldOpenInNewTab;
+                }
+
+                let additionalProps = "";
+                if (shouldOpenInNewTab) {
+                    additionalProps = `target="_blank"`;
+                }
+
+                let content = `<a href="${formatter.href}" ${additionalProps}>${formatter.text}</a>`;
                 return description.replace(
                     new RegExp(Utils.escapeRegexStr(key), "g"),
                     content
