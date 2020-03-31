@@ -17,10 +17,12 @@ class TagCreatorView extends Component {
                 placeholder="Tags - Comma separated"
                 value={this.state.tags}
                 onChange={(e) => {
-                    this.setState({tags: e.target.value})
-                }}
-                onBlur={(e) => {
-                    this.props.updateTagsCb(this.state.tags);
+                    this.setState(
+                        {tags: e.target.value},
+                        () => {
+                            this.props.updateTagsCb(this.state.tags);
+                        }
+                    )
                 }}
             />
         );

@@ -18,10 +18,12 @@ class CustomFormatterStyleView extends Component {
                     placeholder="Style classname"
                     value={this.state.className}
                     onChange={(e) => {
-                        this.setState({className: e.target.value})
-                    }}
-                    onBlur={(e) => {
-                        this.props.updateCb(this.state)
+                        this.setState(
+                            {className: e.target.value},
+                            () => {
+                                this.props.updateCb(this.state)
+                            }
+                        )
                     }}
                 />
                 <br/>
@@ -32,10 +34,12 @@ class CustomFormatterStyleView extends Component {
                     placeholder="Style text"
                     value={this.state.text}
                     onChange={(e) => {
-                        this.setState({text: e.target.value})
-                    }}
-                    onBlur={(e) => {
-                        this.props.updateCb(this.state)
+                        this.setState(
+                            {text: e.target.value},
+                            () => {
+                                this.props.updateCb(this.state)
+                            }
+                        )
                     }}
                 />
                 <br/>
