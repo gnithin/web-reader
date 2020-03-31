@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types'
 import Utils from "../../common/utils";
-import CustomFormatterManager from 'managers/customFormatterManager'
+import ParagraphView from "./paragraphView";
 
 class ParagraphWithImage extends Component {
     render() {
@@ -21,13 +21,9 @@ class ParagraphWithImage extends Component {
                     className={imageFloat}
                     style={imgStyle}
                 />
-                <p
-                    dangerouslySetInnerHTML={{
-                        __html: CustomFormatterManager.formatDescription(
-                            this.props.description,
-                            this.props.formatters
-                        )
-                    }}
+                <ParagraphView
+                    description={this.props.description}
+                    formatters={this.props.formatters}
                 />
             </div>
         );
