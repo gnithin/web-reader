@@ -76,12 +76,22 @@ class ChooseParentView extends Component {
                                 this.props.parentSelectedCb(result);
                             }}
                         >
-                            {result.title} : {result.path}
+                            {result.title} : {this.formatPath(result.paths)}
                         </div>
                     );
                 })}
             </div>
         );
+    }
+
+    formatPath(paths) {
+        if (Utils.isNull(paths) || paths.length === 0) {
+            return "";
+        }
+
+        return paths.map((path) => {
+            return path.title;
+        }).join(" - ")
     }
 }
 
