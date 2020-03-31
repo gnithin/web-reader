@@ -6,6 +6,7 @@ class CustomFormatterHyperlinkView extends Component {
         this.state = {
             href: "",
             text: "",
+            shouldOpenInNewTab: true,
         }
     }
 
@@ -43,6 +44,26 @@ class CustomFormatterHyperlinkView extends Component {
                     placeholder="Hyperlink text"
                 />
                 <br/>
+
+                <input
+                    id="openNewTab"
+                    type="checkbox"
+                    className="custom-checkbox"
+                    checked={this.state.shouldOpenInNewTab}
+                    onChange={(e) => {
+                        this.setState(
+                            {shouldOpenInNewTab: e.target.checked},
+                            () => {
+                                this.props.updateCb(this.state)
+                            }
+                        )
+                    }}
+                    placeholder="Hyperlink text"
+                />
+                &nbsp;
+                <label className="form-check-label" htmlFor="openNewTab">
+                    Open link in new tab
+                </label>
 
             </div>
         );
