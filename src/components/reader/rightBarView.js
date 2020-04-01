@@ -52,6 +52,7 @@ class RightBarView extends Component {
                             <li>
                                 <Link
                                     to='/appendix'
+                                    target="_blank"
                                 >
                                     Appendix
                                 </Link>
