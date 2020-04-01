@@ -1,6 +1,7 @@
 import serviceUtils from "./serviceUtils";
+import UrlManager from '../managers/urlManager'
 
-const TAG_ENDPOINT = "https://interactive-manual-server.herokuapp.com/im/v1/topics";
+const TAG_ENDPOINT = `${UrlManager.base_url}/im/v1/topics`;
 
 export default class TagService {
     static fetchDataSourceForTags(tagsList) {
