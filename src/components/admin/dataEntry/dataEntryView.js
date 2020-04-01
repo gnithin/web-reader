@@ -143,9 +143,11 @@ class DataEntryView extends Component {
                 case CONSTANTS.DATA_INFO.SUCCESS:
                     status = "success";
                     break;
+
                 case CONSTANTS.DATA_INFO.ERROR:
                     status = "danger";
                     break;
+
                 default:
                 // pass
             }
@@ -153,9 +155,26 @@ class DataEntryView extends Component {
 
         return (<div className="row da-input-entry da-input-info">
             <div className={`alert alert-${status}`}>
-                {this.props.info}
+                {this.props.info} {this.renderInfoLink()}
             </div>
         </div>);
+    }
+
+    renderInfoLink() {
+        if (Utils.isEmptyStr(this.props.infoLink)) {
+            return (<React.Fragment/>);
+        }
+        return (
+            <React.Fragment>
+                <a
+                    href={this.props.infoLink}
+                    rel="noopener noreferrer"
+                    target="_blank"
+                >
+                    Link
+                </a>
+            </React.Fragment>
+        )
     }
 
     createDataEntry() {
