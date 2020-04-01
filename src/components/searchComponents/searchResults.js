@@ -23,7 +23,7 @@ class SearchResults extends Component {
                             <div className="card result-container" key={`result-key-${i}`}>
                                 <div className="card-body">
                                     <h3 className="card-title result-title">
-                                        <Link to={`/reader/${result._id}`}>
+                                        <Link to={`/reader/${result._id}`} target="_blank">
                                             {result.title}
                                         </Link>
                                     </h3>
