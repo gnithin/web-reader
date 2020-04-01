@@ -72,7 +72,7 @@ class RightBarView extends Component {
 
         let url = `/search?title=${this.state.searchText}`;
         const win = window.open(url, '_blank');
-        if (win != null) {
+        if (false === Utils.isNull(win)) {
             win.focus();
         }
     }
