@@ -70,7 +70,11 @@ class RightBarView extends Component {
             return;
         }
 
-        this.props.history.push(`/search?title=${this.state.searchText}`);
+        let url = `/search?title=${this.state.searchText}`;
+        const win = window.open(url, '_blank');
+        if (win != null) {
+            win.focus();
+        }
     }
 }
 
