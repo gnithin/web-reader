@@ -20,12 +20,7 @@ class SearchResults extends Component {
                 {
                     this.props.results.map((result, i) => {
                         return (
-                            <div className="card result-container"
-                                 key={`result-key-${i}`}
-                                 onClick={(e) => {
-                                     // Go to /reader/<id>
-                                 }}
-                            >
+                            <div className="card result-container" key={`result-key-${i}`}>
                                 <div className="card-body">
                                     <h3 className="card-title result-title">
                                         <Link to={`/reader/${result._id}`}>
@@ -41,7 +36,6 @@ class SearchResults extends Component {
                                             {this.getTagsForCard(result.tags)}
                                         </span>
                                     </div>
-                                    {/*<a href="#" className="btn btn-primary">Go somewhere</a>*/}
                                 </div>
                             </div>
                         );
