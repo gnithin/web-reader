@@ -69,6 +69,9 @@ class SearchResults extends Component {
         });
 
         let displayContents = displayContentsList.join(" ");
+        // Hide the custom formatter contents
+        displayContents = displayContents.replace(/\$\{[^}]*\}/g, "");
+
         if (displayContents.length > WORD_LIMIT) {
             displayContents = displayContents.substring(0, WORD_LIMIT) + "...";
         }
