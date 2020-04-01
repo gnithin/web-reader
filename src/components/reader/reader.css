@@ -18,15 +18,15 @@
 }
 
 .article-container {
-    border: 1px solid #d41b2d;
+    border: 1px solid lightgrey;
     border-top-width: 0px;
     border-bottom-width: 0px;
     height: 100%;
     overflow: auto;
-    padding: 10px !important;
+    padding: 10px 20px !important;
 }
 
 .top-bar-container {
-    border: 0px solid #d41b2d;
+    border: 0px solid lightgrey;
     border-bottom-width: 1px;
 }
