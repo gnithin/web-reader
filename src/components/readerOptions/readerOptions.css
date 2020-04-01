@@ -37,8 +37,13 @@
     margin: 20px 0px;
 }
 
-.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+.btn-primary, .btn-primary:active, .btn-primary:visited {
     background-color: #d41b2d !important;
+    border-color: #d41b2d !important;
+}
+
+.btn-primary:hover {
+    background-color: #d41b2dE0 !important;
     border-color: #d41b2d !important;
 }
 
