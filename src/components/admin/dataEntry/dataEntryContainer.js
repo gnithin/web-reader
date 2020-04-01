@@ -9,6 +9,7 @@ class DataEntryContainer extends Component {
         super(props);
         this.state = {
             info: null,
+            infoLink: null,
             infoType: null,
         }
     }
@@ -19,6 +20,7 @@ class DataEntryContainer extends Component {
                 addEntryCb={this.addEntryCb.bind(this)}
                 info={this.state.info}
                 infoType={this.state.infoType}
+                infoLink={this.state.infoLink}
             />
         );
     }
@@ -40,9 +42,11 @@ class DataEntryContainer extends Component {
         // Perform the call to remote
         DataEntryService.insertDataEntry(entry).then(resp => {
             console.log("inserted - ", resp);
+            let url = `/reader/${resp._id}`;
             this.setState({
                               info: "Inserted successfully!",
                               infoType: CONSTANTS.DATA_INFO.SUCCESS,
+                              infoLink: url,
                           })
 
         }).catch(err => {
