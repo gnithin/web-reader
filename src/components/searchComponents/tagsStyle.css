@@ -78,11 +78,13 @@ div.ReactTags__suggestions ul li.ReactTags__activeSuggestion {
 
 .ReactTags__tag {
     color: #FFF !important;
+    font-size: 100% !important;
     background-color: #d41b2dF1 !important;
+    border: 0px !important;
 }
 
 .ReactTags__remove {
-    padding-left: 3px;
-    padding-right: 3px;
-    color: #FFF;
+    padding-left: 3px !important;
+    padding-right: 3px !important;
+    color: #FFF !important;
 }

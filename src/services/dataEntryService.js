@@ -1,7 +1,8 @@
 import Utils from "../common/utils";
+import UrlManager from '../managers/urlManager'
 
-const DATA_ENDPOINT = "https://interactive-manual-server.herokuapp.com/im/v1/topic";
-const FIND_PARENT_ENDPOINT = "https://interactive-manual-server.herokuapp.com/im/v1/topics";
+const DATA_ENDPOINT = `${UrlManager.base_url}/im/v1/topic`;
+const FIND_PARENT_ENDPOINT = `${UrlManager.base_url}/im/v1/topics`;
 
 export default class DataEntryService {
     static insertDataEntry(entry) {

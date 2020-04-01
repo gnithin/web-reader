@@ -30,7 +30,7 @@ class CustomFormattersList extends Component {
                 </div>
 
                 <div className="add-new-custom-formatter">
-                    Click to add new custom-formatter &nbsp;
+                    Click to add new formatter &nbsp;
                     <button
                         onClick={(e) => {
                             // Add the data

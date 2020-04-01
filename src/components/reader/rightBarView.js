@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Utils from "../../common/utils";
-import {withRouter} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 import "./rightBar.css";
 
 class RightBarView extends Component {
@@ -20,7 +20,7 @@ class RightBarView extends Component {
                             type="text"
                             className="form-control"
                             value={this.state.searchText}
-                            placeholder="Search for keywords here..."
+                            placeholder="Search document tags here..."
                             onChange={(e) => {
                                 this.setState({
                                                   searchText: e.target.value,
@@ -40,6 +40,24 @@ class RightBarView extends Component {
                         }}>
                             <i className="fa fa-arrow-right" aria-hidden="true"></i>
                         </button>
+                    </div>
+                </div>
+
+                <div className="row no-gutters other-links-wrapper">
+                    <div className="col-12">
+                        Other Links
+                    </div>
+                    <div className="col-12">
+                        <ul>
+                            <li>
+                                <Link
+                                    to='/appendix'
+                                    target="_blank"
+                                >
+                                    Appendix
+                                </Link>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>

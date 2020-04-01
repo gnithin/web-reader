@@ -65,7 +65,7 @@ class SearchContainer extends Component {
                             <FontAwesomeIcon icon={faHome}/>
                         </Button>
                     </Link>
-                    <div className="results-title">Search Tags</div>
+                    <div className="results-title">Search document Tags</div>
                 </div>
             </div>
         );

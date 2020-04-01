@@ -9,8 +9,15 @@ const WORD_LIMIT = 400;
 class SearchResults extends Component {
     render() {
         if (Utils.isNull(this.props.results) || this.props.results.length === 0) {
+            if (Utils.isNull(this.props.tags) || this.props.tags.length === 0) {
+                return (
+                    <React.Fragment/>
+                );
+            }
+
             return (
-                <div>
+                <div className="no-results-container">
+                    No results found :(
                 </div>
             );
         }
@@ -20,15 +27,10 @@ class SearchResults extends Component {
                 {
                     this.props.results.map((result, i) => {
                         return (
-                            <div className="card result-container"
-                                 key={`result-key-${i}`}
-                                 onClick={(e) => {
-                                     // Go to /reader/<id>
-                                 }}
-                            >
+                            <div className="card result-container" key={`result-key-${i}`}>
                                 <div className="card-body">
                                     <h3 className="card-title result-title">
-                                        <Link to={`/reader/${result._id}`}>
+                                        <Link to={`/reader/${result._id}`} target="_blank">
                                             {result.title}
                                         </Link>
                                     </h3>
@@ -41,7 +43,6 @@ class SearchResults extends Component {
                                             {this.getTagsForCard(result.tags)}
                                         </span>
                                     </div>
-                                    {/*<a href="#" className="btn btn-primary">Go somewhere</a>*/}
                                 </div>
                             </div>
                         );
@@ -68,6 +69,9 @@ class SearchResults extends Component {
         });
 
         let displayContents = displayContentsList.join(" ");
+        // Hide the custom formatter contents
+        displayContents = displayContents.replace(/\$\{[^}]*\}/g, "");
+
         if (displayContents.length > WORD_LIMIT) {
             displayContents = displayContents.substring(0, WORD_LIMIT) + "...";
         }
@@ -79,6 +83,7 @@ class SearchResults extends Component {
 const reduxToComponentMapper = (state) => {
     return {
         results: state.search.searchResults,
+        tags: state.search.tags,
     }
 };
 

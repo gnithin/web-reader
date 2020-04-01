@@ -1,7 +1,8 @@
 import Utils from "../common/utils";
 import ServiceUtils from "./serviceUtils";
+import UrlManager from '../managers/urlManager'
 
-const ENDPOINT = "https://interactive-manual-server.herokuapp.com/im/v1/details";
+const ENDPOINT = `${UrlManager.base_url}/im/v1/details`;
 
 export default class ArticleService {
     static fetchDataSourceForId(id) {
