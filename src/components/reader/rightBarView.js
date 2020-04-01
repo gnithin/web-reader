@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Utils from "../../common/utils";
-import {withRouter} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 import "./rightBar.css";
 
 class RightBarView extends Component {
@@ -40,6 +40,23 @@ class RightBarView extends Component {
                         }}>
                             <i className="fa fa-arrow-right" aria-hidden="true"></i>
                         </button>
+                    </div>
+                </div>
+
+                <div className="row no-gutters other-links-wrapper">
+                    <div className="col-12">
+                        Other Links
+                    </div>
+                    <div className="col-12">
+                        <ul>
+                            <li>
+                                <Link
+                                    to='/appendix'
+                                >
+                                    Appendix
+                                </Link>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
