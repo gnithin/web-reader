@@ -26,10 +26,10 @@
 }
 
 .preview-content-wrapper {
-    border: 0px solid #000;
+    border: 0px solid lightgrey;
     border-left-width: 1px;
 }
 
 .all-content-wrapper {
-    border: 1px solid #000;
+    border: 1px solid lightgrey;
 }
