@@ -16,7 +16,7 @@ class CustomFormatterStyleView extends Component {
                 <input
                     type="string"
                     className="form-control"
-                    placeholder="Style text"
+                    placeholder="Display text"
                     value={this.state.text}
                     onChange={(e) => {
                         this.setState(
@@ -32,7 +32,7 @@ class CustomFormatterStyleView extends Component {
                 <input
                     type="string"
                     className="form-control"
-                    placeholder="Style classname"
+                    placeholder="Style classname (if it already exists)"
                     value={this.state.className}
                     onChange={(e) => {
                         this.setState(
@@ -48,7 +48,7 @@ class CustomFormatterStyleView extends Component {
                 <input
                     type="string"
                     className="form-control"
-                    placeholder="Style string"
+                    placeholder="Style CSS string"
                     value={this.state.styleStr}
                     onChange={(e) => {
                         this.setState(

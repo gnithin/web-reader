@@ -25,7 +25,7 @@ class CustomFormatterImageView extends Component {
                             }
                         )
                     }}
-                    placeholder="Image Source"
+                    placeholder="Image url (Uploaded to SharePoint)"
                 />
 
                 <br/>
@@ -42,7 +42,7 @@ class CustomFormatterImageView extends Component {
                             }
                         )
                     }}
-                    placeholder="Image Alt"
+                    placeholder="Image Alternate text (when image doesn't load)"
                 />
 
                 <br/>

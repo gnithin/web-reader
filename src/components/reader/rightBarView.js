@@ -20,7 +20,7 @@ class RightBarView extends Component {
                             type="text"
                             className="form-control"
                             value={this.state.searchText}
-                            placeholder="Search for keywords here..."
+                            placeholder="Search document tags here..."
                             onChange={(e) => {
                                 this.setState({
                                                   searchText: e.target.value,

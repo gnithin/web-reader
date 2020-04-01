@@ -25,7 +25,7 @@ class DataEntryView extends Component {
         return (
             <div className="container-fluid data-entry-container">
                 <div className="row da-input-entry da-heading no-gutters">
-                    <h2 className="col-12 col-sm-8">Data Entry Dashboard</h2>
+                    <h2 className="col-12 col-sm-8">Document Entry Dashboard</h2>
                     <div className="col-12 col-sm-4 preview-form-wrapper">
                         <div className="form-check">
                             <input
@@ -85,7 +85,7 @@ class DataEntryView extends Component {
                         <input
                             type="string"
                             id="title"
-                            placeholder="Title"
+                            placeholder="Document Title"
                             className="form-control"
                             value={this.state.title}
                             onChange={(e) => {
