@@ -26,6 +26,7 @@ class ReaderOptionsView extends Component {
                 <div className="row search-box-wrapper no-gutters">
                     <div className="offset-1 offset-md-3 col-9 col-md-6">
                         <input
+                            type="text"
                             className="form-control"
                             value={this.state.searchText}
                             onChange={(e) => {
