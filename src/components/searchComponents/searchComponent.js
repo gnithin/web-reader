@@ -40,7 +40,7 @@ class SearchComponent extends Component {
                         allowDragDrop={false}
                         minQueryLength={1}
                         delimiters={delimiters}
-                        placeholder="Search tags"
+                        placeholder="Search document tags"
                     />
                 </div>
             </div>

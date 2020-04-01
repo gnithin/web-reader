@@ -42,7 +42,7 @@ class CustomFormatterView extends Component {
         return (
             <div className="formatter-wrapper">
                 <div>
-                    <h3>Edit Custom Formatter</h3>
+                    <h5>New Formatter for Content</h5>
                 </div>
 
                 <div className="formatter-top-bar">

@@ -1,3 +1,7 @@
+.custom-formatters-list-wrapper {
+    margin-top: 10px;
+}
+
 .add-new-custom-formatter {
     display: flex;
     justify-content: flex-end;

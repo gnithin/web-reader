@@ -38,7 +38,7 @@ class ReaderOptionsView extends Component {
                                     this.submitQuery()
                                 }
                             }}
-                            placeholder="Search tags here..."
+                            placeholder="Search document tags here..."
                         />
                     </div>
                     <div className="col-1">
@@ -52,7 +52,7 @@ class ReaderOptionsView extends Component {
 
                 <div className="row options-title-wrapper">
                     <div className="col-12 options-content">
-                        <h2>Choose your title</h2>
+                        <h2>Choose Visa Type</h2>
                     </div>
                 </div>
 

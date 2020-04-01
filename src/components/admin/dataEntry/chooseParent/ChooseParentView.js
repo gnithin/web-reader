@@ -30,12 +30,12 @@ class ChooseParentView extends Component {
                                 this.performSearch();
                             }
                         }}
-                        placeholder="Choose a parent"
+                        placeholder="Enter parent document's title (optional)"
                     />
-                    <button className="btn btn-primary col-2" onClick={(e) => {
+                    <button className="btn btn-primary col" onClick={(e) => {
                         this.performSearch()
                     }}>
-                        Search
+                        <i className="fa fa-search" aria-hidden="true"/>
                     </button>
                 </div>
 

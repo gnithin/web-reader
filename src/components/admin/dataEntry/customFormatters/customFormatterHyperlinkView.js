@@ -25,7 +25,7 @@ class CustomFormatterHyperlinkView extends Component {
                             }
                         )
                     }}
-                    placeholder="Hyperlink href"
+                    placeholder="Hyperlink url"
                 />
                 <br/>
 
@@ -41,7 +41,7 @@ class CustomFormatterHyperlinkView extends Component {
                             }
                         )
                     }}
-                    placeholder="Hyperlink text"
+                    placeholder="Hyperlink display text"
                 />
                 <br/>
 

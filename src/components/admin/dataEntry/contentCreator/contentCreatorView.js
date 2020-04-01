@@ -45,7 +45,7 @@ class ContentCreatorView extends Component {
             <div className="content-creator-container row">
                 <div className="col-12 content-input content-input-top-bar">
                     <span className="content-heading">
-                        Create content
+                        New content
                     </span>
                     <span className="content-close">
                         <i
