@@ -3,7 +3,7 @@ import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
 import Reader from 'components/reader'
 import AdminRouter from "./adminRouter";
 import ReaderOptions from "../components/readerOptions";
-// import TagSearchBox from "../components/tagSearchBox";
+import Appendix from '../components/appendix'
 import {connect} from "react-redux";
 import PathActions from "../redux/actions/pathActions";
 import SearchContainer from "../components/searchComponents";
@@ -43,6 +43,12 @@ class AppRouter extends Component {
                         exact
                         path="/search"
                         component={SearchContainer}
+                    />
+
+                    <Route
+                        exact
+                        path="/appendix"
+                        component={Appendix}
                     />
 
                     {/*<Route*/}
