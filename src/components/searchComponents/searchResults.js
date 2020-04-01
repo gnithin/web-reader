@@ -9,8 +9,15 @@ const WORD_LIMIT = 400;
 class SearchResults extends Component {
     render() {
         if (Utils.isNull(this.props.results) || this.props.results.length === 0) {
+            if (Utils.isNull(this.props.tags) || this.props.tags.length === 0) {
+                return (
+                    <React.Fragment/>
+                );
+            }
+
             return (
-                <div>
+                <div className="no-results-container">
+                    No results found :(
                 </div>
             );
         }
@@ -73,6 +80,7 @@ class SearchResults extends Component {
 const reduxToComponentMapper = (state) => {
     return {
         results: state.search.searchResults,
+        tags: state.search.tags,
     }
 };
 

@@ -1,7 +1,12 @@
 .result-container {
-   margin: 5px;
+    margin: 5px;
 }
 
 .result-title, .result-tags {
     color: #d41b2d;
+}
+
+.no-results-container {
+    margin-top: 10px;
+    font-size: 130%;
 }
