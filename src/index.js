@@ -11,6 +11,8 @@ import store from './redux/store/store'
 if (process.env.NODE_ENV !== 'development') {
     console.log = () => {
     };
+    console.error = () => {
+    }
 }
 
 ReactDOM.render(
