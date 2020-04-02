@@ -17,6 +17,8 @@ class ArticleContentTypeContainer extends Component {
                         description={content.description}
                         isImgLeft={content.alignment === 'left'}
                         formatters={content.customFormatters}
+                        height={content.imageHeight}
+                        width={content.imageWidth}
                     />
                 );
 
