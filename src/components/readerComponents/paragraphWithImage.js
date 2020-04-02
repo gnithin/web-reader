@@ -18,7 +18,7 @@ class ParagraphWithImage extends Component {
         }
 
         return (
-            <div>
+            <div style={{clear: "both"}}>
                 {false === Utils.isNull(this.props.title) && <h2>{this.props.title}</h2>}
                 <img
                     src={this.props.imgSrc}
