@@ -6,9 +6,14 @@ import ParagraphView from "./paragraphView";
 class ParagraphWithImage extends Component {
     render() {
         let imgStyle = {
-            margin: "15px 15px 15px 15px"
+            margin: "10px"
         };
+
         let imageFloat = this.props.isImgLeft ? "float-left" : "float-right";
+        let imageTitle = "";
+        if (false === Utils.isNull(this.props.imgTitle)) {
+            imageTitle = this.props.imgTitle;
+        }
 
         return (
             <div>
@@ -17,7 +22,8 @@ class ParagraphWithImage extends Component {
                     src={this.props.imgSrc}
                     width={this.props.imgWidth}
                     height={this.props.imgHeight}
-                    alt={this.props.imgTitle}
+                    alt={imageTitle}
+                    title={imageTitle}
                     className={imageFloat}
                     style={imgStyle}
                 />

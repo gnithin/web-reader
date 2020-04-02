@@ -44,7 +44,7 @@ class CustomFormatterManager {
             }
 
             case CONSTANTS.CUSTOM_FORMATTERS.TYPES.IMAGE: {
-                let content = `<img src="${formatter.src}" alt="${formatter.alt}"/>`;
+                let content = `<img src="${formatter.src}" alt="${formatter.alt}" title="${formatter.alt}"/>`;
                 return description.replace(
                     new RegExp(Utils.escapeRegexStr(key), "g"),
                     content
