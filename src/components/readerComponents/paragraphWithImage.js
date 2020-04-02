@@ -6,7 +6,9 @@ import ParagraphView from "./paragraphView";
 class ParagraphWithImage extends Component {
     render() {
         let imgStyle = {
-            margin: "10px"
+            margin: "10px",
+            // TODO: Remove this. This is for the demo only!
+            width: "150px"
         };
 
         let imageFloat = this.props.isImgLeft ? "float-left" : "float-right";
