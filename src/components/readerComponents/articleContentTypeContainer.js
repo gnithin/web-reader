@@ -13,7 +13,7 @@ class ArticleContentTypeContainer extends Component {
                     <ParagraphWithImage
                         imgSrc={content.imageURL}
                         title={content.title}
-                        imgTitle={content.title}
+                        imgTitle={content.imageTitle}
                         description={content.description}
                         isImgLeft={content.alignment === 'left'}
                         formatters={content.customFormatters}

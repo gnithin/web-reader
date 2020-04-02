@@ -24,7 +24,8 @@ class ContentCreatorView extends Component {
             prevContent.title !== currContent.title ||
             prevContent.description !== currContent.description ||
             prevContent.imageURL !== currContent.imageURL ||
-            prevContent.alignment !== currContent.alignment
+            prevContent.alignment !== currContent.alignment ||
+            prevContent.imageTitle !== currContent.imageTitle
         ) {
             this.setState(this.getStateForProps(this.props));
         }
@@ -37,6 +38,7 @@ class ContentCreatorView extends Component {
             description: content.description,
             imageURL: content.imageURL,
             alignment: content.alignment,
+            imageTitle: content.imageTitle,
         }
     }
 
@@ -115,6 +117,7 @@ class ContentCreatorView extends Component {
                 </div>
 
                 {this.displayAlignment()}
+                {this.displayImageTools()}
 
                 <div className="col-12 content-input">
                     <CustomFormatters
@@ -177,7 +180,35 @@ class ContentCreatorView extends Component {
                 </select>
             </div>
         );
+    }
 
+    displayImageTools() {
+        if (Utils.isEmptyStr(this.state.imageURL)) {
+            return (
+                <React.Fragment/>
+            )
+        }
+
+        return (
+            <React.Fragment>
+                <div className="col-12 content-input">
+                    <input
+                        type="string"
+                        className="form-control"
+                        placeholder="Image title (Text when image is hovered)"
+                        value={this.state.imageTitle}
+                        onChange={(e) => {
+                            this.setState(
+                                {imageTitle: e.target.value},
+                                () => {
+                                    this.updateContainer()
+                                }
+                            )
+                        }}
+                    />
+                </div>
+            </React.Fragment>
+        );
     }
 }
 
