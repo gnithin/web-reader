@@ -25,7 +25,9 @@ class ContentCreatorView extends Component {
             prevContent.description !== currContent.description ||
             prevContent.imageURL !== currContent.imageURL ||
             prevContent.alignment !== currContent.alignment ||
-            prevContent.imageTitle !== currContent.imageTitle
+            prevContent.imageTitle !== currContent.imageTitle ||
+            prevContent.imageWidth !== currContent.imageWidth ||
+            prevContent.imageHeight !== currContent.imageHeight
         ) {
             this.setState(this.getStateForProps(this.props));
         }
@@ -39,6 +41,8 @@ class ContentCreatorView extends Component {
             imageURL: content.imageURL,
             alignment: content.alignment,
             imageTitle: content.imageTitle,
+            imageWidth: content.imageWidth,
+            imageHeight: content.imageHeight,
         }
     }
 
@@ -200,6 +204,40 @@ class ContentCreatorView extends Component {
                         onChange={(e) => {
                             this.setState(
                                 {imageTitle: e.target.value},
+                                () => {
+                                    this.updateContainer()
+                                }
+                            )
+                        }}
+                    />
+                </div>
+
+                <div className="col-12 content-input">
+                    <input
+                        type="string"
+                        className="form-control"
+                        placeholder="Image Width"
+                        value={this.state.imageWidth}
+                        onChange={(e) => {
+                            this.setState(
+                                {imageWidth: e.target.value},
+                                () => {
+                                    this.updateContainer()
+                                }
+                            )
+                        }}
+                    />
+                </div>
+
+                <div className="col-12 content-input">
+                    <input
+                        type="string"
+                        className="form-control"
+                        placeholder="Image Height"
+                        value={this.state.imageHeight}
+                        onChange={(e) => {
+                            this.setState(
+                                {imageHeight: e.target.value},
                                 () => {
                                     this.updateContainer()
                                 }

@@ -20,8 +20,8 @@ class ParagraphWithImage extends Component {
                 {false === Utils.isNull(this.props.title) && <h2>{this.props.title}</h2>}
                 <img
                     src={this.props.imgSrc}
-                    width={this.props.imgWidth}
-                    height={this.props.imgHeight}
+                    width={this.props.width}
+                    height={this.props.height}
                     alt={imageTitle}
                     title={imageTitle}
                     className={imageFloat}
@@ -39,8 +39,8 @@ class ParagraphWithImage extends Component {
 ParagraphWithImage.propTypes = {
     imgSrc: PropTypes.string.isRequired,
     imgTitle: PropTypes.string,
-    imgWidth: PropTypes.number,
-    imgHeight: PropTypes.number,
+    width: PropTypes.string,
+    height: PropTypes.string,
     description: PropTypes.string,
     title: PropTypes.string,
     isImgLeft: PropTypes.bool,
