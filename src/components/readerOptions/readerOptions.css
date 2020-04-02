@@ -19,7 +19,7 @@
 }
 
 .options-wrapper {
-    overflow: scroll;
+    overflow: auto;
     margin: 0px 0px;
     display: flex;
     flex-direction: column;
