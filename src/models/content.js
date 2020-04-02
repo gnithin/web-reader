@@ -2,11 +2,12 @@ import Utils from "../common/utils";
 import CONSTANTS from "../common/constants";
 
 export default class Content {
-    constructor({title, description, imageURL, alignment, type}, setTypeAutomatically = true) {
+    constructor({title, description, imageURL, alignment, type, imageTitle}, setTypeAutomatically = true) {
         this.title = Utils.isNull(title) ? "" : title;
         this.description = Utils.isNull(description) ? "" : description;
         this.imageURL = Utils.isNull(imageURL) ? "" : imageURL;
         this.alignment = Utils.isNull(alignment) ? "" : alignment;
+        this.imageTitle = Utils.isNull(imageTitle) ? "" : imageTitle;
 
         if (false === setTypeAutomatically) {
             this.type = Utils.isNull(type) ? "" : type;

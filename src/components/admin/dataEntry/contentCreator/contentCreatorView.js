@@ -24,7 +24,8 @@ class ContentCreatorView extends Component {
             prevContent.title !== currContent.title ||
             prevContent.description !== currContent.description ||
             prevContent.imageURL !== currContent.imageURL ||
-            prevContent.alignment !== currContent.alignment
+            prevContent.alignment !== currContent.alignment ||
+            prevContent.imageTitle !== currContent.imageTitle
         ) {
             this.setState(this.getStateForProps(this.props));
         }
@@ -37,6 +38,7 @@ class ContentCreatorView extends Component {
             description: content.description,
             imageURL: content.imageURL,
             alignment: content.alignment,
+            imageTitle: content.imageTitle,
         }
     }
 
@@ -159,23 +161,42 @@ class ContentCreatorView extends Component {
         }
 
         return (
-            <div className="col-12 content-input">
-                <select
-                    value={this.state.alignment}
-                    onChange={(e) => {
-                        this.setState(
-                            {alignment: e.target.value},
-                            () => {
-                                this.updateContainer();
-                            }
-                        )
-                    }}
-                >
-                    <option disabled value="">Select Alignment</option>
-                    <option value="right">Right Align</option>
-                    <option value="left">Left Align</option>
-                </select>
-            </div>
+            <React.Fragment>
+                <div className="col-12 content-input">
+                    <select
+                        value={this.state.alignment}
+                        onChange={(e) => {
+                            this.setState(
+                                {alignment: e.target.value},
+                                () => {
+                                    this.updateContainer();
+                                }
+                            )
+                        }}
+                    >
+                        <option disabled value="">Select Alignment</option>
+                        <option value="right">Right Align</option>
+                        <option value="left">Left Align</option>
+                    </select>
+                </div>
+
+                <div className="col-12 content-input">
+                    <input
+                        type="string"
+                        className="form-control"
+                        placeholder="Enter image title here"
+                        value={this.state.imageTitle}
+                        onChange={(e) => {
+                            this.setState(
+                                {imageTitle: e.target.value},
+                                () => {
+                                    this.updateContainer()
+                                }
+                            )
+                        }}
+                    />
+                </div>
+            </React.Fragment>
         );
 
     }
