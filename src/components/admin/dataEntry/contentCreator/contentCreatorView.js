@@ -195,7 +195,7 @@ class ContentCreatorView extends Component {
                     <input
                         type="string"
                         className="form-control"
-                        placeholder="Enter image title here"
+                        placeholder="Image title (Text when image is hovered)"
                         value={this.state.imageTitle}
                         onChange={(e) => {
                             this.setState(
