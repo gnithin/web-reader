@@ -117,6 +117,7 @@ class ContentCreatorView extends Component {
                 </div>
 
                 {this.displayAlignment()}
+                {this.displayImageTools()}
 
                 <div className="col-12 content-input">
                     <CustomFormatters
@@ -161,25 +162,35 @@ class ContentCreatorView extends Component {
         }
 
         return (
-            <React.Fragment>
-                <div className="col-12 content-input">
-                    <select
-                        value={this.state.alignment}
-                        onChange={(e) => {
-                            this.setState(
-                                {alignment: e.target.value},
-                                () => {
-                                    this.updateContainer();
-                                }
-                            )
-                        }}
-                    >
-                        <option disabled value="">Select Alignment</option>
-                        <option value="right">Right Align</option>
-                        <option value="left">Left Align</option>
-                    </select>
-                </div>
+            <div className="col-12 content-input">
+                <select
+                    value={this.state.alignment}
+                    onChange={(e) => {
+                        this.setState(
+                            {alignment: e.target.value},
+                            () => {
+                                this.updateContainer();
+                            }
+                        )
+                    }}
+                >
+                    <option disabled value="">Select Alignment</option>
+                    <option value="right">Right Align</option>
+                    <option value="left">Left Align</option>
+                </select>
+            </div>
+        );
+    }
 
+    displayImageTools() {
+        if (Utils.isEmptyStr(this.state.imageURL)) {
+            return (
+                <React.Fragment/>
+            )
+        }
+
+        return (
+            <React.Fragment>
                 <div className="col-12 content-input">
                     <input
                         type="string"
@@ -198,7 +209,6 @@ class ContentCreatorView extends Component {
                 </div>
             </React.Fragment>
         );
-
     }
 }
 
