@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types'
 import ChooseParentView from "./ChooseParentView";
 import DataEntryService from "../../../../services/dataEntryService";
 import Utils from "../../../../common/utils";
+import DataEntryActions from "../../../../redux/actions/dataEntryActions";
+import {connect} from "react-redux";
 
 class ChooseParentContainer extends Component {
     constructor(props) {
@@ -15,7 +16,8 @@ class ChooseParentContainer extends Component {
     render() {
         return (
             <ChooseParentView
-                parentSelectedCb={this.props.parentSelectedCb}
+                selectedParent={this.props.parent}
+                parentSelectedCb={this.parentSelectedHandler.bind(this)}
                 searchTitleCb={this.searchTitle.bind(this)}
                 results={this.state.results}
             />
@@ -35,26 +37,35 @@ class ChooseParentContainer extends Component {
         })
     }
 
-    // TODO: Refactor this
     parentSelectedHandler(parentData) {
-        // TODO: Move this inside the choose-parent
         if (Utils.isNull(parentData)) {
-            this.setState({parentId: null});
             return;
         }
 
         let id = parentData._id;
         console.log("Selected! - ", parentData);
+
         if (false === Utils.isNull(id)) {
-            this.setState({parentId: id});
+            this.props.setParentId(parentData, id);
         } else {
             console.log("Choose-parent: Got empty parent-id")
         }
     }
 }
 
-ChooseParentContainer.propType = {
-    parentSelectedCb: PropTypes.func.isRequired,
+const reduxToStateMapper = (state) => {
+    return {
+        parent: state.dataEntry.parent,
+        parentId: state.dataEntry.parentId,
+    };
 };
 
-export default ChooseParentContainer;
+const stateToReduxMapper = (dispatcher) => {
+    return {
+        setParentId: (parent, parentId) => {
+            return dispatcher(DataEntryActions.setParentId(parent, parentId));
+        }
+    };
+};
+
+export default connect(reduxToStateMapper, stateToReduxMapper)(ChooseParentContainer);

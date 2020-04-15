@@ -22,8 +22,8 @@ export default class DataEntryActions {
         return ActionUtils.createAction(ACTION_SET_TAGS, tags);
     }
 
-    static setParentId(parentId) {
-        return ActionUtils.createAction(ACTION_SET_PARENT_ID, parentId);
+    static setParentId(parent, parentId) {
+        return ActionUtils.createAction(ACTION_SET_PARENT_ID, {parent, parentId});
     }
 
     static addContent(content) {
