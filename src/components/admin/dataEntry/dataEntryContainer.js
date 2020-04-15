@@ -12,7 +12,11 @@ import ArticleService from "../../../services/articleService";
 class DataEntryContainer extends Component {
     constructor(props) {
         super(props);
-        this.state = {
+        this.state = this.getInitialState();
+    }
+
+    getInitialState() {
+        return {
             info: null,
             infoLink: null,
             infoType: null,
@@ -31,6 +35,7 @@ class DataEntryContainer extends Component {
             prevProps.match.params !== this.props.match.params &&
             prevProps.match.params.id !== this.props.match.params.id
         ) {
+            this.setState({...this.getInitialState()});
             this.populateData()
         }
     }
@@ -147,6 +152,8 @@ class DataEntryContainer extends Component {
         // Perform the call to remote
         opPromise.then(resp => {
             console.log("inserted - ", resp);
+            this.props.history.push(`/admin/pages/${resp._id}`);
+
             let url = `/reader/${resp._id}`;
             this.setState({
                               info: "Inserted successfully!",
@@ -159,6 +166,7 @@ class DataEntryContainer extends Component {
             this.setState({
                               info: "Error inserting entry :(",
                               infoType: CONSTANTS.DATA_INFO.ERROR,
+                              infoLink: null,
                           })
         })
     }

@@ -22,6 +22,7 @@ class ChooseParentContainer extends Component {
     }
 
     render() {
+        console.log("DEBUG: -  parent ", this.props.parent);
         return (
             <ChooseParentView
                 selectedParent={this.props.parent}
