@@ -9,7 +9,6 @@ import CustomFormatterStyleView from "./customFormatterStyleView";
 import CustomFormatterModel from "../../../../models/customFormatter";
 import DataEntryActions from "../../../../redux/actions/dataEntryActions";
 import './customFormatter.css'
-import ReaderUtils from "../../../../common/readerUtils";
 import Clipboard from 'react-clipboard.js';
 
 class CustomFormatterView extends Component {
@@ -98,10 +97,6 @@ class CustomFormatterView extends Component {
                 </div>
             </div>
         );
-    }
-
-    getFormatterKey() {
-        return ReaderUtils.getCustomFormatterKeyForIndex(this.props.formatterIndex);
     }
 
     renderFormatter(formatter) {
