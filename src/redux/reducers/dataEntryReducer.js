@@ -109,6 +109,7 @@ const dataEntryReducer = (state = initialState, action) => {
 
         case ACTION_SET_DATA_ENTRY: {
             return {
+                ...state,
                 ...action.data
             }
         }

@@ -20,28 +20,6 @@ class DataEntryView extends Component {
         }
     }
 
-    componentDidMount() {
-        this.populateData();
-    }
-
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        if (
-            prevProps.match.params !== this.props.match.params &&
-            prevProps.match.params.id !== this.props.match.params.id
-        ) {
-            this.populateData();
-        }
-    }
-
-    populateData() {
-        if (Utils.isNull(this.props.match.params.id)) {
-            this.props.resetAdminData();
-            return;
-        }
-
-        // TODO: Fetch data!
-    }
-
     renderAddNewEntry() {
         console.log("DEBUG: ", this.props.match.params.id);
         if (Utils.isNull(this.props.match.params.id)) {
@@ -252,11 +230,6 @@ const stateToReduxMapper = (dispatcher) => {
         setTitle: (title) => {
             dispatcher(DataEntryActions.setTitle(title));
         },
-
-        resetAdminData: () => {
-            console.log("Resetting!");
-            dispatcher(DataEntryActions.resetAdminData());
-        }
     };
 };
 

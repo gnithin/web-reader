@@ -3,6 +3,11 @@ import DataEntryService from "../../../services/dataEntryService";
 import DataEntry from "./dataEntryView";
 import DataEntryModel from "../../../models/dataEntry";
 import CONSTANTS from "../../../common/constants";
+import Utils from "../../../common/utils";
+import DataEntryActions from "../../../redux/actions/dataEntryActions";
+import {connect} from "react-redux";
+import LoadingView from "../../loading";
+import ArticleService from "../../../services/articleService";
 
 class DataEntryContainer extends Component {
     constructor(props) {
@@ -11,10 +16,95 @@ class DataEntryContainer extends Component {
             info: null,
             infoLink: null,
             infoType: null,
+            isLoading: true,
+            isError: false,
+            errMsg: '',
         }
     }
 
+    componentDidMount() {
+        this.populateData();
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (
+            prevProps.match.params !== this.props.match.params &&
+            prevProps.match.params.id !== this.props.match.params.id
+        ) {
+            this.populateData()
+        }
+    }
+
+    populateData() {
+        let articleId = this.props.match.params.id;
+        if (Utils.isNull(articleId)) {
+            this.props.resetAdminData();
+            this.setState({isLoading: false});
+            return;
+        }
+
+        this.setState({isLoading: true});
+
+        ArticleService.fetchDataSourceForId(articleId).then((data) => {
+            this.props.setAdminData(this.preprocess(data));
+            this.setState({isLoading: false});
+        }).catch(e => {
+            this.setState({isLoading: false, isError: true, errMsg: e.message})
+        });
+    }
+
+    preprocess(data) {
+        /*
+          Process data into  -
+            title: '',
+            tags: '',
+            contents: [],
+            parentId: null,
+            parent: null,
+         */
+        let newData = {
+            title: data.title,
+            tags: data.tags.join(","),
+            contents: data.contents,
+            parentId: data.parent,
+        };
+
+        let parentObj = null;
+
+        // Find the parent
+        if (false === Utils.isNull(data.parent)) {
+            if (false === Utils.isNull(data.paths)) {
+                for (let path of data.paths) {
+                    if (path.identifier === newData.parentId) {
+                        parentObj = path;
+                        break;
+                    }
+                }
+            }
+        }
+        newData.parent = parentObj;
+        console.log("DEBUG: - ", newData);
+
+        return newData;
+    }
+
     render() {
+        if (this.state.isError) {
+            return (
+                <div>
+                    Encountered and error! - {this.state.errMsg}.
+                    <br/>
+                    Please try going back or adding a new entry <a href={"/admin/pages"}>here</a>
+                </div>
+            );
+        }
+
+        if (this.state.isLoading) {
+            return (
+                <LoadingView/>
+            );
+        }
+
         return (
             <DataEntry
                 addEntryCb={this.addEntryCb.bind(this)}
@@ -59,4 +149,21 @@ class DataEntryContainer extends Component {
     }
 }
 
-export default DataEntryContainer;
+const reduxToStateMapper = (state) => {
+    return {};
+};
+
+const stateToReduxMapper = (dispatcher) => {
+    return {
+        resetAdminData: () => {
+            console.log("Resetting!");
+            dispatcher(DataEntryActions.resetAdminData());
+        },
+
+        setAdminData: (data) => {
+            dispatcher(DataEntryActions.setAdminData(data));
+        }
+    };
+};
+
+export default connect(reduxToStateMapper, stateToReduxMapper)(DataEntryContainer);

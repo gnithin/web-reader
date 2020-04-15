@@ -75,7 +75,7 @@ export default class DataEntryActions {
         return ActionUtils.createAction(ACTION_RESET_DATA_ENTRY, null);
     }
 
-    static setAdminData() {
-        return ActionUtils.createAction(ACTION_SET_DATA_ENTRY, null);
+    static setAdminData(data) {
+        return ActionUtils.createAction(ACTION_SET_DATA_ENTRY, data);
     }
 }
