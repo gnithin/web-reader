@@ -212,9 +212,6 @@ const reduxToStateMapper = (state) => {
 
 const stateToReduxMapper = (dispatcher) => {
     return {
-        setTags: (tags) => {
-            dispatcher(DataEntryActions.setTags(tags));
-        },
         setTitle: (title) => {
             dispatcher(DataEntryActions.setTitle(title));
         }

@@ -1,32 +1,36 @@
 import React, {Component} from 'react';
 import './tagCreator.css'
+import {connect} from "react-redux";
+import DataEntryActions from "../../../../redux/actions/dataEntryActions";
 
 class TagCreatorView extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            tags: ""
-        };
-    }
-
     render() {
         return (
             <input
                 type="string"
                 className="form-control"
                 placeholder="Tags - Comma separated"
-                value={this.state.tags}
+                value={this.props.tags}
                 onChange={(e) => {
-                    this.setState(
-                        {tags: e.target.value},
-                        () => {
-                            this.props.updateTagsCb(this.state.tags);
-                        }
-                    )
+                    this.props.setTags(e.target.value);
                 }}
             />
         );
     }
 }
 
-export default TagCreatorView;
+const reduxToStateMapper = (state) => {
+    return {
+        tags: state.dataEntry.tags,
+    };
+};
+
+const stateToReduxMapper = (dispatcher) => {
+    return {
+        setTags: (tags) => {
+            dispatcher(DataEntryActions.setTags(tags));
+        },
+    };
+};
+
+export default connect(reduxToStateMapper, stateToReduxMapper)(TagCreatorView);

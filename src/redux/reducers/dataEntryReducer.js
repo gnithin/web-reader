@@ -5,16 +5,32 @@ import {
     ACTION_CF_DELETE,
     ACTION_CF_UPDATE,
     ACTION_DELETE_CONTENT,
+    ACTION_SET_TAGS,
+    ACTION_SET_TITLE,
     ACTION_UPDATE_CONTENT
 } from "../actions/dataEntryActions";
 import Utils from "../../common/utils";
 
 let initialState = {
+    title: '',
+    tags: '',
     contents: []
 };
 
 const dataEntryReducer = (state = initialState, action) => {
     switch (action.type) {
+        case ACTION_SET_TITLE:
+            return {
+                ...state,
+                title: action.data,
+            };
+
+        case ACTION_SET_TAGS:
+            return {
+                ...state,
+                tags: action.data,
+            };
+
         case ACTION_ADD_CONTENT: {
             return {
                 ...state,
