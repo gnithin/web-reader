@@ -13,6 +13,9 @@ export const ACTION_SET_TITLE = "add-title";
 export const ACTION_SET_TAGS = "set-tags";
 export const ACTION_SET_PARENT_ID = "set-parent-id";
 
+export const ACTION_SET_DATA_ENTRY = "set-data-entry";
+export const ACTION_RESET_DATA_ENTRY = "reset-data-entry";
+
 export default class DataEntryActions {
     static setTitle(title) {
         return ActionUtils.createAction(ACTION_SET_TITLE, title);
@@ -66,5 +69,13 @@ export default class DataEntryActions {
             contentIndex: contentIndex,
             formatterIndex: formatterIndex,
         });
+    }
+
+    static resetAdminData() {
+        return ActionUtils.createAction(ACTION_RESET_DATA_ENTRY, null);
+    }
+
+    static setAdminData() {
+        return ActionUtils.createAction(ACTION_SET_DATA_ENTRY, null);
     }
 }

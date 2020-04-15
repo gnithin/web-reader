@@ -13,6 +13,14 @@ class ChooseParentContainer extends Component {
         }
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.parent !== this.props.parent) {
+            if (Utils.isNull(this.props.parent)) {
+                this.setState({results: null});
+            }
+        }
+    }
+
     render() {
         return (
             <ChooseParentView

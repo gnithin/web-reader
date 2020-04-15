@@ -5,6 +5,8 @@ import {
     ACTION_CF_DELETE,
     ACTION_CF_UPDATE,
     ACTION_DELETE_CONTENT,
+    ACTION_RESET_DATA_ENTRY,
+    ACTION_SET_DATA_ENTRY,
     ACTION_SET_PARENT_ID,
     ACTION_SET_TAGS,
     ACTION_SET_TITLE,
@@ -102,6 +104,18 @@ const dataEntryReducer = (state = initialState, action) => {
             return {
                 ...state,
                 contents: contents,
+            }
+        }
+
+        case ACTION_SET_DATA_ENTRY: {
+            return {
+                ...action.data
+            }
+        }
+
+        case ACTION_RESET_DATA_ENTRY: {
+            return {
+                ...initialState
             }
         }
 

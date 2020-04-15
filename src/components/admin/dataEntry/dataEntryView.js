@@ -9,6 +9,7 @@ import TagCreatorView from "./tagCreator/tagCreatorView";
 import Preview from './preview'
 import CONSTANTS from "../../../common/constants";
 import DataEntryActions from "../../../redux/actions/dataEntryActions";
+import {Link, withRouter} from "react-router-dom";
 
 class DataEntryView extends Component {
     constructor(props) {
@@ -19,12 +20,48 @@ class DataEntryView extends Component {
         }
     }
 
+    componentDidMount() {
+        this.populateData();
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (
+            prevProps.match.params !== this.props.match.params &&
+            prevProps.match.params.id !== this.props.match.params.id
+        ) {
+            this.populateData();
+        }
+    }
+
+    populateData() {
+        if (Utils.isNull(this.props.match.params.id)) {
+            this.props.resetAdminData();
+            return;
+        }
+
+        // TODO: Fetch data!
+    }
+
+    renderAddNewEntry() {
+        console.log("DEBUG: ", this.props.match.params.id);
+        if (Utils.isNull(this.props.match.params.id)) {
+            return (<React.Fragment/>)
+        }
+
+        return (
+            <div className="add-new-entry">
+                <Link to='/admin/pages'>Add New Entry</Link>
+            </div>
+        );
+    }
+
     render() {
         return (
             <div className="container-fluid data-entry-container">
                 <div className="row da-input-entry da-heading no-gutters">
                     <h2 className="col-12 col-sm-8">Document Entry Dashboard</h2>
                     <div className="col-12 col-sm-4 preview-form-wrapper">
+                        {this.renderAddNewEntry()}
                         <div className="form-check">
                             <input
                                 type="checkbox"
@@ -95,13 +132,13 @@ class DataEntryView extends Component {
 
                 <div className="row da-input-entry">
                     <div className="col-12">
-                        <ChooseParent />
+                        <ChooseParent/>
                     </div>
                 </div>
 
                 <div className="row da-input-entry no-gutters">
                     <div className="col-12">
-                        <TagCreatorView />
+                        <TagCreatorView/>
                     </div>
                 </div>
 
@@ -214,8 +251,13 @@ const stateToReduxMapper = (dispatcher) => {
     return {
         setTitle: (title) => {
             dispatcher(DataEntryActions.setTitle(title));
+        },
+
+        resetAdminData: () => {
+            console.log("Resetting!");
+            dispatcher(DataEntryActions.resetAdminData());
         }
     };
 };
 
-export default connect(reduxToStateMapper, stateToReduxMapper)(DataEntryView);
+export default withRouter(connect(reduxToStateMapper, stateToReduxMapper)(DataEntryView))

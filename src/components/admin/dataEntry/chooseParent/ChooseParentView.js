@@ -12,6 +12,17 @@ class ChooseParentView extends Component {
         }
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.selectedParent !== this.props.selectedParent) {
+            if (Utils.isNull(this.props.selectedParent)) {
+                this.setState({
+                                  title: "",
+                                  selectedIndex: -1,
+                              })
+            }
+        }
+    }
+
     render() {
         return (
             <React.Fragment>
@@ -49,7 +60,7 @@ class ChooseParentView extends Component {
 
     renderSelectedParent() {
         if (Utils.isNull(this.props.selectedParent)) {
-          return <React.Fragment />
+            return <React.Fragment/>
         }
         return (
             <div className="choose-parent-selected-parent">

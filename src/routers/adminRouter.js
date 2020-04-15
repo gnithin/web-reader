@@ -8,7 +8,8 @@ class AdminRouter extends Component {
     render() {
         return (
             <Switch>
-                <Route path="/admin/pages" component={DataEntry}/>
+                <Route exact path="/admin/pages" component={DataEntry}/>
+                <Route path="/admin/pages/:id" component={DataEntry}/>
                 <Route path="/admin/howto" component={Howto}/>
                 <Route path="*" component={InvalidPage}/>
             </Switch>
