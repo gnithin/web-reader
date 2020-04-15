@@ -9,7 +9,23 @@ export const ACTION_CF_ADD = "add-custom-formatter";
 export const ACTION_CF_DELETE = "delete-custom-formatter";
 export const ACTION_CF_UPDATE = "update-custom-formatter";
 
+export const ACTION_SET_TITLE = "add-title";
+export const ACTION_SET_TAGS = "set-tags";
+export const ACTION_SET_PARENT_ID = "set-parent-id";
+
 export default class DataEntryActions {
+    static setTitle(title) {
+        return ActionUtils.createAction(ACTION_SET_TITLE, title);
+    }
+
+    static setTags(tags) {
+        return ActionUtils.createAction(ACTION_SET_TAGS, tags);
+    }
+
+    static setParentId(parentId) {
+        return ActionUtils.createAction(ACTION_SET_PARENT_ID, parentId);
+    }
+
     static addContent(content) {
         return ActionUtils.createAction(ACTION_ADD_CONTENT, content);
     }

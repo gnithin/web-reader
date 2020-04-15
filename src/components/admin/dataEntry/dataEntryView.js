@@ -8,15 +8,13 @@ import {connect} from "react-redux";
 import TagCreatorView from "./tagCreator/tagCreatorView";
 import Preview from './preview'
 import CONSTANTS from "../../../common/constants";
+import DataEntryActions from "../../../redux/actions/dataEntryActions";
 
 class DataEntryView extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            title: "",
-            tags: null,
-            parentId: null,
             showPreview: true,
         }
     }
@@ -87,9 +85,9 @@ class DataEntryView extends Component {
                             id="title"
                             placeholder="Document Title"
                             className="form-control"
-                            value={this.state.title}
+                            value={this.props.title}
                             onChange={(e) => {
-                                this.setState({title: e.target.value});
+                                this.props.setTitle(e.target.value);
                             }}
                         />
                     </div>
@@ -97,19 +95,13 @@ class DataEntryView extends Component {
 
                 <div className="row da-input-entry">
                     <div className="col-12">
-                        <ChooseParent
-                            parentSelectedCb={this.parentSelectedHandler.bind(this)}
-                        />
+                        <ChooseParent />
                     </div>
                 </div>
 
                 <div className="row da-input-entry no-gutters">
                     <div className="col-12">
-                        <TagCreatorView
-                            updateTagsCb={(tags) => {
-                                this.setState({tags: tags})
-                            }}
-                        />
+                        <TagCreatorView />
                     </div>
                 </div>
 
@@ -183,34 +175,19 @@ class DataEntryView extends Component {
 
     getDataEntry() {
         return {
-            parentId: this.state.parentId,
-            title: this.state.title,
+            parentId: this.props.parentId,
+            title: this.props.title,
             contents: this.props.contents,
-            tags: this.processTags(this.state.tags),
+            tags: this.processTags(this.props.tags),
         };
     }
 
-    parentSelectedHandler(parentData) {
-        if (Utils.isNull(parentData)) {
-            this.setState({parentId: null});
-            return;
-        }
-
-        let id = parentData._id;
-        console.log("Selected! - ", parentData);
-        if (false === Utils.isNull(id)) {
-            this.setState({parentId: id});
-        } else {
-            console.log("Choose-parent: Got empty parent-id")
-        }
-    }
-
-    processTags() {
+    processTags(tags) {
         let resultTags = [];
-        if (Utils.isNull(this.state.tags)) {
+        if (Utils.isNull(tags)) {
             return resultTags;
         }
-        let components = this.state.tags.split(",");
+        let components = tags.split(",");
         for (let c of components) {
             resultTags.push(c.trim());
         }
@@ -227,7 +204,21 @@ DataEntryView.propType = {
 const reduxToStateMapper = (state) => {
     return {
         contents: state.dataEntry.contents,
+        title: state.dataEntry.title,
+        tags: state.dataEntry.tags,
+        parentId: state.dataEntry.parentId,
     }
 };
 
-export default connect(reduxToStateMapper, null)(DataEntryView);
+const stateToReduxMapper = (dispatcher) => {
+    return {
+        setTags: (tags) => {
+            dispatcher(DataEntryActions.setTags(tags));
+        },
+        setTitle: (title) => {
+            dispatcher(DataEntryActions.setTitle(title));
+        }
+    };
+};
+
+export default connect(reduxToStateMapper, stateToReduxMapper)(DataEntryView);

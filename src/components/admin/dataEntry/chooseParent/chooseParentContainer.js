@@ -34,6 +34,23 @@ class ChooseParentContainer extends Component {
             console.error(err);
         })
     }
+
+    // TODO: Refactor this
+    parentSelectedHandler(parentData) {
+        // TODO: Move this inside the choose-parent
+        if (Utils.isNull(parentData)) {
+            this.setState({parentId: null});
+            return;
+        }
+
+        let id = parentData._id;
+        console.log("Selected! - ", parentData);
+        if (false === Utils.isNull(id)) {
+            this.setState({parentId: id});
+        } else {
+            console.log("Choose-parent: Got empty parent-id")
+        }
+    }
 }
 
 ChooseParentContainer.propType = {
