@@ -1,12 +1,27 @@
 import React, {Component} from 'react';
+import Utils from "../../../../common/utils";
 
 class CustomFormatterStyleView extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            className: "",
-            text: "",
-            styleStr: "",
+        this.state = this.getStateFromProps(props)
+    }
+
+    getStateFromProps(props) {
+        return {
+            className: Utils.getVal(props.className),
+            text: Utils.getVal(props.text),
+            styleStr: Utils.getVal(props.styleStr),
+        }
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (
+            this.props.className !== prevProps.className ||
+            this.props.text !== prevProps.text ||
+            this.props.styleStr !== prevProps.styleStr
+        ) {
+            this.setState({...this.getStateFromProps(this.props)});
         }
     }
 

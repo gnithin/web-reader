@@ -85,4 +85,11 @@ export default class Utils {
     static escapeRegexStr(s) {
         return s.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&');
     }
+
+    static getVal(val, defaultVal = "") {
+        if (Utils.isNull(val)) {
+            return defaultVal;
+        }
+        return val;
+    }
 }

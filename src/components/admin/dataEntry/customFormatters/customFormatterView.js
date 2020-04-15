@@ -162,6 +162,7 @@ class CustomFormatterView extends Component {
             <CustomFormatterHyperlinkView
                 href={formatter.href}
                 text={formatter.text}
+                shouldOpenInNewTab={formatter.shouldOpenInNewTab}
                 updateCb={(newVal) => {
                     this.updateFormatterForVal(newVal);
                 }}
@@ -174,6 +175,7 @@ class CustomFormatterView extends Component {
             <CustomFormatterStyleView
                 className={formatter.className}
                 text={formatter.text}
+                styleStr={formatter.styleStr}
                 updateCb={(newVal) => {
                     this.updateFormatterForVal(newVal);
                 }}

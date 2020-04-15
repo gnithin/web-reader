@@ -1,13 +1,24 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types'
+import Utils from "../../../../common/utils";
 
 class CustomFormatterImageView extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            src: "",
-            alt: "",
+        this.state = this.getStateFromProps(props);
+    }
+
+    getStateFromProps(props) {
+        return {
+            src: Utils.getVal(props.src),
+            alt: Utils.getVal(props.alt),
         };
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.props.src !== prevProps.src || this.props.alt !== prevProps.alt) {
+            this.setState({...this.getStateFromProps(this.props)});
+        }
     }
 
     render() {
