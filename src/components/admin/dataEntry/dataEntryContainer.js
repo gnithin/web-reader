@@ -107,7 +107,7 @@ class DataEntryContainer extends Component {
 
         return (
             <DataEntry
-                addEntryCb={this.addEntryCb.bind(this)}
+                addEntryCb={this.processEntryCb.bind(this)}
                 info={this.state.info}
                 infoType={this.state.infoType}
                 infoLink={this.state.infoLink}
@@ -115,7 +115,7 @@ class DataEntryContainer extends Component {
         );
     }
 
-    addEntryCb(rawEntry) {
+    processEntryCb(rawEntry) {
         let entry = new DataEntryModel(rawEntry);
         console.log("Entry being added!");
         console.log(entry);
@@ -123,14 +123,29 @@ class DataEntryContainer extends Component {
                           info: "Sending...",
                           infoType: CONSTANTS.DATA_INFO.SENDING,
                       });
+
+        // Scroll to the top
         window.scrollTo({
                             top: 0,
                             left: 0,
                             behavior: 'smooth'
                         });
 
+        // Add or update depending on what the status is
+        let articleId = this.props.match.params.id;
+        let opPromise = null;
+
+        if (Utils.isNull(articleId)) {
+            // Add
+            opPromise = DataEntryService.insertDataEntry(entry);
+
+        } else {
+            // update
+            opPromise = DataEntryService.updateDataEntry(entry, articleId);
+        }
+
         // Perform the call to remote
-        DataEntryService.insertDataEntry(entry).then(resp => {
+        opPromise.then(resp => {
             console.log("inserted - ", resp);
             let url = `/reader/${resp._id}`;
             this.setState({
