@@ -9,7 +9,6 @@ import {connect} from "react-redux";
 import LoadingView from "../../loading";
 import ArticleService from "../../../services/articleService";
 import Content from "../../../models/content";
-import CustomFormatter from "../../../models/customFormatter";
 
 class DataEntryContainer extends Component {
     constructor(props) {
