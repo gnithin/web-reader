@@ -8,6 +8,8 @@ import DataEntryActions from "../../../redux/actions/dataEntryActions";
 import {connect} from "react-redux";
 import LoadingView from "../../loading";
 import ArticleService from "../../../services/articleService";
+import Content from "../../../models/content";
+import CustomFormatter from "../../../models/customFormatter";
 
 class DataEntryContainer extends Component {
     constructor(props) {
@@ -70,9 +72,18 @@ class DataEntryContainer extends Component {
         let newData = {
             title: data.title,
             tags: data.tags.join(","),
-            contents: data.contents,
             parentId: data.parent,
+            contents: [],
         };
+
+        // Parse contents
+        if (false === Utils.isNull(data.contents) || data.contents.length > 0) {
+            let contentsList = [];
+            for (let c of data.contents) {
+                contentsList.push(new Content(c));
+            }
+            newData.contents = contentsList;
+        }
 
         let parentObj = null;
 
