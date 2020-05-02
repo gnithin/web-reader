@@ -23,6 +23,24 @@ export default class DataEntryService {
         })
     }
 
+    static updateDataEntry(entry, id) {
+        return fetch(
+            `${DATA_ENDPOINT}/${id}`,
+            {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(entry),
+            }
+        ).then(resp => {
+            if (!resp.ok) {
+                throw Error("Error updating data. Response invalid!")
+            }
+            return resp.json()
+        })
+    }
+
     static findParentForTitle(title) {
         if (Utils.isNull(title)) {
             title = "";

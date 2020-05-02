@@ -9,7 +9,6 @@ import CustomFormatterStyleView from "./customFormatterStyleView";
 import CustomFormatterModel from "../../../../models/customFormatter";
 import DataEntryActions from "../../../../redux/actions/dataEntryActions";
 import './customFormatter.css'
-import ReaderUtils from "../../../../common/readerUtils";
 import Clipboard from 'react-clipboard.js';
 
 class CustomFormatterView extends Component {
@@ -100,10 +99,6 @@ class CustomFormatterView extends Component {
         );
     }
 
-    getFormatterKey() {
-        return ReaderUtils.getCustomFormatterKeyForIndex(this.props.formatterIndex);
-    }
-
     renderFormatter(formatter) {
         if (Utils.isNull(formatter)) {
             return (<span/>);
@@ -162,6 +157,7 @@ class CustomFormatterView extends Component {
             <CustomFormatterHyperlinkView
                 href={formatter.href}
                 text={formatter.text}
+                shouldOpenInNewTab={formatter.shouldOpenInNewTab}
                 updateCb={(newVal) => {
                     this.updateFormatterForVal(newVal);
                 }}
@@ -174,6 +170,7 @@ class CustomFormatterView extends Component {
             <CustomFormatterStyleView
                 className={formatter.className}
                 text={formatter.text}
+                styleStr={formatter.styleStr}
                 updateCb={(newVal) => {
                     this.updateFormatterForVal(newVal);
                 }}
