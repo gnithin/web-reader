@@ -8,10 +8,9 @@
 
 .crumbs-middle {
     display: flex;
-    overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    overflow: scroll;
+    overflow: auto;
 }
 
 .crumb-value {

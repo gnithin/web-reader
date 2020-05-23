@@ -19,7 +19,7 @@
 }
 
 .options-wrapper {
-    overflow: scroll;
+    overflow: auto;
     margin: 0px 0px;
     display: flex;
     flex-direction: column;
@@ -29,7 +29,7 @@
 
 .options-content-wrapper {
     max-height: 70vh;
-    overflow-y: scroll;
+    overflow-y: auto;
     border: 1px solid lightgrey;
 }
 
