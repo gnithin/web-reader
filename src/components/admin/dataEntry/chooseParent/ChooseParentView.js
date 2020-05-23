@@ -12,10 +12,22 @@ class ChooseParentView extends Component {
         }
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.selectedParent !== this.props.selectedParent) {
+            if (Utils.isNull(this.props.selectedParent)) {
+                this.setState({
+                                  title: "",
+                                  selectedIndex: -1,
+                              })
+            }
+        }
+    }
+
     render() {
         return (
             <React.Fragment>
                 <div className="choose-parent-top-bar row">
+                    {this.renderSelectedParent()}
                     <input
                         type="text"
                         className="form-control col-10"
@@ -43,6 +55,17 @@ class ChooseParentView extends Component {
                     {this.displayResults()}
                 </div>
             </React.Fragment>
+        );
+    }
+
+    renderSelectedParent() {
+        if (Utils.isNull(this.props.selectedParent)) {
+            return <React.Fragment/>
+        }
+        return (
+            <div className="choose-parent-selected-parent">
+                Selected Parent - {this.props.selectedParent.title}
+            </div>
         );
     }
 
@@ -96,6 +119,7 @@ class ChooseParentView extends Component {
 }
 
 ChooseParentView.propType = {
+    selectedParent: PropTypes.func,
     parentSelectedCb: PropTypes.func.isRequired,
     searchTitleCb: PropTypes.func.isRequired,
     results: PropTypes.array,

@@ -5,16 +5,44 @@ import {
     ACTION_CF_DELETE,
     ACTION_CF_UPDATE,
     ACTION_DELETE_CONTENT,
-    ACTION_UPDATE_CONTENT
+    ACTION_RESET_DATA_ENTRY,
+    ACTION_SET_DATA_ENTRY,
+    ACTION_SET_PARENT_ID,
+    ACTION_SET_TAGS,
+    ACTION_SET_TITLE,
+    ACTION_UPDATE_CONTENT,
 } from "../actions/dataEntryActions";
 import Utils from "../../common/utils";
 
 let initialState = {
-    contents: []
+    title: '',
+    tags: '',
+    contents: [],
+    parentId: null,
+    parent: null,
 };
 
 const dataEntryReducer = (state = initialState, action) => {
     switch (action.type) {
+        case ACTION_SET_TITLE:
+            return {
+                ...state,
+                title: action.data,
+            };
+
+        case ACTION_SET_TAGS:
+            return {
+                ...state,
+                tags: action.data,
+            };
+
+        case ACTION_SET_PARENT_ID:
+            return {
+                ...state,
+                parentId: action.data.parentId,
+                parent: action.data.parent,
+            };
+
         case ACTION_ADD_CONTENT: {
             return {
                 ...state,
@@ -76,6 +104,19 @@ const dataEntryReducer = (state = initialState, action) => {
             return {
                 ...state,
                 contents: contents,
+            }
+        }
+
+        case ACTION_SET_DATA_ENTRY: {
+            return {
+                ...state,
+                ...action.data
+            }
+        }
+
+        case ACTION_RESET_DATA_ENTRY: {
+            return {
+                ...initialState
             }
         }
 

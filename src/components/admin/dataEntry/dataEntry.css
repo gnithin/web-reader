@@ -33,3 +33,8 @@
 .all-content-wrapper {
     border: 1px solid lightgrey;
 }
+
+.add-new-entry {
+    text-align: right;
+    margin: 0px 10px;
+}

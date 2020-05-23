@@ -2,7 +2,7 @@ import Utils from "../common/utils";
 import CONSTANTS from "../common/constants";
 
 export default class Content {
-    constructor({title, description, imageURL, alignment, type, imageTitle, imageWidth, imageHeight},
+    constructor({title, description, imageURL, alignment, type, imageTitle, imageWidth, imageHeight, customFormatters},
                 setTypeAutomatically = true) {
         this.title = Utils.isNull(title) ? "" : title;
         this.description = Utils.isNull(description) ? "" : description;
@@ -17,7 +17,8 @@ export default class Content {
         } else {
             this.type = this.findType()
         }
-        this.customFormatters = []
+
+        this.customFormatters = Utils.getVal(customFormatters, []);
     }
 
     assignType() {

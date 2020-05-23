@@ -1,12 +1,27 @@
 import React, {Component} from 'react';
+import Utils from "../../../../common/utils";
 
 class CustomFormatterHyperlinkView extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            href: "",
-            text: "",
-            shouldOpenInNewTab: true,
+        this.state = this.getStateFromProps(props);
+    }
+
+    getStateFromProps(props) {
+        return {
+            href: Utils.getVal(props.href),
+            text: Utils.getVal(props.text),
+            shouldOpenInNewTab: Utils.getVal(props.shouldOpenInNewTab, true),
+        };
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (
+            prevProps.href !== this.props.href ||
+            prevProps.text !== this.props.text ||
+            prevProps.shouldOpenInNewTab !== this.props.shouldOpenInNewTab
+        ) {
+            this.setState({...this.getStateFromProps(this.props)});
         }
     }
 
